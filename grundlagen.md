@@ -96,9 +96,9 @@ Gegenprobe Nennspannung: 50,6 V ÷ 14 = 3,614 V/Zelle, ebenfalls NMC-typisch. [B
 **Ausgeschlossene Alternativen** [BER]:
 - 13S: 59 ÷ 13 = 4,54 V/Zelle — physikalisch unmöglich.
 - 15S: 59 ÷ 15 = 3,93 V/Zelle — kein gängiger Ladeschluss.
-- 16S LFP: bräuchte 58,4 V; die 59 V lägen mit 3,69 V/Zelle über dem
-  LFP-Ladeschluss von 3,65 V. Zusätzlich: flache LFP-Entladekurve macht
-  spannungsbasierte Ladestandsanzeige unbrauchbar.
+- 16S LFP: **nicht ausgeschlossen**, siehe §3.1. Für das *Original* gilt der
+  Beleg eindeutig 14S NMC; für den Ersatzpack ist LFP eine offene Rückfalloption,
+  da das Ladegerät ohnehin ersetzt wird.
 
 ### Damit gesetzte Auslegung des Ersatzpacks
 
@@ -108,6 +108,59 @@ Gegenprobe Nennspannung: 50,6 V ÷ 14 = 3,614 V/Zelle, ebenfalls NMC-typisch. [B
 | Nennspannung | 51,8 V (14 × 3,7 V) | [BER] |
 | Ladeschluss | **58,8–59,0 V** | [HB 69] |
 | Entladeschluss | ~42 V (14 × 3,0 V) | [ANN] |
+
+### 3.1 LFP als Rückfalloption — offen, nicht verworfen
+
+**Status: Plan B.** Primärpfad bleibt 14S NMC. LFP mit 16S ist nicht
+ausgeschlossen und wird für den Fall vorgehalten, dass die NMC-Beschaffung
+scheitert — nach der Kostenrecherche (`kosten.md`) ein realistisches Szenario.
+
+**Spannungsfenster sind nahezu deckungsgleich** [BER]:
+
+| | 14S NMC | 16S LFP |
+|---|---|---|
+| leer | 42,0 V | 40,0 V |
+| nominal | 50,6 V | 51,2 V |
+| voll | 58,8 V | 58,4 V |
+
+Das frühere Ausschlussargument „Ladegerät liefert 59 V" trägt **nicht mehr**: Das
+Serien-Ladegerät wird ohnehin ersetzt, weil seine 6 A für den neuen Pack 15 h
+Ladezeit bedeuten (§8.2). Ein neues Gerät wird auf 58,4 V eingestellt. Die 59 V
+bleiben wertvoll als **Beleg** für 14S NMC im Original, sind aber kein Zwang für
+den Ersatzpack.
+
+**Für LFP:**
+- deutlich bessere Beschaffbarkeit in Europa — mit Datenblatt und Gewährleistung
+- thermisch erheblich gutmütiger; relevant bei einem fest verbauten Pack, der in
+  der Garage steht
+- ~5.000 statt ~1.500 Zyklen
+- standardisierte Formate, verlässliche Datenblätter
+
+**Gegen LFP — zwei harte, ein weiches Argument:**
+
+1. **[OFFEN] Bauform.** Das im LFP-Markt normierte Höhenmaß von ~200 mm
+   kollidiert mit unseren 410 mm Bauhöhe. Gerechnet an der EVE LF105
+   (200,5 × 130,3 × 36,7 mm) [REC]: Zwei Etagen ergeben 401 mm und lassen 9 mm
+   für Boden, Zwischenlage und Deckel — unmöglich. Eine Etage fasst auf
+   270 × 215 mm nur 10–12 Zellen, benötigt werden 16. **Für LFP ist zwingend ein
+   flacheres Zellformat zu finden.** Zum Vergleich NMC (173 × 126 × 45 mm):
+   drei Etagen à 126 mm = 378 mm, 32 mm Reserve, 18 Plätze für 14 Zellen. [BER]
+2. **[OFFEN] SoC-Ermittlung.** Leitet Raffis CAN-Modul den Ladestand aus der
+   Packspannung ab, ist LFP raus — die flache Entladekurve ließe die Anzeige
+   ewig auf „voll" stehen und dann schlagartig fallen. Bezieht das Modul den
+   Wert vom BMS, ist der Punkt erledigt. **Zu klären mit Raffler.**
+3. Stromreserve. Bei 105 Ah ist der Dauerstrom auf 1C begrenzt. Bei Christophs
+   Fahrprofil (innerorts und Landstraße bis ~70 km/h, entsprechend 45–65 A =
+   0,4–0,6C) ist das unkritisch. Erst Dauerfahrt bei 100 km/h träfe die Grenze.
+   [BER] Dieses Argument trägt hier also kaum.
+
+**Entscheidungsweiche:** Rückmeldung von Raffler zu Punkt 2, dann Zellsuche zu
+Punkt 1. Bis dahin wird beides offengehalten.
+
+> **Wichtig für die Arbeitsplanung:** Die Chemiefrage blockiert **nicht** das
+> Gehäuse-Außenmodell. Außenkontur, Wandaufbau, Zugstangen und Bodenplatte sind
+> von 14S NMC gegen 16S LFP unberührt — betroffen ist allein die
+> Innenaufteilung. An der Außenkontur kann parallel gearbeitet werden.
 
 ---
 
@@ -353,7 +406,6 @@ Damit die Diskussion nicht im Kreis läuft.
 
 | Option | Verworfen weil | Datum |
 |---|---|---|
-| LFP-Chemie (16S) | Ladegerät liefert 59 V = 3,69 V/Zelle, über LFP-Ladeschluss; flache Entladekurve macht spannungsbasierte SoC-Anzeige unbrauchbar; geringere Stromreserve | 2026-08-20 |
 | Rundzellen 21700 (14S20P) | ~600 Punktschweißungen ohne Gegenwert, da Bauraum reichlich und Gewicht nicht bindend | 2026-08-20 |
 | Original-Gehäuse wiederverwenden | Entscheidung Christoph | 2026-08-20 |
 | Trennrippen wegfräsen | Nicht nötig, da Volumen reichlich; erhält Reversibilität und Führungsfunktion | 2026-08-20 |
