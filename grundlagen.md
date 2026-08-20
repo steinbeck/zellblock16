@@ -166,6 +166,7 @@ das Gewicht der drei Originalakkus.
 | Bruttovolumen | **23,8 L** | [BER] |
 | Einbaulage | Vollständig im Schacht versenkt | [MESS] |
 | Schachttiefe, Gegenprobe mit Zollstock | bestätigt 410 mm | [MESS] |
+| **Lastpfad** | Akku **steht auf dem Schachtboden auf** | [MESS] |
 
 Die alte Spezifikation nannte 210 × 90 × 340 mm und daraus 19,3 L. Die Höhe war
 um 70 mm zu klein und die Achsen waren vertauscht. Beide Fehler zusammen führten
@@ -199,11 +200,18 @@ Akkuwand fassen. Siehe `messprotokoll.md`, M10.
 Innen bleibt der Raum durchgehend und ungeteilt. Ein Wegfräsen der Rippen ist
 **nicht erforderlich** — der Umbau bleibt reversibel.
 
+**Lastpfad geklärt:** Der Akku steht mit seiner Unterseite auf dem Schachtboden
+auf, er hängt nicht an Auflagen. [MESS] Für die Konstruktion heißt das: Die
+Zellmasse wird über den Gehäuseboden nach unten abgetragen, die Zugstangen
+verspannen den Stapel gegen diesen Boden, und die Bodenplatte muss die volle
+Packmasse flächig einleiten — bei ~36 kg gegenüber 9,9 kg im Original das
+Vierfache. Die Auflagefläche ist deshalb großzügig auszulegen und die
+Aussparungen für die Bodenkontaktblöcke dürfen sie nicht unnötig schwächen.
+
 > **[OFFEN] — noch abzunehmen:** Querschnitt und Höhenerstreckung der
 > eingreifenden Rippen; Lage und Höhe der Bodenkontakt-Aussparungen; Anteil des
-> Griffs an der Gesamthöhe von 410 mm; **Lastpfad** — trägt der Schachtboden oder
-> tragen seitliche Auflagen. Siehe `messprotokoll.md`.
-> Blockiert: Innenaufteilung und tragende Struktur, nicht mehr die Außenkontur.
+> Griffs an der Gesamthöhe von 410 mm. Siehe `messprotokoll.md`.
+> Blockiert: Innenaufteilung, nicht mehr Außenkontur oder Lastpfad.
 
 ---
 
@@ -327,7 +335,7 @@ Nach blockierender Wirkung sortiert.
 
 | # | Punkt | Blockiert | Abschnitt |
 |---|---|---|---|
-| 1 | Lastpfad (M11), Rippenquerschnitt (M10), Bodenaussparungen (F1), Griffanteil an der Höhe (M7/M8) | tragende Struktur, Innenaufteilung | 6 |
+| 1 | Rippenquerschnitt (M10), Bodenaussparungen (F1), Griffanteil an der Höhe (M7/M8) | Innenaufteilung | 6 |
 | 2 | Konkrete Zelle wählen (Maße, Datenblatt, Bezugsquelle) | gesamte Innenaufteilung | 7.4 |
 | 3 | Speisepfad des 12-V-Backup-Akkus klären | Verkabelungsplanung | 8.1 |
 | 4 | Raffler: Spannungsfenster, SoC-Abgriff, CAN-Einschleifposition, Terminierung | CAN-Integration | — |
