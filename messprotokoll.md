@@ -29,6 +29,31 @@ und wo Aussparungen nötig sind.
 
 ---
 
+## M13 — Bauhöhe (derzeit der wertvollste Messwert im Projekt)
+
+Entscheidet zwischen zwei Zellwelten. Bitte **zwei getrennte** Maße:
+
+| Nr. | Messstelle | Wert |
+|---|---|---|
+| **M13a** | Schachtoberkante (umlaufender Kragen) **bis Schachtboden**, Zollstock senkrecht im leeren Steckplatz | ______ mm |
+| **M13b** | Schachtoberkante **bis Unterseite der geschlossenen Sitzbank** — der Luftraum darüber | ______ mm |
+
+**Maximale Bauhöhe = M13a + M13b**, abzüglich einiger Millimeter Sicherheit.
+
+> **Warum das so viel entscheidet:** Bei 410 mm scheidet die EVE LF105 aus — zwei
+> Etagen ergäben 401 mm und ließen 9 mm für Boden, Zwischenlage und Deckel. Bei
+> **rund 430 mm** gehen zwei Etagen stehend auf, mit Polen nach oben, womit auch
+> die Frage nach der zulässigen Einbaulage entfällt. Es geht also um eine Zelle
+> für 40 € beim deutschen Händler mit drei Jahren Garantie gegen eine
+> NMC-Zelle, für die sich bisher kein europäischer Anbieter finden ließ.
+
+> **Wichtige Einschränkung zu M13b:** Ragt das Gehäuse über die Schachtoberkante
+> hinaus, wird dieser Teil nicht mehr von den Führungsrippen gehalten. Der
+> Überstand muss also entweder schmal genug für den Kragen sein oder sich auf ihm
+> abstützen. Bitte beim Messen mit ansehen, wie viel Fläche der Kragen bietet.
+
+---
+
 ## M7 / M8 — Wie viel der 410 mm gehört dem Griff?
 
 Am ausgebauten Kraftpaket mit dem Zollstock:

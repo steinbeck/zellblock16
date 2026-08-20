@@ -145,22 +145,111 @@ den Ersatzpack.
    270 × 215 mm nur 10–12 Zellen, benötigt werden 16. **Für LFP ist zwingend ein
    flacheres Zellformat zu finden.** Zum Vergleich NMC (173 × 126 × 45 mm):
    drei Etagen à 126 mm = 378 mm, 32 mm Reserve, 18 Plätze für 14 Zellen. [BER]
-2. **[OFFEN] SoC-Ermittlung.** Leitet Raffis CAN-Modul den Ladestand aus der
-   Packspannung ab, ist LFP raus — die flache Entladekurve ließe die Anzeige
-   ewig auf „voll" stehen und dann schlagartig fallen. Bezieht das Modul den
-   Wert vom BMS, ist der Punkt erledigt. **Zu klären mit Raffler.**
+2. ~~SoC-Ermittlung~~ — **erledigt am 2026-08-20**, siehe §3.2. Das Modul
+   interagiert nicht mit dem Akku und leitet keinen Ladestand ab. Argument
+   gegenstandslos. Raffler hält 16S LFP zu 99 % für problemlos nutzbar.
 3. Stromreserve. Bei 105 Ah ist der Dauerstrom auf 1C begrenzt. Bei Christophs
    Fahrprofil (innerorts und Landstraße bis ~70 km/h, entsprechend 45–65 A =
    0,4–0,6C) ist das unkritisch. Erst Dauerfahrt bei 100 km/h träfe die Grenze.
    [BER] Dieses Argument trägt hier also kaum.
 
-**Entscheidungsweiche:** Rückmeldung von Raffler zu Punkt 2, dann Zellsuche zu
-Punkt 1. Bis dahin wird beides offengehalten.
+**Entscheidungsweiche:** Nach Rafflers Freigabe (§3.2) bleibt allein Punkt 1 —
+die Bauform. Diese hängt an der **realen Schachthöhe**: Bei 410 mm scheidet die
+EVE LF105 aus, bei ~430 mm gehen zwei Etagen stehend auf (2 × 200,5 = 401 mm plus
+Boden, Zwischenlage und Deckel), womit auch die Ventilfrage entfällt.
+**Höhenmessung ist der derzeit wertvollste offene Messwert.**
 
 > **Wichtig für die Arbeitsplanung:** Die Chemiefrage blockiert **nicht** das
 > Gehäuse-Außenmodell. Außenkontur, Wandaufbau, Zugstangen und Bodenplatte sind
 > von 14S NMC gegen 16S LFP unberührt — betroffen ist allein die
 > Innenaufteilung. An der Außenkontur kann parallel gearbeitet werden.
+
+### 3.2 Auskunft Raffler (CAN-Modul), 2026-08-20
+
+Per Telegram eingeholt. **Belegqualität: Herstelleraussage des Modulentwicklers**,
+im Wortlaut vorliegend.
+
+| Frage | Antwort |
+|---|---|
+| Interagiert das Modul mit dem Akku? | **Nein.** „aktuell kann das Modul einfach vortäuschen, dass ein akku drin ist. mit einem akku selber würde es aber nicht interagieren." |
+| Ist 16S LFP nutzbar? | **Ja**, „99 % sicher … problemlos" |
+| Spannungsgrenze? | **„der Motorcontroller ist mit max. 60 V der Flaschenhals"** |
+| Toleranz nach unten? | „ich bin den roller probeweise auch mit 36 v gefahren. also selbst stärkere abweichungen waren ok" |
+| Rekuperation | „ich denke ich bin kurz davor das zu schaffen" — in Arbeit |
+| BMS-Anbindung für echte Daten | geplant, aber „nicht in absehbarer zukunft verfügbar" |
+
+**Drei Konsequenzen:**
+
+1. **Die SoC-Frage ist gegenstandslos.** Das Modul leitet keinen Ladestand aus
+   der Spannung ab — es sendet erfundene Daten. Das frühere Argument gegen LFP
+   („flache Entladekurve macht die Anzeige unbrauchbar") setzte voraus, dass
+   überhaupt etwas interpretiert wird. Tut es nicht.
+2. **Nach dem Umbau gibt es keine echte Ladestandsanzeige im Roller.** Der SoC
+   kommt aus der Bluetooth-App des eigenen BMS. Das gilt chemieunabhängig und ist
+   eine bewusst hinzunehmende Folge des Ausstiegs aus dem OEM-Ökosystem.
+3. **Neue harte Obergrenze: 60 V am Motorcontroller.** 16S LFP (58,4 V) und
+   14S NMC (58,8 V) liegen beide darunter. Das Original-Ladegerät mit 59 V ließe
+   nur 1 V Reserve — ein weiterer Grund, es zu ersetzen.
+
+**Gegenleistung:** Raffler wünscht sich einen Erfahrungsbericht im
+Elektroroller-Forum, sobald der Umbau läuft.
+
+Kontakt: Telegram `t.me/raffler5`
+
+---
+
+## 3.3 Mechanische Anforderungen prismatischer Zellen
+
+Aus dem EVE-Datenblatt LF105 (RD-LF105-S01-LF, Rev. C, Mar 2022), Abschnitte
+6.2–6.4. Gilt sinngemäß für **alle** prismatischen Zellen, auch NMC. [Datenblatt]
+
+### Verspannung — konstruktionsbestimmend
+
+| Größe | Wert |
+|---|---|
+| Empfohlene Vorspannung | **3–5 kN** (≈ 300–500 kgf) |
+| Maximal normal ertragbar | 7 kN |
+| Innere Schäden ab | 9 kN |
+| Leckage ab | 15 kN |
+| **Ausdehnungskraft am Lebensende (EOL)** | **bis 30 kN** |
+| Wirkfläche | 130,30 × 195,50 mm |
+
+Prismatische Zellen quellen über ihre Lebensdauer auf. Wird das nicht durch
+Vorspannung aufgenommen, delaminieren die Elektroden und die Kapazität bricht
+ein. Die Zelldicke im Datenblatt (36,35 mm) gilt ausdrücklich **nur unter 300 kgf
+Verspannung bei 30–40 % SOC** — ungespannt und voll geladen ist die Zelle dicker.
+
+> **Folge für die Konstruktion:** Die Gewindestangen sind nicht bloß
+> Gehäuseverbinder, sondern das **tragende Verspannelement**. Sie brauchen steife
+> Endplatten, die 300–500 kgf flächig in den Zellstapel einleiten. Eine gedruckte
+> Platte leistet das nicht — dort gehören Stahl oder Aluminium hin. Zwischen den
+> Zellen sind nachgiebige Lagen (Schaumstoff) vorzusehen, damit die EOL-Kraft
+> nicht gegen eine starre Einspannung läuft und 30 kN erreicht.
+
+### Wärmeabfuhr
+
+| Richtung | Wärmeleitfähigkeit |
+|---|---|
+| in der Zellebene (X/Z) | 18–24 W/(m·K) |
+| **durch die Zelldicke (Y)** | **1–2 W/(m·K)** |
+| Wärmekapazität | 0,9–1,2 kJ/(kg·K) |
+
+Wärme lässt sich über die großen Seitenflächen **kaum** abführen — der Weg dorthin
+ist zehn- bis zwanzigfach schlechter leitend. Sie muss über Pole und Zellböden
+raus. Das bestimmt, wo im Gehäuse Luft zirkulieren können muss.
+
+Dazu passend eine Warnung aus Abschnitt 7.4 des Datenblatts: *„Do not use plastic
+to encapsulate batteries or use plastic for electrical connection."* Gemeint ist
+vor allem Vergießen, das die Wärmeabfuhr abschneidet; Kunststoffgehäuse mit
+Luftraum sind branchenüblich. Für unseren Wandaufbau heißt das: **Luftspalt und
+Wärmepfade einplanen, nicht dicht umschließen.**
+
+### Zulässige Einbaulage
+
+Das EVE-Datenblatt enthält auf 44 Seiten **keine Aussage** zu Ventilorientierung
+oder zulässiger Einbaulage — weder Freigabe noch Verbot. Liegende Montage
+geschähe daher auf eigenes Risiko. **Stehende Montage mit Polen oben ist der
+sichere Weg** und sollte konstruktiv angestrebt werden.
 
 ---
 
