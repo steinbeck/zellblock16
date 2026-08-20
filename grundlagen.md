@@ -244,12 +244,36 @@ vor allem Vergießen, das die Wärmeabfuhr abschneidet; Kunststoffgehäuse mit
 Luftraum sind branchenüblich. Für unseren Wandaufbau heißt das: **Luftspalt und
 Wärmepfade einplanen, nicht dicht umschließen.**
 
-### Zulässige Einbaulage
+### Zulässige Einbaulage — geklärt, stehend
 
 Das EVE-Datenblatt enthält auf 44 Seiten **keine Aussage** zu Ventilorientierung
-oder zulässiger Einbaulage — weder Freigabe noch Verbot. Liegende Montage
-geschähe daher auf eigenes Risiko. **Stehende Montage mit Polen oben ist der
-sichere Weg** und sollte konstruktiv angestrebt werden.
+oder Einbaulage. Herstellerübergreifend gilt jedoch [REC]:
+
+| Lage | Bewertung |
+|---|---|
+| **Pole oben, stehend** | **empfohlen** — das Sicherheitsventil arbeitet nur in dieser Lage bestimmungsgemäß |
+| **Kopfüber** | **verboten** — Elektrolyt sammelt sich im Ventil und setzt es außer Funktion; bei Zellversagen tritt kochende leitfähige Flüssigkeit auf den Klemmenblock aus statt trockenem Gas |
+| Auf der Kante liegend | nicht empfohlen, herstellerabhängig; teils Warnung vor verkürzter Lebensdauer |
+| Flach auf der großen Fläche | schlechteste der liegenden Varianten |
+
+**Zusätzlich scheitert liegende Montage hier an der Geometrie.** Alle Varianten
+wurden gegen 270 × 215 × 430 mm gerechnet [BER]:
+
+| Variante | Pole zeigen nach | Ergebnis |
+|---|---|---|
+| Auf Kante, Pole nach hinten | Tiefe | 200,5 mm Zelle + 7 mm Busbar/Mutter = 207,5 mm bei 207 mm Innenmaß → passt nicht |
+| Auf Kante, Pole zur Seite | Breite | Pole hätten Platz, aber nur 5 × 3 = 15 Plätze; einer fehlt |
+| Flach gestapelt, 8 Etagen | Tiefe | 16 Plätze, aber erneut 207,5 mm Polseite bei 207 mm → passt nicht |
+
+Ursache ist strukturell: Die 200,5-mm-Achse trägt die Pole und passt bequem nur
+in die 270-mm-Breite. Liegt sie dort, bleiben für die übrigen Achsen zu wenige
+Zellplätze; legt man sie in die 215-mm-Tiefe, kollidieren Busbar und Polmutter
+mit der Gehäusewand.
+
+> **Entscheidung: stehende Montage, Pole oben.** Sicherheitstechnisch die
+> empfohlene Lage, geometrisch die einzig mögliche — und der Lastpfad ist
+> sauber, weil die Schwerkraft die Zellen auf die Bodenplatte drückt statt gegen
+> eine Seitenwand. **Nicht erneut aufzurollen.**
 
 ---
 
@@ -499,6 +523,7 @@ Damit die Diskussion nicht im Kreis läuft.
 | Original-Gehäuse wiederverwenden | Entscheidung Christoph | 2026-08-20 |
 | Trennrippen wegfräsen | Nicht nötig, da Volumen reichlich; erhält Reversibilität und Führungsfunktion | 2026-08-20 |
 | 30-kg-Gewichtsobergrenze | Unbegründet; 151 kg Zuladung bleiben auch mit 36-kg-Pack | 2026-08-20 |
+| Liegende Zellmontage | Ventil arbeitet nur bei Polen oben bestimmungsgemäß; zusätzlich scheitern alle liegenden Varianten geometrisch (§3.3) | 2026-08-20 |
 | Erhalt des OEM-BMS | Es ist die Fehlerquelle: Flottenmanagement-BMS mit GPS/GSM, Backend nicht mehr verfügbar | vorab |
 
 ---
