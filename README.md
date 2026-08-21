@@ -65,7 +65,7 @@ liefert 1,44 kWh. Der komplette Eigenbau kostet 1.515 € und liefert 5,38 kWh �
 | Dauerstrom / Spitze | 100 A / 180 A |
 | Masse | 43,2 kg |
 | Außenmaß | 270 × 215 × 430 mm |
-| Reichweite, rechnerisch | ~96 km |
+| Reichweite, rechnerisch | ~100 km |
 
 ---
 

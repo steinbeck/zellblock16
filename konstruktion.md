@@ -24,7 +24,7 @@ Eingangsgrößen. Dieses Dokument leitet daraus die Konstruktion ab.
 | Energie | **5,38 kWh** (+24 % gegenüber Parität von 4,33 kWh) |
 | Dauerstrom Auslegung | 100 A |
 | Spitzenstrom Auslegung | **180 A** |
-| Rechnerische Reichweite | ~96 km real |
+| Rechnerische Reichweite | ~100 km real |
 | Gesamtmasse | **~43 kg** |
 | Außenmaß | 270 × 215 × 430 mm |
 | Verbleibende Zuladung | 144 kg |

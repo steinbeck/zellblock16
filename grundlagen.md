@@ -84,7 +84,9 @@ Nach Prüfnorm: 1.442 Wh ÷ 36,5 km = 39,5 Wh/km. [BER]
 
 ---
 
-## 3. Zellkonfiguration — 14S NMC, belegt
+## 3. Zellkonfiguration
+
+### 3.0 Das Original ist 14S NMC — belegt
 
 Die Konfiguration ist über das Ladegerät eindeutig bestimmt:
 
@@ -100,73 +102,72 @@ Gegenprobe Nennspannung: 50,6 V ÷ 14 = 3,614 V/Zelle, ebenfalls NMC-typisch. [B
 **Ausgeschlossene Alternativen** [BER]:
 - 13S: 59 ÷ 13 = 4,54 V/Zelle — physikalisch unmöglich.
 - 15S: 59 ÷ 15 = 3,93 V/Zelle — kein gängiger Ladeschluss.
-- 16S LFP: **nicht ausgeschlossen**, siehe §3.1. Für das *Original* gilt der
-  Beleg eindeutig 14S NMC; für den Ersatzpack ist LFP eine offene Rückfalloption,
-  da das Ladegerät ohnehin ersetzt wird.
+- 16S LFP: Für das *Original* ausgeschlossen — 59 V ergäben 3,69 V/Zelle, über
+  dem LFP-Ladeschluss. Für den *Ersatzpack* ist es die getroffene Wahl, weil
+  dessen Ladegerät ohnehin ersetzt und auf 58,4 V eingestellt wird. Siehe §3.1.
 
-### Damit gesetzte Auslegung des Ersatzpacks
+Dieser Befund gilt dem **Originalakku**. Er sagt, welches Spannungsfenster der
+Controller ab Werk erwartet — nicht, womit der Ersatzpack gebaut werden muss.
+Die Entscheidung darüber steht in §3.1.
 
-| Parameter | Wert | Beleg |
-|---|---|---|
-| Konfiguration | **14S**, NMC | [BER] aus [HB 69] |
-| Nennspannung | 51,8 V (14 × 3,7 V) | [BER] |
-| Ladeschluss | **58,8–59,0 V** | [HB 69] |
-| Entladeschluss | ~42 V (14 × 3,0 V) | [ANN] |
+### 3.1 Der Ersatzpack wird 16S LFP — Entscheidung
 
-### 3.1 LFP als Rückfalloption — offen, nicht verworfen
+**Gesetzt am 2026-08-21.** Nicht 14S NMC wie das Original, sondern **16 Zellen
+LiFePO4 in Reihe**, konkret die EVE LF105.
 
-**Status: Plan B.** Primärpfad bleibt 14S NMC. LFP mit 16S ist nicht
-ausgeschlossen und wird für den Fall vorgehalten, dass die NMC-Beschaffung
-scheitert — nach der Kostenrecherche (`kosten.md`) ein realistisches Szenario.
+| Parameter | Wert |
+|---|---|
+| Konfiguration | **16S1P**, LiFePO4 |
+| Zelle | EVE LF105, 105 Ah, 3,2 V |
+| Nennspannung | **51,2 V** (16 × 3,2 V) |
+| Ladeschluss | **58,4 V** (16 × 3,65 V) |
+| Entladeschluss BMS | 44,8 V (16 × 2,8 V) |
+| Energie | **5,38 kWh** (+24 % gegenüber Parität) |
 
-**Spannungsfenster sind nahezu deckungsgleich** [BER]:
+**Die Spannungsfenster sind nahezu deckungsgleich** [BER]:
 
-| | 14S NMC | 16S LFP |
+| | 14S NMC (Original) | 16S LFP (Ersatz) |
 |---|---|---|
 | leer | 42,0 V | 40,0 V |
 | nominal | 50,6 V | 51,2 V |
 | voll | 58,8 V | 58,4 V |
 
-Das frühere Ausschlussargument „Ladegerät liefert 59 V" trägt **nicht mehr**: Das
-Serien-Ladegerät wird ohnehin ersetzt, weil seine 6 A für den neuen Pack 15 h
-Ladezeit bedeuten (§8.2). Ein neues Gerät wird auf 58,4 V eingestellt. Die 59 V
-bleiben wertvoll als **Beleg** für 14S NMC im Original, sind aber kein Zwang für
-den Ersatzpack.
+Beide liegen unter der Obergrenze des Motorcontrollers von 60 V (§3.2).
 
-**Für LFP:**
-- deutlich bessere Beschaffbarkeit in Europa — mit Datenblatt und Gewährleistung
-- thermisch erheblich gutmütiger; relevant bei einem fest verbauten Pack, der in
-  der Garage steht
-- ~5.000 statt ~1.500 Zyklen
-- standardisierte Formate, verlässliche Datenblätter
+### Wie die Entscheidung zustande kam
 
-**Gegen LFP — zwei harte, ein weiches Argument:**
+Zunächst war NMC gesetzt, gestützt auf drei Argumente. **Alle drei sind
+gefallen:**
 
-1. **[OFFEN] Bauform.** Das im LFP-Markt normierte Höhenmaß von ~200 mm
-   kollidiert mit unseren 410 mm Bauhöhe. Gerechnet an der EVE LF105
-   (200,5 × 130,3 × 36,7 mm) [REC]: Zwei Etagen ergeben 401 mm und lassen 9 mm
-   für Boden, Zwischenlage und Deckel — unmöglich. Eine Etage fasst auf
-   270 × 215 mm nur 10–12 Zellen, benötigt werden 16. **Für LFP ist zwingend ein
-   flacheres Zellformat zu finden.** Zum Vergleich NMC (173 × 126 × 45 mm):
-   drei Etagen à 126 mm = 378 mm, 32 mm Reserve, 18 Plätze für 14 Zellen. [BER]
-2. ~~SoC-Ermittlung~~ — **erledigt am 2026-08-20**, siehe §3.2. Das Modul
-   interagiert nicht mit dem Akku und leitet keinen Ladestand ab. Argument
-   gegenstandslos. Raffler hält 16S LFP zu 99 % für problemlos nutzbar.
-3. Stromreserve. Bei 105 Ah ist der Dauerstrom auf 1C begrenzt. Bei Christophs
-   Fahrprofil (innerorts und Landstraße bis ~70 km/h, entsprechend 45–65 A =
-   0,4–0,6C) ist das unkritisch. Erst Dauerfahrt bei 100 km/h träfe die Grenze.
-   [BER] Dieses Argument trägt hier also kaum.
+| Argument gegen LFP | Warum es nicht mehr trägt |
+|---|---|
+| „Das Ladegerät liefert 59 V, zu viel für LFP" | Das Serien-Ladegerät wird ohnehin ersetzt — mit 6 A bräuchte es 15 h. Ein neues wird auf 58,4 V eingestellt. |
+| „Die flache Entladekurve macht die Ladestandsanzeige unbrauchbar" | Rafflers Modul **interagiert nicht mit dem Akku** und leitet keinen Ladestand ab (§3.2). Es gibt nichts, was falsch anzeigen könnte. |
+| „1C Dauerstrom ist zu knapp" | Bei Christophs Fahrprofil bis ~70 km/h liegen 45–65 A an, also 0,4–0,6C. Erst Dauerfahrt bei 100 km/h träfe die Grenze. |
 
-**Entscheidungsweiche:** Nach Rafflers Freigabe (§3.2) bleibt allein Punkt 1 —
-die Bauform. Diese hängt an der **realen Schachthöhe**: Bei 410 mm scheidet die
-EVE LF105 aus, bei ~430 mm gehen zwei Etagen stehend auf (2 × 200,5 = 401 mm plus
-Boden, Zwischenlage und Deckel), womit auch die Ventilfrage entfällt.
-**Höhenmessung ist der derzeit wertvollste offene Messwert.**
+Hinzu kamen zwei Argumente **für** LFP, die vorher nicht bekannt waren:
 
-> **Wichtig für die Arbeitsplanung:** Die Chemiefrage blockiert **nicht** das
-> Gehäuse-Außenmodell. Außenkontur, Wandaufbau, Zugstangen und Bodenplatte sind
-> von 14S NMC gegen 16S LFP unberührt — betroffen ist allein die
-> Innenaufteilung. An der Außenkontur kann parallel gearbeitet werden.
+- **Beschaffbarkeit.** Prismatische NMC-Zellen sind im europäischen Handel
+  praktisch nicht erhältlich; der Markt ist LFP-dominiert, weil er vom
+  Solarspeicherbau getragen wird. LFP gibt es mit Datenblatt, Gewährleistung und
+  in Tagen. Siehe `kosten.md`.
+- **Zyklen und Preis.** > 6.000 statt ~800 Zyklen, und 640 € statt 865–1.370 €
+  für den Zellsatz.
+
+Dazu kommt die deutlich gutmütigere Thermik — relevant bei einem fest verbauten
+Pack, der in der Garage steht.
+
+### Was 16S statt 14S kostet
+
+**Zwei Zellen mehr im Strang.** Raffler hält das für unproblematisch (§3.2), und
+das Spannungsfenster bestätigt es. Für die Beschaffung ist es sogar ein Vorteil:
+16S-LFP-BMS sind Massenware aus dem Solarspeicherbau.
+
+**Bauform.** Das im LFP-Markt normierte Höhenmaß von ~200 mm passt nicht
+beliebig in die 430 mm Bauhöhe. Zwei Etagen à 200,5 mm ergeben 401 mm und lassen
+29 mm für Boden, Zwischenplatte und Deckel — das geht auf, aber nur mit dem
+Kunstgriff, die überstehenden Pole in der Zwischenplatte zu versenken.
+Siehe `konstruktion.md` §8.1.
 
 ### 3.2 Auskunft Raffler (CAN-Modul), 2026-08-20
 
@@ -202,7 +203,7 @@ Kontakt: Telegram `t.me/raffler5`
 
 ---
 
-## 3.3 Mechanische Anforderungen prismatischer Zellen
+### 3.3 Mechanische Anforderungen prismatischer Zellen
 
 Aus dem EVE-Datenblatt LF105 (RD-LF105-S01-LF, Rev. C, Mar 2022), Abschnitte
 6.2–6.4. Gilt sinngemäß für **alle** prismatischen Zellen, auch NMC. [Datenblatt]
@@ -283,21 +284,30 @@ mit der Gehäusewand.
 
 ## 4. Ströme
 
-Anders als beim Original trägt in einem 14S1P-Pack **jede einzelne Zelle den
+Anders als beim Original trägt in einem 16S1P-Pack **jede einzelne Zelle den
 vollen Fahrstrom** — es gibt keine Parallelschaltung, die ihn aufteilt. Beim
 Original teilten sich drei Packs den Strom, jeder trug ein Drittel. Damit ist die
 Strombelastbarkeit der Zelle das **Auswahlkriterium Nummer eins**, noch vor
 Kapazität und Preis.
 
+Gerechnet für **16S LFP** (§3.1):
+
 | Lastfall | Rechnung | Strom | Beleg |
 |---|---|---|---|
-| Spitze bei vollem Akku | 7.000 W ÷ 59,0 V | 119 A | [BER] |
-| Spitze bei Nennspannung | 7.000 W ÷ 50,6 V | 138 A | [BER] |
-| **Spitze bei leerem Akku (Auslegungsfall)** | 7.000 W ÷ 42 V | **167 A** | [BER] |
-| Dauer bei zügiger Fahrt | ~4.500 W ÷ 50,6 V | ~89 A | [ANN] |
+| Spitze bei vollem Akku | 7.000 W ÷ 58,4 V | 120 A | [BER] |
+| Spitze bei Nennspannung | 7.000 W ÷ 51,2 V | 137 A | [BER] |
+| Spitze an der BMS-Abschaltung | 7.000 W ÷ 44,8 V | 156 A | [BER] |
+| **Spitze bei absolut leerem Akku (Auslegungsfall)** | 7.000 W ÷ 40,0 V | **175 A** | [BER] |
+| Dauer, Fahrprofil bis ~70 km/h | 2.300–3.300 W | 45–65 A | [ANN] |
+| Dauer bei 100 km/h | ~5.000 W ÷ 51,2 V | ~98 A | [ANN] |
 
 **Auslegungsvorgabe: 100 A Dauer, 180 A Spitze**, letzteres mit Reserve auf die
-berechneten 167 A. [BER]
+berechneten 175 A. [BER]
+
+**Zur Zellgrenze:** Die LF105 ist mit 1C = 105 A Dauerstrom angegeben. Beim
+realen Fahrprofil liegen 0,4–0,6C an, also reichlich Abstand. Erst Dauerfahrt
+bei Höchstgeschwindigkeit träfe die Grenze — ein Fall, der bei diesem Fahrzeug
+nicht vorkommt.
 
 Die alte Spezifikation setzte 240 A an, abgeleitet aus einer Forenangabe
 („~14 kW laut BMS-Anzeige"), die deren Autor selbst als ungenau bezeichnete.
@@ -313,12 +323,13 @@ und hätte ein unnötig teures BMS erzwungen.
 | Leergewicht ohne Akkus | 93,0 kg | [HB 70] |
 | mit 3 Original-Kraftpaketen (+29,7 kg) | 122,7 kg | [BER] |
 | Zuladung im Originalzustand | **157,3 kg** | [BER] |
-| mit Ersatzpack ~36 kg | 129,0 kg | [BER] |
-| **Zuladung mit Ersatzpack** | **151,0 kg** | [BER] |
+| mit Ersatzpack 43,2 kg | 136,2 kg | [BER] |
+| **Zuladung mit Ersatzpack** | **143,8 kg** | [BER] |
 
 **Schlussfolgerung:** Das Gewicht ist keine bindende Randbedingung. Bei ~110 kg
-tatsächlicher Nutzung (Fahrer 90 kg, Kleidung, Gepäck) bleiben rund 40 kg
-Reserve. Selbst ein 45-kg-Pack wäre zulässig.
+tatsächlicher Nutzung (Fahrer 90 kg, Kleidung, Gepäck) bleiben rund 34 kg
+Reserve. Die Packmasse stieg im Lauf der Konstruktion von geschätzten 36 auf
+43,2 kg, weil das Aluskelett für die Zellverspannung hinzukam (§3.3).
 
 Die 30-kg-Obergrenze der alten Spezifikation war unbegründet — sie war schlicht
 das Gewicht der drei Originalakkus.
@@ -394,12 +405,23 @@ dem der Umbau nicht mehr rückgängig ist.
 und muss separat gelöst werden. Christoph klärt das mit Raffler. **[OFFEN]**
 
 **Lastpfad geklärt:** Der Akku steht mit seiner Unterseite auf dem Schachtboden
-auf, er hängt nicht an Auflagen. [MESS] Für die Konstruktion heißt das: Die
-Zellmasse wird über den Gehäuseboden nach unten abgetragen, die Zugstangen
-verspannen den Stapel gegen diesen Boden, und die Bodenplatte muss die volle
-Packmasse flächig einleiten — bei ~36 kg gegenüber 9,9 kg im Original das
-Vierfache. Die Auflagefläche ist deshalb großzügig auszulegen und die
-Aussparungen für die Bodenkontaktblöcke dürfen sie nicht unnötig schwächen.
+auf, er hängt nicht an Auflagen. [MESS] Die Zellmasse wird also über den
+Gehäuseboden nach unten abgetragen.
+
+**Die Laststeigerung ist geringer als sie scheint.** 43,2 kg gegenüber 9,9 kg je
+Originalakku klingt nach dem Vierfachen, doch die Last verteilt sich auf **alle
+drei Fachflächen**:
+
+| | Original, 3 Packs | Ersatzpack |
+|---|---|---|
+| Masse | 29,7 kg | 43,2 kg |
+| Auflagefläche | 58.050 mm² | 58.050 mm² |
+| Flächenpressung | 0,0050 N/mm² | **0,0073 N/mm²** — **+45 %** |
+
+Bedingung ist, dass die Bodenplatte eben aufliegt. Nach Ausbau der
+Steckkontakte (§6) ist der Schachtboden plan, und der Gehäuseboden liegt
+vollflächig auf — er kann sich deshalb gar nicht durchbiegen und braucht keine
+Verrippung. [BER]
 
 > **[OFFEN] — noch abzunehmen:** Querschnitt und Höhenerstreckung der
 > eingreifenden Rippen; Lage und Höhe der Bodenkontakt-Aussparungen; Anteil des
@@ -427,9 +449,11 @@ Da der Bauraum mit 23,8 L reichlich ist und das Gewicht nicht bindet, entfällt
 der einzige echte Vorteil der Rundzellen — ihre bessere Anpassbarkeit an
 verwinkelte Geometrie.
 
-### 7.2 Chemie: NMC, 14S
+### 7.2 Chemie: LiFePO4, 16S
 
-Belegt über das Ladegerät, siehe Abschnitt 3. LFP scheidet aus.
+Siehe §3.1. Das Original ist 14S NMC (§3.0); der Ersatzpack wird 16S LFP, weil
+alle drei ursprünglichen Gegenargumente entfallen sind und LFP bei
+Beschaffbarkeit, Preis, Zyklenzahl und Thermik überlegen ist.
 
 ### 7.3 Gehäuse: Eigenbau, zweiteilig, mit Zugstangen
 
@@ -445,22 +469,20 @@ Der Bauraum des BambuLab H2S beträgt 340 × 320 × 340 mm [REC]. Ein Gehäuse v
   die Zwickelnuten ohnehin bereitstellen — sonst bliebe die Mitte über 270 mm
   Breite unverspannt
 
-**Nebeneffekt Montage:** Der ~36 kg schwere Pack wird nicht als Ganzes in den
+**Nebeneffekt Montage:** Der 43 kg schwere Pack wird nicht als Ganzes in den
 410 mm tiefen Schacht gehoben, sondern dort etagenweise aufgebaut: untere Hälfte
 (~18 kg) einsetzen, obere aufsetzen, dann Zugstangen durchstecken und verspannen.
 Dieselben Stangen verspannen im selben Zug den Zellstapel gegen Vibration.
 
 ### 7.4 Kapazitätsziel
 
-**14 × 100 Ah = 5,18 kWh** statt der Parität von 4,33 kWh, also **+20 %
-Reichweite** für rund 6 kg Mehrgewicht, das laut Abschnitt 5 verfügbar ist.
-Rechnerische Reichweite: 5.180 Wh ÷ 54 Wh/km ≈ **96 km** real. [BER]
+**16 × 105 Ah = 5,38 kWh** statt der Parität von 4,33 kWh, also **+24 %
+Reichweite** für rund 2 kg Mehrgewicht gegenüber den Originalzellen.
+Rechnerische Reichweite: 5.376 Wh ÷ 54 Wh/km ≈ **100 km** real. [BER]
 
-> **[REC] Zellformat.** Marktübliche prismatische NMC-Zelle dieser Klasse:
-> 3,7 V / 100 Ah, ca. 173 × 126 × 45 mm, ca. 2,1 kg, Pulsstrom bis 300 A,
-> Innenwiderstand ≤ 0,4 mΩ. **Nicht produktverbindlich.** Die konkrete Zelle und
-> damit die Innenaufteilung ist noch nicht gewählt; mehrere Anordnungen
-> (2 oder 3 Etagen) erfüllen die Passung.
+**Zellformat, herstellerbelegt:** EVE LF105, 200,5 × 130,3 × 36,35 mm, 1,98 kg,
+Innenwiderstand < 0,35 mΩ, > 6.000 Zyklen. Datenblatt RD-LF105-S01-LF Rev. C.
+Anordnung: zwei Etagen à acht Zellen, siehe `konstruktion.md` §3.
 
 ---
 
@@ -553,9 +575,11 @@ entfallen mit dem Umbau.
 Kein Rechtsrat. Der 54 ignite fährt 100 km/h [HB 6] und ist damit ein Fahrzeug
 der Klasse L3e, nicht ein Kleinkraftrad.
 
-- Eingriffe in den Antriebsstrang berühren die Betriebserlaubnis. Bei
-  unveränderter Spannungslage (14S wie Original) und unveränderter Motorleistung
-  ist mit einer Prüforganisation zu klären, was konkret abnahmepflichtig wird.
+- Eingriffe in den Antriebsstrang berühren die Betriebserlaubnis. Die
+  **Spannungslage bleibt praktisch unverändert** — 51,2 V nominal und 58,4 V
+  Ladeschluss gegenüber 50,6 V und 58,8 V im Original —, obwohl die Zellzahl von
+  14 auf 16 steigt und die Chemie wechselt. Die Motorleistung bleibt unberührt.
+  Mit einer Prüforganisation ist zu klären, was konkret abnahmepflichtig wird.
 - Der Versicherungsschutz im öffentlichen Raum hängt an einer gültigen
   Betriebserlaubnis.
 - Reverse Engineering des eigenen Fahrzeugs zu Reparatur- und
@@ -574,7 +598,7 @@ Nach blockierender Wirkung sortiert.
 | 1 | Rippenquerschnitt (M10), Bodenaussparungen (F1), Griffanteil an der Höhe (M7/M8) | Innenaufteilung | 6 |
 | 2 | Konkrete Zelle wählen (Maße, Datenblatt, Bezugsquelle) | gesamte Innenaufteilung | 7.4 |
 | 3 | Absicherung im fahrzeugseitigen Sicherungskasten gegen 180 A prüfen | Inbetriebnahme | 8.1 |
-| 5 | BMS wählen: 14S, 100 A Dauer, 180 A Spitze, Balancing | Elektrikplanung | 4 |
+| 5 | BMS wählen: **16S LFP**, 150 A Dauer, 250 A Spitze, aktiver Balancer | Elektrikplanung | 4 |
 | 6 | Ladegerät 58,8–59 V CC/CV, 15–20 A | — | 8.2 |
 | 7 | Zulassungsbescheinigung Teil I, Felder F.1 und G | Gewichtsnachweis | 1 |
 | 8 | Prüforganisation zu Abnahmepflicht kontaktieren | Zulassung | 9 |
@@ -588,10 +612,11 @@ Damit die Diskussion nicht im Kreis läuft.
 
 | Option | Verworfen weil | Datum |
 |---|---|---|
-| Rundzellen 21700 (14S20P) | ~600 Punktschweißungen ohne Gegenwert, da Bauraum reichlich und Gewicht nicht bindend | 2026-08-20 |
+| Rundzellen 21700 | ~600 Punktschweißungen ohne Gegenwert, da Bauraum reichlich und Gewicht nicht bindend | 2026-08-20 |
 | Original-Gehäuse wiederverwenden | Entscheidung Christoph | 2026-08-20 |
 | Trennrippen wegfräsen | Nicht nötig, da Volumen reichlich; erhält Reversibilität und Führungsfunktion | 2026-08-20 |
 | 30-kg-Gewichtsobergrenze | Unbegründet; 151 kg Zuladung bleiben auch mit 36-kg-Pack | 2026-08-20 |
+| **14S NMC für den Ersatzpack** | Alle drei Gegenargumente zu LFP entfielen (Ladegerät wird ohnehin ersetzt, das CAN-Modul leitet keinen Ladestand ab, Stromreserve reicht beim realen Fahrprofil). Zugleich ist NMC prismatisch in Europa kaum beschaffbar, teurer und hält ~800 statt > 6.000 Zyklen. §3.1 | 2026-08-21 |
 | Liegende Zellmontage | Ventil arbeitet nur bei Polen oben bestimmungsgemäß; zusätzlich scheitern alle liegenden Varianten geometrisch (§3.3) | 2026-08-20 |
 | Erhalt des OEM-BMS | Es ist die Fehlerquelle: Flottenmanagement-BMS mit GPS/GSM, Backend nicht mehr verfügbar | vorab |
 

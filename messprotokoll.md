@@ -1,12 +1,44 @@
-# Messprotokoll: Kraftpaket und Schachtdetails
+# Messprotokoll — abgeschlossen
 
-**Zweck:** Liefert die noch fehlenden Angaben für das Gehäusemodell
-(`grundlagen.md` §6, offener Punkt 1).
+> [!NOTE]
+> **Alle Punkte sind erledigt.** Dieses Dokument bleibt als Nachweis erhalten,
+> woher die Maße in `grundlagen.md` §6 stammen. Neue Messungen sind nicht
+> erforderlich — was noch offen war, beantwortet der Testring empirisch.
 
-**Zeitbedarf:** ~15 Minuten. Werkzeug: ein Kraftpaket, Zollstock, Handy.
+| Punkt | Ergebnis | erledigt |
+|---|---|---|
+| Außenmaß Kraftpaket | 90 × 215 × 410 mm | 2026-08-20 |
+| Grundriss | quaderförmig, **nicht konisch** | 2026-08-20 |
+| Eckradius der Vertikalkanten | **5 mm** | 2026-08-20 |
+| Einbaulage | vollständig im Schacht versenkt | 2026-08-20 |
+| **M11 Lastpfad** | Akku **steht auf dem Schachtboden auf** | 2026-08-21 |
+| **M12 Bodenkontakte** | drei Stück, je ~20 mm hoch — werden **ausgebaut** | 2026-08-21 |
+| **M13 Bauhöhe** | **430 mm** nach Ausbau der Kontakte | 2026-08-21 |
+| M7/M8 Griffanteil | entfällt: die Bauhöhe ist direkt gesetzt | 2026-08-21 |
+| F1 Unterseite | entfällt: die Kontakte werden ausgebaut, der Boden wird plan | 2026-08-21 |
+| **M10 Rippenquerschnitt** | wird durch den **Testring T-01** empirisch geprüft | offen → Testring |
 
-**Rückmeldung:** Werte zu M7, M8, M10–M12 hier eintragen oder im Chat aufzählen.
-Fotos nach `Materials/`.
+---
+
+## Was der Testring beantwortet
+
+Statt weiterer Handmessungen prüft das Musterstück `cad/testring.scad` die
+verbliebenen Fragen in einem Zug:
+
+1. **Passung der Außenkontur** in den Akkuschacht
+2. **Eingriff der Führungsrippen** in die vier Zwickelnuten — das ist der frühere
+   Punkt M10
+3. **Innenmaß** gegen zwei echte Zellen, markiert durch zwei Stege im Ring
+
+Klemmt er, ist zu melden **wo**: an den Seitenwänden, an den Zwickeln oder an
+den Ecken. Danach wird in `cad/parameter.scad` genau eine Zahl geändert, und
+alle vier Teile ziehen nach.
+
+---
+
+## Historischer Stand
+
+Nachfolgend das ursprüngliche Protokoll, wie es vor der Beantwortung aussah.
 
 ---
 
