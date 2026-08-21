@@ -366,6 +366,29 @@ Akkuwand fassen. Siehe `messprotokoll.md`, M10.
 Innen bleibt der Raum durchgehend und ungeteilt. Ein Wegfräsen der Rippen ist
 **nicht erforderlich** — der Umbau bleibt reversibel.
 
+### Bodenkontakte — Ausbau beschlossen (2026-08-21)
+
+Am Schachtboden sitzen **drei** Leistungssteckkontakte, je **ca. 20 mm hoch**.
+[MESS] Sie greifen in Taschen an der Unterseite des Kraftpakets. Ein Gehäuse mit
+planer Unterseite würde auf ihnen aufsitzen und 20 mm Bauhöhe verlieren.
+
+**Entscheidung: Kontakte ausbauen, Direktverkabelung** statt Nutzung der
+Originalkontakte.
+
+| | mit Kontakten | ohne |
+|---|---|---|
+| Nutzbare Bauhöhe | 410 mm | **430 mm** |
+| Bodenplatte | drei Aussparungen, an den Traglaststellen geschwächt | **durchgehend eben** |
+| Lasteinleitung | um die Taschen herum | **flächig** |
+| Kabeldurchführung | neue Durchbrüche nötig | **die freiwerdenden Kontaktöffnungen** |
+
+**Preis:** Nach dem Ausbau lässt sich kein Originalakku mehr einsetzen. Da diese
+defekt und nicht mehr beschaffbar sind, vertretbar — aber es ist der Punkt, ab
+dem der Umbau nicht mehr rückgängig ist.
+
+**Folge:** Der 12-V-Backup-Pfad (§8.1) wird damit nicht mehr automatisch bedient
+und muss separat gelöst werden. Christoph klärt das mit Raffler. **[OFFEN]**
+
 **Lastpfad geklärt:** Der Akku steht mit seiner Unterseite auf dem Schachtboden
 auf, er hängt nicht an Auflagen. [MESS] Für die Konstruktion heißt das: Die
 Zellmasse wird über den Gehäuseboden nach unten abgetragen, die Zugstangen
