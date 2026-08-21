@@ -1,101 +1,97 @@
-# Grobe Kostenabschätzung
+# Kostenabschätzung
 
-**Stand:** 2026-08-20
-**Genauigkeit:** ±30–40 %. Zellpreise schwanken stark und sind der mit Abstand
-größte Posten. Vor Bestellung neu erheben.
-**Grundlage:** `grundlagen.md` — 14S NMC, 14 × 100 Ah, 5,18 kWh.
+**Stand:** 2026-08-21 · **Ersetzt** die NMC-Fassung vom 2026-08-20 vollständig.
+**Grundlage:** `konstruktion.md` — 16S1P LFP, EVE LF105, 5,38 kWh.
 
 ---
 
-## Zwei Vorbemerkungen, die alles Weitere prägen
+## Was sich gegenüber der ersten Fassung geändert hat
 
-**1. Prismatische NMC-Zellen sind im europäischen DIY-Handel praktisch nicht
-erhältlich.** Der hiesige Markt ist auf LFP ausgerichtet, weil er vom
-Solarspeicherbau getragen wird. Stichprobe LionTec (deutscher Spezialhändler für
-prismatische Zellen): ausschließlich LFP im Sortiment, kein NMC. [REC]
-NMC prismatisch bekommt man realistisch nur über Direktimport aus China oder als
-Fahrzeug-Rückläufer. Das ist ein **Beschaffungsrisiko, kein Preisproblem** — und
-es ist der Grund, warum unten drei Szenarien stehen statt einer Zahl.
+Die erste Abschätzung rechnete mit **14S NMC** und nannte drei Beschaffungswege,
+weil prismatische NMC-Zellen in Europa kaum zu bekommen sind. Diese Unsicherheit
+ist entfallen:
 
-**2. Der europäische Kleinhandel ist teuer.** Aus den LionTec-Preisen gerechnet:
-100 Ah LFP für 209 € entspricht **653 €/kWh**; die günstigste Zelle im Sortiment
-(400 Ah) liegt bei 311 €/kWh. [BER] Zum Vergleich: ab Werk in China kosten
-Zellen dieser Klasse 90–130 €/kWh. Die Spanne zwischen bequem und billig beträgt
-hier den Faktor drei bis fünf.
+| | erste Fassung | jetzt |
+|---|---|---|
+| Chemie | 14S NMC | **16S LFP** |
+| Zellbeschaffung | drei Szenarien, 260–1.800 € | **ein Händler, fester Preis** |
+| Spanne gesamt | 900–2.950 € | **1.250–1.670 €** |
+| Größter Unsicherheitsfaktor | die Zellen | jetzt Ladegerät und Aluzuschnitt |
 
----
-
-## Zellen — drei Beschaffungswege
-
-### A · EU-Händler, Neuware
-
-| | |
-|---|---|
-| Zellpreis | 250–350 €/kWh |
-| **5,18 kWh** | **1.300–1.800 €** |
-| Lieferzeit | Tage |
-| Risiko | gering — Gewährleistung, Rückgaberecht |
-| Haken | **NMC prismatisch kaum im Angebot**; ggf. Sonderbestellung nötig |
-
-### B · Direktimport China (Alibaba o. ä.), Grade A
-
-| | |
-|---|---|
-| Zellen ab Werk, 90–130 €/kWh | 465–675 € |
-| Gefahrgutversand (UN 3480), ~35 kg | 250–450 € |
-| Einfuhrumsatzsteuer 19 % auf Ware + Fracht | 135–215 € |
-| Zoll ~2,7 % | 15–30 € |
-| **Summe** | **865–1.370 €** |
-| Lieferzeit | 4–10 Wochen |
-| Risiko | **hoch** — Grade B als Grade A deklariert, keine praktisch durchsetzbare Gewährleistung, Kapazität und Innenwiderstand ungeprüft |
-
-### C · Fahrzeug-Rückläufer / Second Life
-
-| | |
-|---|---|
-| 50–100 €/kWh | **260–520 €** |
-| Lieferzeit | Glückssache |
-| Risiko | **hoch** — Restkapazität 70–90 %, ungleiche Alterung, Historie unbekannt, oft nur als ganzes Modul statt Einzelzellen |
-
-Zur Einordnung: Der Referenzumbau JJac nennt 250–400 € für seinen 60-Ah-Zellsatz
-aus Rückläufern. [Forum, unbelegt] Das passt zu dieser Spanne.
-
-> **Zwei Punkte zu C.** Erstens: Bei ungleich gealterten Zellen bestimmt die
-> schwächste die Packkapazität — bei 14 in Reihe ohne Parallelschaltung gibt es
-> keinen Ausgleich. Zweitens: Vor dem Einbau müsste jede Zelle einzeln kapazitäts-
-> und innenwiderstandsgeprüft werden, sonst kauft man ein Ärgernis. Das kostet
-> Zeit und ein Testgerät, spart aber im Zweifel 1.000 €.
+Zugleich sind zwei Posten hinzugekommen, die es im NMC-Entwurf nicht gab:
+**Aluminium-Endplatten und Zugstangen**. Sie ergeben sich aus der
+Verspannungsanforderung des Zelldatenblatts (3–5 kN je Stapel), die erst bei der
+Auswertung zutage trat.
 
 ---
 
-## Feste Posten, unabhängig vom Zellweg
+## Belegte Posten
+
+| Posten | Preis | Quelle |
+|---|---|---|
+| **16 × EVE LF105**, Grade A, 105 Ah | **640 €** | LiFePO Shop GmbH, 39,98 €/Stück |
+| **BMS** JK PB2A16S20P, 16S, 200 A, 2 A aktiver Balancer, BT + CAN | **109 €** | powercells.de, inkl. Versand |
+| | **749 €** | |
+
+> **Achtung Nullsteuersatz.** Der Shop weist die Zelle mit **33,60 €** aus,
+> ausdrücklich „mit 0 % MwSt." Das ist der Nullsteuersatz nach § 12 Abs. 3 UStG
+> für Photovoltaikspeicher in oder an Wohngebäuden. **Für einen Fahrzeugakku gilt
+> er nicht.** Zu kalkulieren ist der Bruttopreis von 39,98 €, also 640 € statt
+> 538 € für den Satz.
+
+Zum BMS: 16S-LFP-BMS sind Massenware aus dem Solarspeicherbau — große Auswahl,
+niedriger Preis, gute Dokumentation. Der CAN-Anschluss ist ein Nebengewinn:
+Raffler plant, sein Modul künftig an echte BMS-Daten anzubinden
+(`grundlagen.md` §3.2).
+
+---
+
+## Geschätzte Posten
+
+### Skelett und Mechanik
 
 | Posten | Spanne | Anmerkung |
 |---|---|---|
-| **BMS** 14S, 200 A, Bluetooth (JK / JBD / Daly) | 150–280 € | 200 A gegen 180 A Auslegungsspitze; aktiver Balancer bevorzugt |
-| **Ladegerät** 58,8 V CC/CV, 15–20 A | 150–250 € | Serienteil hat nur 6 A → 15 h Ladezeit |
-| **Filament**, 4–5 kg ASA oder PETG | 100–150 € | Gehäusewände allein ~2 L Materialvolumen, dazu Zellhalter |
-| **Leistungskabel** 25–35 mm², Kabelschuhe, Crimpen | 80–120 € | kurze Wege, Crimpzange ggf. leihen |
-| **Vorladewiderstand + Trennschalter/Schütz** | 40–100 € | gegen Einschaltlichtbogen am Controller-Kondensator |
-| **Zellverbinder/Busbars + Schrauben** | 30–60 € | bei prismatischen Zellen oft beiliegend |
-| **Gewindestangen** M8 A2, 6 × ~450 mm, Muttern, Scheiben | 30–50 € | tragende Verspannung beider Gehäusesegmente |
-| **Isolation** Fischpapier, Kapton, Schrumpfschlauch, Schaum | 30–60 € | Zellen gegen Rahmen und untereinander |
-| **Hauptsicherung** ANL/Mega 200 A + Halter | 20–35 € | träge |
-| **Balancerkabel, Stecker, Kleinteile** | 20–40 € | |
-| **Summe** | **650–1.145 €** | |
+| Aluplatten 2 × 260 × 400 × 8 mm | 60–120 € | Zuschnittservice, ~4,5 kg AlMg3 |
+| Zugstangen M8 A2-70, 8 Stück, Muttern, Scheiben | 30–50 € | |
+| Busbars M6, 15 Stück | 30–60 € | **nicht im Zelllieferumfang** |
+| Schaumlagen zwischen den Zellen | 15–25 € | EPDM 2–3 mm, für die Alterungsausdehnung |
+| **Summe** | **135–255 €** | |
+
+### Gehäuse
+
+| Posten | Spanne | Anmerkung |
+|---|---|---|
+| ASA, 3–3,5 kg | 75–125 € | Vollteil, zwei Segmente |
+| PETG, ~0,3 kg | 8–12 € | Testring T-01, PETG genügt |
+| **Summe** | **83–137 €** | |
+
+### Elektrik
+
+| Posten | Spanne | Anmerkung |
+|---|---|---|
+| Ladegerät 58,4 V CC/CV, 15–20 A | 150–250 € | Serienteil ungeeignet: 59 V, nur 6 A |
+| Leistungskabel, Kabelschuhe | 40–80 € | **die Portleitungen sind vorhanden** |
+| Trennschalter und Vorladewiderstand | 40–100 € | gegen Einschaltlichtbogen |
+| Hauptsicherung 200 A ANL, träge, mit Halter | 20–35 € | |
+| Isolation, Schrumpfschlauch, Kleinteile | 30–60 € | |
+| **Summe** | **280–525 €** | |
 
 ---
 
-## Gesamtsummen
+## Gesamt
 
-| Weg | Zellen | Fixposten | **Gesamt** |
-|---|---|---|---|
-| **A** EU-Neuware | 1.300–1.800 € | 650–1.145 € | **1.950–2.950 €** |
-| **B** China-Direktimport | 865–1.370 € | 650–1.145 € | **1.500–2.500 €** |
-| **C** Rückläufer | 260–520 € | 650–1.145 € | **900–1.650 €** |
+| Block | von | bis |
+|---|---|---|
+| Zellen und BMS *(belegt)* | 749 € | 749 € |
+| Skelett und Mechanik | 135 € | 255 € |
+| Gehäuse | 83 € | 137 € |
+| Elektrik | 280 € | 525 € |
+| **Summe** | **1.247 €** | **1.666 €** |
 
-**Bemerkenswert:** In Weg C kosten die Zellen weniger als das Drumherum. Ab dort
-lohnt kein weiteres Sparen am Zellsatz — es lohnt Sorgfalt bei seiner Auswahl.
+**Die Zellen machen nur noch 38–51 % der Kosten aus.** In der NMC-Fassung
+dominierten sie die Rechnung; jetzt dominiert das Drumherum. Weiteres Sparen
+lohnt daher nicht am Zellsatz, sondern beim Ladegerät und beim Aluzuschnitt.
 
 ---
 
@@ -103,31 +99,38 @@ lohnt kein weiteres Sparen am Zellsatz — es lohnt Sorgfalt bei seiner Auswahl.
 
 | Posten | Grobwert | Anmerkung |
 |---|---|---|
-| Prüforganisation / Abnahme | 200–600 € | offener Punkt 8, Umfang noch ungeklärt |
-| Raffis CAN-Modul | 0–150 € | laut Vorgespräch bereits vorhanden — bitte bestätigen |
-| Werkzeug (Crimpzange, Drehmomentschlüssel, Zelltester) | 100–300 € | einmalig, teils leihbar |
-| Fehlversuche beim Druck | 20–50 € | erfahrungsgemäß mindestens ein Fehldruck |
+| Prüforganisation, Abnahme | 200–600 € | Umfang ungeklärt |
+| Werkzeug: Crimpzange, Drehmomentschlüssel | 100–300 € | einmalig, teils leihbar |
+| Fehldruck | 20–80 € | genau dagegen dient der Testring |
+| Raffis CAN-Modul | 0 € | vorhanden |
 
 ---
 
 ## Einordnung
 
-Drei neue Kraftpakete 2.0 lagen bei etwa 700 € pro Stück, also **~2.100 €** — und
-sind wegen der Kumpan-Insolvenz nicht mehr regulär erhältlich. Der Eigenbau
-liefert in jedem der drei Wege **~20 % mehr Kapazität**, in Weg B und C zudem
-für weniger Geld, und macht vor allem unabhängig von einem Ersatzteilmarkt, den
-es nicht mehr gibt.
+Drei neue Kraftpakete 2.0 lagen bei etwa **2.100 €** und sind seit der Insolvenz
+nicht mehr regulär erhältlich.
 
-Der eigentliche Gewinn ist aber nicht der Preis, sondern dass ein defekter
-Ersatzpack künftig durch Nachkauf einzelner Zellen instandsetzbar bleibt.
+| | Original, 3 Packs | Zellblock 16 |
+|---|---|---|
+| Preis | ~2.100 € | **1.250–1.670 €** |
+| Energie | 4,33 kWh | **5,38 kWh** (+24 %) |
+| Zyklen | ~1.000 | **> 6.000** |
+| Garantie | entfallen | 3 Jahre auf die Zellen |
+| Ersatzteilversorgung | keine | Einzelzellen nachkaufbar |
+
+Der eigentliche Gewinn ist nicht der Preis, sondern die Unabhängigkeit von einem
+Ersatzteilmarkt, den es nicht mehr gibt. Eine einzelne ausgefallene Zelle kostet
+künftig 40 € statt eines kompletten Packs.
 
 ---
 
-## Was diese Schätzung noch nicht kann
+## Verbliebene Unsicherheit
 
-Der größte Posten — die Zellen — steht auf einem **[REC]**-Formatfund
-(173 × 126 × 45 mm, 2,1 kg, ~100 Ah), nicht auf einem konkreten Angebot. Solange
-kein realer Lieferant mit Datenblatt und Preis feststeht, ist alles oben eine
-Größenordnung, keine Kalkulation. Die Zellsuche ist damit der nächste
-wertschöpfende Schritt — sie klärt gleichzeitig Preis, Verfügbarkeit **und** die
-exakten Maße, an denen die gesamte Innenaufteilung hängt.
+Zwei Posten sind noch nicht angefragt und tragen die Hälfte der Spanne:
+
+1. **Ladegerät** (150–250 €) — hier lohnt ein Vergleich, die Preise streuen stark.
+2. **Aluzuschnitt** (60–120 €) — abhängig davon, ob die Bohrungen mitbestellt
+   oder selbst gesetzt werden.
+
+Alles andere ist entweder belegt oder Kleinmaterial mit geringer Hebelwirkung.
