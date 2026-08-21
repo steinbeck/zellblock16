@@ -47,6 +47,22 @@ endplatte_b     = 260.0;
 endplatte_h     = 400.0;
 zugstange_d     = 8.0;   // M8
 
+// ── Fügung und Befestigung ─────────────────────────────────────────
+zapfen_b       = 4.0;    // Zentrierzapfen an der Trennfuge, Querschnitt
+zapfen_l       = 14.0;
+zapfen_h       = 8.0;
+zapfen_spiel   = 0.25;   // je Seite, für die Drucktoleranz
+
+schraube_d     = 4.5;    // Durchgang M4 in die Aluplatte
+schraube_kopf  = 8.5;    // Senkung
+schrauben_je_segment = 4;
+
+lueftung_b     = 4.0;    // Entlüftungsschlitze im Oberteil
+lueftung_n     = 9;
+
+kabel_d        = 26.0;   // Durchführungen im Boden, an den Fachmitten,
+                         // wo die Originalkontakte saßen
+
 // ── Fertigung ──────────────────────────────────────────────────────
 druck_tol      = 0.4;    // erwartete Maßabweichung H2S über 270 mm
 segment_h      = 215;    // Gehäusesegment, 2 × = bauraum_h
@@ -67,9 +83,21 @@ spiel_b     = innen_b - zellblock_b - 2 * zelle_tol;   // 3,4 → 1,7 je Seite
 rest_t      = innen_t - zellblock_t - 2 * endplatte_dicke; // für BMS
 
 // Höhenbilanz. konstruktion.md §8.1
+kopfraum     = 12;   // Verschaltungsraum über der oberen Etage
 hoehe_belegt = boden_dicke + zelle_h2 + zwischenplatte
-             + zelle_h2 + 12 + deckel_dicke;
+             + zelle_h2 + kopfraum + deckel_dicke;
 hoehe_reserve = bauraum_h - hoehe_belegt;
+
+// Trennfuge der beiden Gehäusesegmente. Sie liegt auf der Oberkante der
+// Zwischenplatte — dort ist ohnehin eine steife Ebene, und keine Zelle
+// wird geschnitten.
+fuge_z       = boden_dicke + zelle_h2 + zwischenplatte;   // 213,5
+seg_u_h      = fuge_z;                                     // Unterteil
+seg_o_h      = hoehe_belegt - deckel_dicke - fuge_z;       // Oberteil
+
+// Lage der Endplatten in der Tiefe
+platte_hinten_y = wand_stirn;
+platte_vorn_y   = wand_stirn + endplatte_dicke + zellblock_t;
 
 echo(str("── Zellblock 16 ──────────────────────────"));
 echo(str("Innenmaß          ", innen_b, " × ", innen_t, " mm"));
@@ -79,6 +107,9 @@ echo(str("Spiel Breite      ", spiel_b, " mm gesamt, ",
 echo(str("Rest Tiefe        ", rest_t, " mm für BMS und Kabel"));
 echo(str("Höhe belegt       ", hoehe_belegt, " mm"));
 echo(str("Höhe Reserve      ", hoehe_reserve, " mm"));
+echo(str("Trennfuge bei     ", fuge_z, " mm"));
+echo(str("Segment unten     ", seg_u_h, " mm hoch"));
+echo(str("Segment oben      ", seg_o_h, " mm hoch"));
 
 assert(spiel_b > 2 * druck_tol,
   "Spiel in der Breite kleiner als die doppelte Drucktoleranz.");
@@ -86,3 +117,7 @@ assert(hoehe_reserve > 0,
   "Höhenbilanz überschritten.");
 assert(wand_stirn >= eckradius + wand_min,
   "Stirnwand zu dünn: die Zwickelnut würde sie durchbrechen.");
+assert(seg_u_h <= 340 && seg_o_h <= 340,
+  "Ein Segment überschreitet die Bauhöhe des H2S von 340 mm.");
+assert(platte_vorn_y + endplatte_dicke <= bauraum_t - wand_stirn,
+  "Die vordere Endplatte passt nicht in die Tiefe.");
