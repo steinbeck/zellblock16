@@ -1,0 +1,12 @@
+title: Zellblock 16
+description: >-
+  Ein selbstgebauter 16S1P-LiFePO4-Traktionsakku für den Kumpan 54 ignite.
+  Konstruktionsentwurf zur Diskussion — nicht gebaut, nicht getestet,
+  nicht abgenommen.
+theme: jekyll-theme-cayman
+lang: de
+
+exclude:
+  - Materials/
+  - cad/*.stl
+  - auftrag.md
