@@ -1,4 +1,4 @@
-<title>Kraftpaket Ignite</title>
+<title>Zellblock 16</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;500&display=swap">
@@ -229,11 +229,11 @@ footer b{color:var(--ink);font-weight:500;}
 
     <header>
       <div>
-        <p class="eyebrow">Kumpan 54 ignite · Traktionsbatterie · Eigenbau</p>
-        <h1>Kraftpaket Ignite<span>Explosionsdarstellung 16S1P LFP</span></h1>
+        <p class="eyebrow">Traktionsbatterie · Eigenbau · passend für Kumpan 54 ignite</p>
+        <h1>Zellblock 16<span>Explosionsdarstellung · 16S1P · LiFePO4</span></h1>
       </div>
       <div class="head-meta">
-        Zeichnungs-Nr. <b>KA-2026-001</b><br>
+        Zeichnungs-Nr. <b>ZB-16-001</b><br>
         Blatt <b>1 / 1</b> · Maßstab <b>ohne</b><br>
         Stand <b>21.08.2026</b> · Rev. <b>A</b>
       </div>
@@ -278,13 +278,13 @@ footer b{color:var(--ink);font-weight:500;}
         </div>
 
         <div class="titleblock">
-          <div class="tb tb-wide"><k>Benennung</k><v>Traktionsbatterie Ersatzpack</v></div>
+          <div class="tb tb-wide"><k>Benennung</k><v>Traktionsbatterie Zellblock 16</v></div>
           <div class="tb"><k>Gezeichnet</k><v>21.08.2026</v></div>
           <div class="tb"><k>Werkstoff Gehäuse</k><v>ASA</v></div>
           <div class="tb"><k>Projektion</k><v>Isometrisch</v></div>
           <div class="tb"><k>Maße in</k><v>mm</v></div>
           <div class="tb"><k>Fahrzeug</k><v>Kumpan 54 ignite</v></div>
-          <div class="tb"><k>Ersetzt</k><v>3 × Kraftpaket 2.0</v></div>
+          <div class="tb"><k>Ersetzt</k><v>3 × OEM-Wechselakku</v></div>
         </div>
       </aside>
     </div>
@@ -377,11 +377,23 @@ const PARTS=[
   el("line",{x1:top[0],y1:top[1],x2:bot[0],y2:bot[1],class:"axis"});
 })();
 
-const groups={};
 function G(pos){
-  const g=el("g",{class:"part","data-pos":pos});
-  groups[pos]=g; return g;
+  return el("g",{class:"part","data-pos":pos});
 }
+
+/* ── Hinter dem Stapel liegende Teile zuerst ──────── */
+
+/* 10 · Zugstangen, nach hinten herausgezogen */
+(function(){
+  const g=G(10);
+  [455,700,905,1150].forEach(z=>{
+    box(g, 26,-300,z,8,150,8,"edge-fine");
+    box(g,236,-300,z,8,150,8,"edge-fine");
+  });
+})();
+
+/* 9a · Endplatte hinten */
+(function(){ const g=G(9); box(g,5,-118,352,260,8,400); })();
 
 /* 8 · Bodenplatte */
 (function(){ const g=G(8); box(g,0,0,0,W,D,6); })();
@@ -434,21 +446,8 @@ function G(pos){
     class:"edge-fine"},g);
 })();
 
-/* 9 · Endplatten, seitlich herausgezogen */
-(function(){
-  const g=G(9);
-  box(g,5,-118,352,260,8,400);
-  box(g, 5, D+96,352,260,8,400);
-})();
-
-/* 10 · Zugstangen */
-(function(){
-  const g=G(10);
-  [455,700,905,1150].forEach(z=>{
-    box(g,26,-172,z,8,470,8,"edge-fine");
-    box(g,236,-172,z,8,470,8,"edge-fine");
-  });
-})();
+/* 9b · Endplatte vorn — zuletzt, liegt vor dem Stapel */
+(function(){ const g=G(9); box(g,5,D+96,352,260,8,400); })();
 
 /* ── Positionsnummern ──────────────────────────────── */
 const BALLOONS=[
@@ -460,8 +459,8 @@ const BALLOONS=[
   {pos:6, ax:W,    ay:34, az:530,  dx:124, dy:-12},
   {pos:7, ax:W,    ay:0,  az:270,  dx:120, dy:-14},
   {pos:8, ax:W,    ay:0,  az:3,    dx:120, dy:-10},
-  {pos:9, ax:5,    ay:D+100,az:600,dx:-126,dy:-14},
-  {pos:10,ax:26,   ay:-172,az:1154,dx:-118,dy:-20}
+  {pos:9, ax:5,    ay:D+104,az:600,dx:-124,dy:-14},
+  {pos:10,ax:240,  ay:-300,az:1158,dx:74,  dy:-22}
 ];
 BALLOONS.forEach(b=>{
   const a=iso(b.ax,b.ay,b.az);
@@ -539,9 +538,11 @@ allParts.forEach(g=>{
 });
 
 /* ── Aufbausequenz: von unten nach oben ────────────── */
-const order=[8,7,6,5,4,9,10,3,2,1];
+const order=[10,9,8,7,6,5,4,3,2,1];
 order.forEach((pos,i)=>{
-  if(groups[pos]) groups[pos].style.animationDelay=(0.10+i*0.085).toFixed(3)+"s";
+  dwg.querySelectorAll('[data-pos="'+pos+'"]').forEach(g=>{
+    g.style.animationDelay=(0.10+i*0.085).toFixed(3)+"s";
+  });
 });
 })();
 </script>
