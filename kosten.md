@@ -41,9 +41,11 @@ Auswertung zutage trat.
 > Fahrzeugakku nicht gilt. Gerechnet wird durchgehend mit dem Bruttopreis.
 
 Zum BMS: 16S-LFP-BMS sind Massenware aus dem Solarspeicherbau — große Auswahl,
-niedriger Preis, gute Dokumentation. Der CAN-Anschluss ist ein Nebengewinn:
-Raffler plant, sein Modul künftig an echte BMS-Daten anzubinden
-(`grundlagen.md` §3.2).
+niedriger Preis, gute Dokumentation. Die Wahl fiel nicht nur wegen des Preises
+auf das JK-Modell: Raffler verlangt ein Gerät, dessen Kommunikation vollständig
+reverse-engineered ist und das Befehle für die Ausgangs-MOSFETs entgegennimmt,
+damit sein Modul später echte Daten ans Display liefern kann. Das JK-BMS erfüllt
+beides (`grundlagen.md` §3.2).
 
 ---
 

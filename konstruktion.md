@@ -364,7 +364,25 @@ ohne Reserve. **Deshalb ist der Testdruck nach §11.1 verbindlich.**
 | Temperaturabschaltung | 60 °C |
 | Ladesperre unter 0 °C | zwingend |
 
-**Vorteil dieser Konfiguration:** 16S-LFP-BMS sind Massenware aus dem
+**Zusätzliche Anforderung — das BMS ist eine Schnittstellenentscheidung.**
+Auf Rafflers Rat (`grundlagen.md` §3.2) ist ein Gerät zu wählen, dessen
+Kommunikation von der Community **vollständig reverse-engineered** ist und das
+**Befehle entgegennimmt**, insbesondere zum Schalten der Ausgangs-MOSFETs. Nur
+dann lässt es sich später an sein CAN-Modul anbinden, sodass der Roller wieder
+einen echten Ladestand anzeigt statt erfundener Werte.
+
+| Kriterium | Anforderung |
+|---|---|
+| Protokoll | offengelegt, Community-Implementierung vorhanden |
+| Schreibzugriff | Lade- und Entlade-MOSFET schaltbar |
+| Schnittstelle | RS485 oder CAN; ein Port bleibt frei für das Modul |
+| Softwarestand | JK-BMS: Version ≥ 6.0 |
+
+**Kandidat: JK PB2A16S20P** — 16S, 200 A, 2 A aktiver Balancer, zwei
+RS485-Ports, Bluetooth, 109 €. Erfüllt alle Kriterien; die Steuerbefehle für
+beide MOSFETs sind in `syssi/esphome-jk-bms` implementiert.
+
+**Vorteil der 16S-LFP-Konfiguration:** Solche BMS sind Massenware aus dem
 Solarspeicherbau — große Auswahl, niedrige Preise, gute Dokumentation.
 
 Das BMS darf im Normalbetrieb nicht begrenzen: 150 A Dauer liegen über der

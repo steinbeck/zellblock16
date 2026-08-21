@@ -196,6 +196,33 @@ im Wortlaut vorliegend.
    14S NMC (58,8 V) liegen beide darunter. Das Original-Ladegerät mit 59 V ließe
    nur 1 V Reserve — ein weiterer Grund, es zu ersetzen.
 
+### Anforderung an die BMS-Wahl (Raffler, 2026-08-21)
+
+> „wähle eins welches von der Community schon komplett reverse-engineered wurde.
+> also alle Kommunikation bekannt ist, und am besten auch befehle entgegennimmt
+> (um die Mosfets am ausgang zu steuern). dies würde es dann in zukunft
+> erleichtern es in das Modul einzubinden und dann die richtigen Daten auf dem
+> Display anzuzeigen"
+
+Damit ist die BMS-Wahl keine reine Schutzfrage mehr, sondern eine
+**Schnittstellenentscheidung**: Sie bestimmt, ob der Roller später wieder einen
+echten Ladestand anzeigen kann (§3.2, Punkt 2).
+
+**Erfüllt vom JK-BMS** [REC]:
+
+| Anforderung | Umsetzung |
+|---|---|
+| Vollständig reverse-engineered | `syssi/esphome-jk-bms` dokumentiert > 40 Modelle |
+| Protokoll offengelegt | JK BMS RS485 Modbus V1.0 |
+| **Befehle für die MOSFETs** | Schalter für Lade- und Entlade-MOSFET, Balancer, Ladegerät-Modus |
+| Schnittstellen | UART-TTL, RS485, BLE; beim JK-PB **zwei RS485-Ports** |
+
+Weitere Implementierungen: `Uksa007/esphome-jk-bms-can` (RS485 und CAN),
+`Sleeper85/esphome-yambms` (neuere PB-Modelle).
+
+> **Beim Kauf zu beachten:** Softwareversion **≥ 6.0**, sonst spricht das Gerät
+> ein anderes Protokoll. Ein RS485-Port sollte für Rafflers Modul frei bleiben.
+
 **Gegenleistung:** Raffler wünscht sich einen Erfahrungsbericht im
 Elektroroller-Forum, sobald der Umbau läuft.
 
