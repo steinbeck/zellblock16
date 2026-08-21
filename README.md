@@ -4,6 +4,29 @@
 16 LiFePO4-Zellen in Reihe, 5,38 kWh, in einem 3D-gedruckten Gehäuse, das
 die drei originalen Wechselakkus ersetzt.
 
+> [!CAUTION]
+> ### Entwurf — nicht gebaut, nicht getestet, nicht abgenommen
+>
+> Dieses Repository beschreibt einen **Konstruktionsentwurf**, der als
+> Diskussionsgrundlage im [Elektroroller-Forum](https://www.elektroroller-forum.de/)
+> gedacht ist. Stand heute gilt ohne Einschränkung:
+>
+> - **Kein Teil wurde gefertigt.** Sämtliche Maße stammen aus Berechnung und
+>   CAD, keines aus einem realen Bauteil in der Hand.
+> - **Nichts wurde erprobt** — weder elektrisch noch mechanisch noch thermisch.
+>   Kein Strom ist geflossen, keine Zelle wurde verspannt, kein Gehäuse hat je
+>   im Akkuschacht gesteckt.
+> - **Es gibt keine behördliche Abnahme.** Der Umbau berührt die
+>   Betriebserlaubnis und damit den Versicherungsschutz. Eine Prüforganisation
+>   war zu keinem Zeitpunkt beteiligt.
+>
+> Die Zahlen sind sorgfältig hergeleitet und in `grundlagen.md` mit ihrer
+> Herkunft belegt — aber hergeleitet ist nicht bewiesen. Wer darauf aufbaut,
+> prüft jede einzelne selbst gegen seine eigenen Bauteile und Datenblätter.
+>
+> **Rückmeldungen sind ausdrücklich erwünscht.** Genau dafür liegt das hier
+> öffentlich.
+
 <p align="center">
   <img src="docs/img/explosion.png" width="480" alt="Explosionsdarstellung des Aufbaus">
 </p>
@@ -145,9 +168,9 @@ Es wird mit **58,4 V DC** und Kurzschlussströmen im Kiloampere-Bereich
 gearbeitet, an einem Paket von 43 kg. Lithiumzellen können bei Fehlbehandlung in
 Brand geraten.
 
-Dieses Repository ist **keine Bauanleitung**. Es dokumentiert ein Einzelprojekt
-an einem konkreten Fahrzeug. Wer Vergleichbares vorhat, prüft jede Zahl selbst
-gegen seine eigenen Bauteile und Datenblätter.
+Dieses Repository ist **keine Bauanleitung**, sondern ein unerprobter Entwurf
+für ein konkretes Fahrzeug — siehe die Warnung ganz oben. Wer Vergleichbares
+vorhat, prüft jede Zahl selbst gegen seine eigenen Bauteile und Datenblätter.
 
 Der Umbau berührt **Betriebserlaubnis und Versicherungsschutz**. Vor der
 Nutzung im öffentlichen Straßenverkehr ist eine Prüforganisation einzuschalten.
