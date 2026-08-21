@@ -193,10 +193,24 @@ die Seitenführung.
 | Fläche | Stärke | Begründung |
 |---|---|---|
 | Seitenwände (links/rechts) | **2,5 mm** | Breite ist der Engpass, siehe §8 |
-| Vorder- und Rückwand | 5,0 mm | dort 45 mm Freiraum, trägt Verrippung |
+| Vorder- und Rückwand | **8,0 mm** | siehe Kasten unten — 5,0 mm wären durchbrochen |
 | Bodenplatte | 6,0 mm | verrippt, leitet 43 kg flächig ein |
 | Zwischenplatte | 12,0 mm | mit Taschen für Pole und Busbars |
 | Deckel | 4,0 mm | mit Entlüftungsöffnungen |
+
+> **Korrektur 2026-08-21, beim Modellieren gefunden.** Diese Spezifikation
+> nannte zunächst 5,0 mm Stirnwand. Das ist unmöglich: Die Zwickelnut zieht die
+> Außenkontur an vier Stellen um genau `eckradius` = 5 mm ein. Bei 5,0 mm
+> Wandstärke bliebe dort **null** Material — die Wand wäre an den vier
+> Rippenaufnahmen durchbrochen. Die Stirnwand muss daher mindestens
+> `eckradius + wand_min` betragen; bei 3 mm Mindestwand sind das **8,0 mm**,
+> was am Zwickel 3 mm Restwand stehen lässt. Die Bedingung ist in
+> `cad/parameter.scad` als `assert` hinterlegt und kann nicht mehr stillschweigend
+> unterschritten werden.
+
+**Folge für die Tiefenbilanz:** Der Innenraum schrumpft von 205 auf **199 mm**.
+Für BMS und Verkabelung bleiben statt 43,6 nun **37,6 mm** — weiterhin
+ausreichend.
 
 ### 5.3 Material
 
@@ -316,10 +330,10 @@ ohne Reserve. **Deshalb ist der Testdruck nach §11.1 verbindlich.**
 | | mm |
 |---|---|
 | Bauraum außen | 215,0 |
-| Wände 2 × 5,0 | 10,0 |
+| Stirnwände 2 × 8,0 | 16,0 |
 | Zellblock 4 × 36,35 | 145,4 |
 | Aluplatten 2 × 8,0 | 16,0 |
-| **frei für BMS und Verkabelung** | **43,6** |
+| **frei für BMS und Verkabelung** | **37,6** |
 
 ### 8.4 Masse
 
