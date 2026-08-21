@@ -1,2 +1,10 @@
 .DS_Store
 **/.DS_Store
+
+# Urheberrechtlich geschütztes Herstellerdokument. Bleibt lokal.
+# Es ist die Primärquelle für alle [HB]-Belege in grundlagen.md;
+# zitiert wird daraus mit Seitenzahlen, nicht durch Weitergabe.
+Materials/*.pdf
+
+# Erzeugnisse aus den .scad-Quellen
+cad/*.stl

@@ -599,9 +599,11 @@ Damit die Diskussion nicht im Kreis läuft.
 
 ## 12. Quellen
 
-1. **`Materials/Benutzerhandbuch_ignite_54i.pdf`** — Kumpan electric,
-   Benutzerhandbuch 54 ignite, 75 Seiten, erstellt 2020-10-01. Primärquelle für
-   alle [HB]-Angaben.
+1. **Benutzerhandbuch Kumpan 54 ignite**, Kumpan electric, 75 Seiten, erstellt
+   2020-10-01. Primärquelle für alle **[HB]**-Angaben; die Zahl dahinter ist die
+   Seite im Dokument. **Nicht Teil dieses Repositories** — das Handbuch ist
+   urheberrechtlich geschützt und wird hier nur zitiert, nicht weitergegeben.
+   Fahrzeughalter erhalten es über Kumpan electric bzw. den Rechtsnachfolger.
 2. **`Materials/IMG_6165–6167.jpeg`** — Fotos von Akku und Schacht, 2026-08-20.
 3. **Referenzumbau JJac**, Elektroroller-Forum —
    https://www.elektroroller-forum.de/viewtopic.php?p=414287#p414287
