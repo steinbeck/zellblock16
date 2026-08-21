@@ -2,6 +2,9 @@
 
 **Stand:** 2026-08-21 · **Ersetzt** die NMC-Fassung vom 2026-08-20 vollständig.
 **Grundlage:** `konstruktion.md` — 16S1P LFP, EVE LF105, 5,38 kWh.
+**Alle Preise brutto**, einschließlich 19 % Umsatzsteuer, als Endkundenpreise
+für Privatbezug. Die Spalte „wahrscheinlich" ist der Wert bei vernünftigem
+Einkauf — nicht die billigste Quelle, nicht die teuerste.
 
 ---
 
@@ -15,7 +18,7 @@ ist entfallen:
 |---|---|---|
 | Chemie | 14S NMC | **16S LFP** |
 | Zellbeschaffung | drei Szenarien, 260–1.800 € | **ein Händler, fester Preis** |
-| Spanne gesamt | 900–2.950 € | **1.250–1.670 €** |
+| Spanne gesamt | 900–2.950 € | **1.300–1.820 €** |
 | Größter Unsicherheitsfaktor | die Zellen | jetzt Ladegerät und Aluzuschnitt |
 
 Zugleich sind zwei Posten hinzugekommen, die es im NMC-Entwurf nicht gab:
@@ -33,11 +36,9 @@ Auswertung zutage trat.
 | **BMS** JK PB2A16S20P, 16S, 200 A, 2 A aktiver Balancer, BT + CAN | **109 €** | powercells.de, inkl. Versand |
 | | **749 €** | |
 
-> **Achtung Nullsteuersatz.** Der Shop weist die Zelle mit **33,60 €** aus,
-> ausdrücklich „mit 0 % MwSt." Das ist der Nullsteuersatz nach § 12 Abs. 3 UStG
-> für Photovoltaikspeicher in oder an Wohngebäuden. **Für einen Fahrzeugakku gilt
-> er nicht.** Zu kalkulieren ist der Bruttopreis von 39,98 €, also 640 € statt
-> 538 € für den Satz.
+> Der Shop weist die Zelle mit 33,60 € aus — das ist der Nullsteuersatz nach
+> § 12 Abs. 3 UStG für Photovoltaikspeicher in Wohngebäuden, der für einen
+> Fahrzeugakku nicht gilt. Gerechnet wird durchgehend mit dem Bruttopreis.
 
 Zum BMS: 16S-LFP-BMS sind Massenware aus dem Solarspeicherbau — große Auswahl,
 niedriger Preis, gute Dokumentation. Der CAN-Anschluss ist ein Nebengewinn:
@@ -50,48 +51,58 @@ Raffler plant, sein Modul künftig an echte BMS-Daten anzubinden
 
 ### Skelett und Mechanik
 
-| Posten | Spanne | Anmerkung |
-|---|---|---|
-| Aluplatten 2 × 260 × 400 × 8 mm | 60–120 € | Zuschnittservice, ~4,5 kg AlMg3 |
-| Zugstangen M8 A2-70, 8 Stück, Muttern, Scheiben | 30–50 € | |
-| Busbars M6, 15 Stück | 30–60 € | **nicht im Zelllieferumfang** |
-| Schaumlagen zwischen den Zellen | 15–25 € | EPDM 2–3 mm, für die Alterungsausdehnung |
-| **Summe** | **135–255 €** | |
+| Posten | von | bis | wahrsch. | Anmerkung |
+|---|---:|---:|---:|---|
+| Aluplatten 2 × 260 × 400 × 8 mm | 80 € | 150 € | **115 €** | ~4,5 kg AlMg3, Zuschnitt inbegriffen |
+| Bohrungen für die Zugstangen | 0 € | 60 € | **0 €** | 16 Löcher; in 8 mm Alu selbst machbar |
+| Zugstangen M8 A2-70, Muttern, Scheiben | 30 € | 50 € | **40 €** | 2 m Gewindestange, 16 Sicherungsmuttern |
+| Busbars M6, 15 Stück | 50 € | 100 € | **75 €** | **nicht im Zelllieferumfang** |
+| Schaumlagen | 20 € | 35 € | **28 €** | EPDM 3 mm, ~0,4 m² |
+| **Summe** | **180 €** | **395 €** | **258 €** | |
+
+Zu den Busbars: Die Standardschienen aus dem Solarspeicherbau sind meist für
+rund 100 A ausgelegt. Bei 180 A Spitzenstrom braucht es kräftigere oder
+verzinnte Kupferschienen — daher der höhere Ansatz.
 
 ### Gehäuse
 
-| Posten | Spanne | Anmerkung |
-|---|---|---|
-| ASA, 3–3,5 kg | 75–125 € | Vollteil, zwei Segmente |
-| PETG, ~0,3 kg | 8–12 € | Testring T-01, PETG genügt |
-| **Summe** | **83–137 €** | |
+| Posten | von | bis | wahrsch. | Anmerkung |
+|---|---:|---:|---:|---|
+| ASA, 3,5 kg | 75 € | 125 € | **100 €** | Vollteil, zwei Segmente |
+| PETG, 0,3 kg | 8 € | 12 € | **10 €** | Testring T-01 |
+| **Summe** | **83 €** | **137 €** | **110 €** | |
 
 ### Elektrik
 
-| Posten | Spanne | Anmerkung |
-|---|---|---|
-| Ladegerät 58,4 V CC/CV, 15–20 A | 150–250 € | Serienteil ungeeignet: 59 V, nur 6 A |
-| Leistungskabel, Kabelschuhe | 40–80 € | **die Portleitungen sind vorhanden** |
-| Trennschalter und Vorladewiderstand | 40–100 € | gegen Einschaltlichtbogen |
-| Hauptsicherung 200 A ANL, träge, mit Halter | 20–35 € | |
-| Isolation, Schrumpfschlauch, Kleinteile | 30–60 € | |
-| **Summe** | **280–525 €** | |
+| Posten | von | bis | wahrsch. | Anmerkung |
+|---|---:|---:|---:|---|
+| Ladegerät 58,4 V CC/CV, 15–20 A | 150 € | 250 € | **190 €** | Serienteil ungeeignet: 59 V, nur 6 A |
+| Leistungskabel 35 mm², Kabelschuhe | 50 € | 90 € | **70 €** | die Portleitungen selbst sind vorhanden |
+| Trennschalter und Vorladewiderstand | 40 € | 100 € | **65 €** | gegen Einschaltlichtbogen |
+| Hauptsicherung 200 A ANL mit Halter | 20 € | 35 € | **28 €** | träge |
+| Isolation, Schrumpfschlauch, Kleinteile | 30 € | 60 € | **45 €** | |
+| **Summe** | **290 €** | **535 €** | **398 €** | |
 
 ---
 
 ## Gesamt
 
-| Block | von | bis |
-|---|---|---|
-| Zellen und BMS *(belegt)* | 749 € | 749 € |
-| Skelett und Mechanik | 135 € | 255 € |
-| Gehäuse | 83 € | 137 € |
-| Elektrik | 280 € | 525 € |
-| **Summe** | **1.247 €** | **1.666 €** |
+| Block | von | bis | wahrscheinlich |
+|---|---:|---:|---:|
+| Zellen und BMS *(belegt)* | 749 € | 749 € | **749 €** |
+| Skelett und Mechanik | 180 € | 395 € | **258 €** |
+| Gehäuse | 83 € | 137 € | **110 €** |
+| Elektrik | 290 € | 535 € | **398 €** |
+| **Summe brutto** | **1.302 €** | **1.816 €** | **1.515 €** |
 
-**Die Zellen machen nur noch 38–51 % der Kosten aus.** In der NMC-Fassung
+**Rechne mit rund 1.500 €** für das fertige Paket. Die Untergrenze setzt
+konsequent günstigen Einkauf voraus, die Obergrenze Markenware und
+Fremdbohrungen.
+
+**Die Zellen machen nur noch 42 % der Kosten aus.** In der NMC-Fassung
 dominierten sie die Rechnung; jetzt dominiert das Drumherum. Weiteres Sparen
-lohnt daher nicht am Zellsatz, sondern beim Ladegerät und beim Aluzuschnitt.
+lohnt daher nicht am Zellsatz, sondern beim Ladegerät — dort streuen die Preise
+am stärksten.
 
 ---
 
@@ -99,10 +110,14 @@ lohnt daher nicht am Zellsatz, sondern beim Ladegerät und beim Aluzuschnitt.
 
 | Posten | Grobwert | Anmerkung |
 |---|---|---|
-| Prüforganisation, Abnahme | 200–600 € | Umfang ungeklärt |
-| Werkzeug: Crimpzange, Drehmomentschlüssel | 100–300 € | einmalig, teils leihbar |
-| Fehldruck | 20–80 € | genau dagegen dient der Testring |
+| Prüforganisation, Abnahme | 200–600 € | Umfang ungeklärt, `grundlagen.md` §9 |
+| Werkzeug: Crimpzange, Drehmomentschlüssel, Zelltester | 100–300 € | einmalig, teils leihbar |
+| Fehldruck des Vollteils | 20–80 € | genau dagegen dient der Testring |
 | Raffis CAN-Modul | 0 € | vorhanden |
+
+**Projektaufwand insgesamt**, wenn Werkzeug und Abnahme dazukommen und nichts
+geliehen wird: **1.800 bis 2.400 €**. Wer Crimpzange und Drehmomentschlüssel im
+Haus hat und bei der Abnahme glimpflich davonkommt, liegt näher an 1.700 €.
 
 ---
 
@@ -113,7 +128,7 @@ nicht mehr regulär erhältlich.
 
 | | Original, 3 Packs | Zellblock 16 |
 |---|---|---|
-| Preis | ~2.100 € | **1.250–1.670 €** |
+| Preis | ~2.100 € | **~1.500 €** |
 | Energie | 4,33 kWh | **5,38 kWh** (+24 %) |
 | Zyklen | ~1.000 | **> 6.000** |
 | Garantie | entfallen | 3 Jahre auf die Zellen |
@@ -127,10 +142,13 @@ künftig 40 € statt eines kompletten Packs.
 
 ## Verbliebene Unsicherheit
 
-Zwei Posten sind noch nicht angefragt und tragen die Hälfte der Spanne:
+Drei Posten tragen den Großteil der 514 € Spannbreite:
 
-1. **Ladegerät** (150–250 €) — hier lohnt ein Vergleich, die Preise streuen stark.
-2. **Aluzuschnitt** (60–120 €) — abhängig davon, ob die Bohrungen mitbestellt
-   oder selbst gesetzt werden.
+| Posten | Spanne | wodurch bestimmt |
+|---|---:|---|
+| Aluplatten mit Bohrungen | 130 € | ob selbst gebohrt wird |
+| Ladegerät | 100 € | Markenware gegen Importgerät |
+| Busbars | 50 € | Querschnitt für 180 A |
 
-Alles andere ist entweder belegt oder Kleinmaterial mit geringer Hebelwirkung.
+Alles Übrige ist belegt oder Kleinmaterial ohne Hebelwirkung. Vor der Bestellung
+lohnt daher genau ein Preisvergleich: das Ladegerät.
