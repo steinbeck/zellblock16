@@ -69,7 +69,7 @@ liefert 1,44 kWh. Der komplette Eigenbau kostet 1.515 € und liefert 5,38 kWh �
 | Energie | 5,38 kWh |
 | Dauerstrom / Spitze | 100 A / 180 A |
 | Masse | 43,2 kg |
-| Außenmaß | 270 × 215 × 430 mm |
+| Außenmaß | 430 mm hoch; Grundriss wird nach dem Ausmessen neu festgelegt |
 | Reichweite, rechnerisch | ~100 km |
 
 ---
@@ -154,16 +154,34 @@ Grund für die Zweiteilung des Gehäuses.
 
 ## Stand
 
-Konstruktion abgeschlossen, Fertigung noch nicht begonnen.
-
 - [x] Faktenbasis aus dem Herstellerdokument
 - [x] Zellwahl und Anordnung
 - [x] Gehäuse, Zwischenplatte, Deckel als parametrisches Modell
-- [ ] **Testring drucken und Passung prüfen** ← hier steht das Projekt
+- [x] Testring gedruckt — **passt nicht, Ursache gefunden**
+- [ ] **Schacht nach Entfernen der Separationsrippen ausmessen** ← hier steht das Projekt
+- [ ] Außenkontur auf Quaderform umstellen, zweiter Testring
 - [ ] Zellen und BMS bestellen
-- [ ] Gehäuse drucken
-- [ ] Aufbau und Inbetriebnahme
+- [ ] **Testeinbau und Probefahrt** im provisorischen Gehäuse
+- [ ] Erst danach: Bodenkontakte ausbauen, Rippen entfernen *(unumkehrbar)*
+- [ ] Endgültiges Gehäuse drucken und einbauen
 - [ ] Abnahme durch eine Prüforganisation
+
+### Was der Testring ergeben hat
+
+Er passt nicht — und hat damit genau geleistet, wofür er gebaut wurde: **zwei
+Stunden Druckzeit statt 32 Stunden und 3,4 kg** beim Vollteil, und der Fehler
+wäre sonst erst beim Zusammenbau mit verspanntem Zellstapel aufgefallen.
+
+Die Ursache saß in einer Grundannahme. Ich war davon ausgegangen, dass zwei
+Führungsrippen in die **Rundungszwickel** zwischen den Akkus greifen, und hatte
+die gesamte Außenkontur darauf aufgebaut. Tatsächlich stehen die Rippen **10 mm**
+vor — in einen Zwickel von 5 mm Tiefe passt das nicht. Die Akkus stehen also mit
+echtem Spalt nebeneinander, der Schacht ist breiter als angenommen, und die
+Nuten sitzen an der falschen Stelle.
+
+**Die Lösung vereinfacht die Konstruktion:** Die beiden Separationsrippen werden
+entfernt, die Außenkontur wird ein schlichter Quader statt einer Vereinigung
+dreier Fachgrundrisse, und die Stirnwand darf von 8 auf 5 mm dünner werden.
 
 ---
 
