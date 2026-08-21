@@ -196,7 +196,7 @@ die Seitenführung.
 | Vorder- und Rückwand | **8,0 mm** | siehe Kasten unten — 5,0 mm wären durchbrochen |
 | Bodenplatte | 6,0 mm | verrippt, leitet 43 kg flächig ein |
 | Zwischenplatte | 12,0 mm | mit Taschen für Pole und Busbars |
-| Deckel | 4,0 mm | mit Entlüftungsöffnungen |
+| Deckel | 4,0 mm | mit Entlüftungsöffnungen, **obere Außenkanten gefast** |
 
 > **Korrektur 2026-08-21, beim Modellieren gefunden.** Diese Spezifikation
 > nannte zunächst 5,0 mm Stirnwand. Das ist unmöglich: Die Zwickelnut zieht die
@@ -381,6 +381,40 @@ einen echten Ladestand anzeigt statt erfundener Werte.
 **Kandidat: JK PB2A16S20P** — 16S, 200 A, 2 A aktiver Balancer, zwei
 RS485-Ports, Bluetooth, 109 €. Erfüllt alle Kriterien; die Steuerbefehle für
 beide MOSFETs sind in `syssi/esphome-jk-bms` implementiert.
+
+### Einbaulage des BMS — hochkant, nicht liegend
+
+| | Maß |
+|---|---|
+| JK PB2A16S20P, Hardware V19 | **300 × 100 × 18 mm** |
+| Hardware V24 | 300 × 100 × 24 mm |
+
+**Liegend passt es nicht:** 300 mm Länge bei 265 mm Innenbreite. Das wäre beim
+Zusammenbau aufgefallen, nicht vorher.
+
+**Hochkant geht es auf**, und zwar besser als liegend:
+
+| Richtung | verfügbar | BMS |
+|---|---:|---:|
+| Höhe im Streifen | > 400 mm | 300 mm |
+| Breite | 265 mm | 100 mm |
+| Tiefe des Streifens | 39,6 mm | 24 mm |
+
+**Montage flach auf der vorderen Aluminium-Endplatte.** Sie steht mit
+260 × 400 mm ohnehin an dieser Stelle und wirkt als Wärmesenke — bei rund
+0,6 mΩ Durchgangswiderstand fallen im BMS an:
+
+| Last | Verlust |
+|---|---:|
+| Fahrprofil, 65 A | 2,5 W |
+| 100 A Dauer | 6 W |
+| 180 A Spitze | 19 W |
+
+Im Mittel unkritisch, aber die MOSFETs sitzen auf wenigen Quadratzentimetern
+konzentriert. Eine 2,25 kg schwere Aluplatte direkt unter der Platine ist
+deutlich besser als ein Bauteil, das frei im Kunststoffgehäuse hängt. Die
+Platte braucht dafür Gewindebohrungen; das Bohrbild richtet sich nach dem
+gelieferten Gerät.
 
 **Vorteil der 16S-LFP-Konfiguration:** Solche BMS sind Massenware aus dem
 Solarspeicherbau — große Auswahl, niedrige Preise, gute Dokumentation.

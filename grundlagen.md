@@ -408,6 +408,58 @@ Akkuwand fassen. Siehe `messprotokoll.md`, M10.
 Innen bleibt der Raum durchgehend und ungeteilt. Ein Wegfräsen der Rippen ist
 **nicht erforderlich** — der Umbau bleibt reversibel.
 
+### Schachtgeometrie — Befund aus dem Testring T-01 (2026-08-21)
+
+**Der erste Testdruck passt nicht.** Damit hat das Musterstück genau geleistet,
+wofür es gebaut wurde: Der Fehler kostete zwei Stunden Druckzeit statt 32
+Stunden und 3,4 kg beim Vollteil — und wäre sonst erst beim Zusammenbau mit
+fertig verspanntem Zellstapel aufgefallen.
+
+**Es gibt zwei Arten von Rippen, nicht eine.** [MESS]
+
+| Art | Anzahl | Vorstand | Bedeutung |
+|---|---|---|---|
+| **Separationsrippen** | 2 | **10 mm** | trennen die Akkufächer, drücken die Akkus auseinander |
+| Versteifungsrippen | 6–7 | 1–2 mm | Spritzgussversteifung der Wanne, **irrelevant** |
+
+Die bisherige Konstruktion setzte voraus, dass die Separationsrippen in die
+**Rundungszwickel** zwischen den Akkus greifen. Das ist geometrisch unmöglich:
+Bei 5 mm Eckradius ist ein Zwickel 10 mm breit und **5 mm tief** — eine Rippe
+mit 10 mm Vorstand passt nicht hinein. Die Akkus stehen deshalb mit einem echten
+Spalt nebeneinander, und der Schacht ist breiter als die angenommenen 270 mm.
+
+Eine 10-mm-Nut in einer 8-mm-Wand ist zudem kein Nut, sondern ein Durchbruch.
+Die Wand müsste auf 13 mm wachsen und kostete 10 mm Innentiefe — bei einem BMS,
+das mit 24 mm Dicke ohnehin knapp sitzt, nicht tragbar.
+
+**Beschluss: Die beiden Separationsrippen werden entfernt.** [Christoph]
+Die Versteifungsrippen bleiben und werden mit 2 mm Vorstand berücksichtigt.
+
+Das vereinfacht die Konstruktion an drei Stellen:
+
+| | mit Nuten | ohne |
+|---|---:|---:|
+| Außenkontur | Vereinigung dreier Fachgrundrisse | **schlichter Quader mit Eckradius** |
+| Stirnwand | 8,0 mm (wegen Nuttiefe) | **5,0 mm** |
+| frei für BMS | 37,6 mm | **39,6 mm** |
+| Spiel in der Breite je Seite | 1,7 mm | **abhängig von der Messung, vermutlich deutlich mehr** |
+
+> **[OFFEN] Zwei Maße nach dem Entfernen:** lichte Weite in der Breite und
+> lichte Tiefe bis zur Vorderkante der verbliebenen Versteifungsrippen.
+> Blockiert: die Außenkontur.
+
+### Bauhöhe — bestätigt (2026-08-21)
+
+Mit einer auf **425 mm** abgelängten Stahlstange in der vorderen Ecke schließt
+die Sitzbank noch. [MESS] Die Konstruktion braucht exakt 425 mm — sie passt
+also, aber ohne jede Reserve. Hinten stehen rund **50 mm mehr** zur Verfügung.
+
+Ein gestuftes Gehäuse ist damit **nicht erforderlich**. Stattdessen sind die
+**oberen Außenkanten des Deckels zu fasen**: Eine schwenkende Sitzbank
+beschreibt einen Kreisbogen, und die obere Außenkante ist der Punkt, der ihm am
+nächsten kommt. Bei null Reserve schafft die Fase Freiraum genau dort, ohne in
+der Mitte Bauhöhe zu kosten.
+
 ### Bodenkontakte — Ausbau beschlossen (2026-08-21)
 
 Am Schachtboden sitzen **drei** Leistungssteckkontakte, je **ca. 20 mm hoch**.
@@ -594,6 +646,35 @@ Softwareproblem im Motorcontroller · E131 Überspannung · E142 Akku leer ·
 E155 Akku zu warm zum Laden (> 45 °C) · E166 Akku zu kalt · E2XX schwerer Fehler.
 Diese Codes werden im **Display des Akkus** angezeigt, nicht im Roller — sie
 entfallen mit dem Umbau.
+
+---
+
+## 8.4 Vorgehensreihenfolge — Erprobung vor irreversiblen Eingriffen
+
+**Grundsatz (Christoph, 2026-08-21):** Die Separationsrippen werden erst
+entfernt, wenn der Umstieg endgültig ist. Vorher muss der Roller mit den echten
+Zellen und dem echten BMS **gelaufen sein**, notfalls in einem provisorischen
+Gehäuse.
+
+Der Grund: Zwei Eingriffe sind unumkehrbar und schließen die Rückkehr zu den
+Originalakkus aus — der **Ausbau der Bodenkontakte** (§6) und das **Entfernen
+der Separationsrippen**. Beide dürfen erst erfolgen, wenn feststeht, dass das
+neue System funktioniert.
+
+| Schritt | Reversibel? |
+|---|---|
+| 1. Zellen prüfen, Pack außerhalb des Fahrzeugs aufbauen | ja |
+| 2. Datenpin-Schleife brücken, CAN-Modul einschleifen | ja |
+| 3. **Testeinbau und Probefahrt**, provisorisches Gehäuse | ja |
+| 4. Bodenkontakte ausbauen | **nein** |
+| 5. Separationsrippen entfernen | **nein** |
+| 6. Endgültiges Gehäuse einbauen | — |
+
+> **Anforderung an das Provisorium:** Es muss in den **unveränderten** Schacht
+> passen, also die 10 mm vorstehenden Separationsrippen umgehen. Bei rund
+> 205 mm Außentiefe statt 211 mm berührt es sie nicht; der Innenraum reicht
+> dann noch für Zellblock, Endplatten und BMS. Passgenauigkeit ist dabei
+> nebensächlich — das Teil muss nur einen Fahrversuch überstehen.
 
 ---
 

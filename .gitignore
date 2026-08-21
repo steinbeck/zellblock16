@@ -8,3 +8,6 @@ Materials/*.pdf
 
 # Erzeugnisse aus den .scad-Quellen
 cad/*.stl
+
+# HEIC-Originale bleiben lokal, im Repo liegen die JPEG-Fassungen
+Materials/*.HEIC
