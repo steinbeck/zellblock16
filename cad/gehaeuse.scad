@@ -132,7 +132,6 @@ module lueftung() {
 // abschließt. Als aufgesetzte Stufe, nicht als eingefräster Falz: Ein
 // Falz würde die 2,5 mm dünnen Seitenwände auf unter 1 mm reduzieren.
 // Im Kopfraum ist dafür Platz, weil dort keine Zellen mehr stehen.
-auflage_b = 3.0;
 module deckelauflage() {
     z0 = seg_o_h - deckel_dicke - auflage_b;
     difference() {

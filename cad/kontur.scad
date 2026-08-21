@@ -59,3 +59,24 @@ module zellen_2d(tol = 0) {
                        y0 + j * zelle_t - tol])
                 square([zelle_l + 2*tol, zelle_t + 2*tol]);
 }
+
+// Polpositionen einer Zellebene. Jede Zelle trägt zwei Pole im Abstand
+// zelle_polabst, mittig auf ihrer Oberseite. Daraus ergibt sich ein
+// Raster von 4 Spalten × 4 Reihen = 16 Polen je Etage.
+module pol_positionen() {
+    x0 = (bauraum_b - zellblock_b) / 2;
+    y0 = wand_stirn + endplatte_dicke;
+    for (i = [0 : zellen_je_reihe - 1])
+        for (j = [0 : zellen_je_stapel - 1])
+            for (s = [-1, 1])
+                translate([x0 + i*zelle_l + zelle_l/2 + s*zelle_polabst/2,
+                           y0 + j*zelle_t + zelle_t/2])
+                    children();
+}
+
+// Die x-Lagen der vier Polspalten, für die Busbarkanäle.
+function pol_spalten() = [
+    for (i = [0 : zellen_je_reihe - 1], s = [-1, 1])
+        (bauraum_b - zellblock_b)/2 + i*zelle_l + zelle_l/2
+        + s*zelle_polabst/2
+];

@@ -12,6 +12,7 @@ fort. **Nie Maße in die Geometriedateien schreiben.**
 | `kontur.scad` | Außen- und Innenkontur, Zellraster |
 | `testring.scad` | Musterstück T-01 für den Passungstest |
 | `gehaeuse.scad` | die beiden Gehäusesegmente |
+| `platten.scad` | Zwischenplatte und Deckel |
 
 ## Bauen
 
@@ -117,6 +118,54 @@ Verlustleistung ergeben rund 9 K Übertemperatur, abgeführt über die
 Gehäuseoberfläche. Die Schlitze sind vor allem ein Zugeständnis an die
 Datenblattwarnung, die Zellen nicht einzukapseln. Die Hauptöffnung trägt
 später der Deckel.
+
+## Zwischenplatte und Deckel
+
+```sh
+openscad -D 'teil="zwischen"' -o zwischen.stl --export-format binstl platten.scad
+openscad -D 'teil="deckel"'   -o deckel.stl   --export-format binstl platten.scad
+```
+
+**Die Zwischenplatte ist das Bauteil, an dem die Höhenbilanz hängt.** Sie
+sitzt auf den Zellgehäusen der unteren Etage auf und nimmt deren 5 mm
+überstehende Pole samt Busbars und Muttern in vier Längskanälen auf,
+statt sie obendrauf zu addieren. Ohne diesen Kunstgriff käme der Aufbau
+auf 436 statt 425 mm und wäre gescheitert.
+
+Die Kanäle liegen unter den vier Polspalten bei x = 36,4 / 103,4 /
+166,7 / 233,7 mm. Dazwischen bleiben 35–39 mm massives Material stehen —
+die Platte wird also nicht in Streifen zerlegt. Über den Kanälen tragen
+3 mm, ein `assert` prüft das.
+
+Der Deckel trägt die eigentliche Lüftung: **3.570 mm²** gegen 216 mm² in
+den Stirnwänden des Kopfraums, wo bei 12 mm Bauhöhe kaum Platz war.
+
+## Materialbedarf und Druckzeit
+
+| Teil | Volumen | Masse |
+|---|---:|---:|
+| Segment unten | 1.432 cm³ | 1,53 kg |
+| Segment oben | 1.093 cm³ | 1,17 kg |
+| Zwischenplatte | 423 cm³ | 0,45 kg |
+| Deckel | 188 cm³ | 0,20 kg |
+| **Gesamt** | **3.136 cm³** | **3,36 kg** |
+
+**Zur Druckzeit.** Der Testring lieferte den Messwert: 210 cm³ in
+7 h 45 min, also **27 cm³/h** mit 0,4-mm-Düse. Hochgerechnet auf das
+ganze Gehäuse sind das **rund 116 Stunden** — knapp fünf Tage
+Dauerbetrieb.
+
+| Düse | geschätzte Gesamtzeit |
+|---|---|
+| 0,4 mm | ~116 h |
+| **0,6 mm** | **48–58 h** |
+| 0,8 mm | 30–40 h |
+
+**Empfehlung: 0,6-mm-Düse.** Bei 2,5 mm Seitenwand ergibt das noch vier
+Perimeter, also volle Dichtheit. Mit 0,8 mm wären es nur drei — machbar,
+aber ohne Reserve. Die Rechnung ist eher pessimistisch, weil dicke
+Partien wie Boden und Zwischenplatte mit Infill statt massiv gedruckt
+werden.
 
 ## Rückmeldung nach dem Test
 

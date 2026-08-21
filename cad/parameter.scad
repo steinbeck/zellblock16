@@ -57,6 +57,7 @@ schraube_d     = 4.5;    // Durchgang M4 in die Aluplatte
 schraube_kopf  = 8.5;    // Senkung
 schrauben_je_segment = 4;
 
+auflage_b      = 3.0;    // Deckelauflagestufe im Oberteil
 lueftung_b     = 4.0;    // Entlüftungsschlitze im Oberteil
 lueftung_n     = 9;
 
