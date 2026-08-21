@@ -20,6 +20,24 @@ fort. **Nie Maße in die Geometriedateien schreiben.**
 openscad -o testring.stl --export-format binstl testring.scad
 ```
 
+**Die STL-Dateien liegen nicht im Repository.** Sie sind Erzeugnisse aus
+den `.scad`-Quellen und würden bei jeder Parameteränderung veralten, ohne
+dass es auffiele — und das Projekt ist gerade in Änderung: Der Testring
+kann eine Maßkorrektur auslösen, die alle vier Teile betrifft. Einzige
+Quelle der Wahrheit sind die `.scad`-Dateien.
+
+Alle Teile auf einmal:
+
+```sh
+for t in unten oben; do
+  openscad -D "teil=\"$t\"" -o segment_$t.stl --export-format binstl gehaeuse.scad
+done
+for t in zwischen deckel; do
+  openscad -D "teil=\"$t\"" -o $t.stl --export-format binstl platten.scad
+done
+openscad -o testring.stl --export-format binstl testring.scad
+```
+
 Die Echo-Ausgabe listet die abgeleiteten Maße. Die `assert`-Prüfungen in
 `parameter.scad` brechen ab, wenn eine Maßänderung die Konstruktion
 unmöglich macht — etwa wenn das Spiel in der Breite unter die doppelte
