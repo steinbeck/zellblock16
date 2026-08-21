@@ -151,21 +151,25 @@ den Stirnwänden des Kopfraums, wo bei 12 mm Bauhöhe kaum Platz war.
 | **Gesamt** | **3.136 cm³** | **3,36 kg** |
 
 **Zur Druckzeit.** Der Testring lieferte den Messwert: 210 cm³ in
-7 h 45 min, also **27 cm³/h** mit 0,4-mm-Düse. Hochgerechnet auf das
-ganze Gehäuse sind das **rund 116 Stunden** — knapp fünf Tage
-Dauerbetrieb.
+2 h 10 min im Standardprofil, also **97 cm³/h**.
 
-| Düse | geschätzte Gesamtzeit |
-|---|---|
-| 0,4 mm | ~116 h |
-| **0,6 mm** | **48–58 h** |
-| 0,8 mm | 30–40 h |
+| Teil | Druckzeit |
+|---|---:|
+| Segment unten | ~14,8 h |
+| Segment oben | ~11,3 h |
+| Zwischenplatte | ~4,4 h |
+| Deckel | ~1,9 h |
+| **Gesamt** | **~32 h** |
 
-**Empfehlung: 0,6-mm-Düse.** Bei 2,5 mm Seitenwand ergibt das noch vier
-Perimeter, also volle Dichtheit. Mit 0,8 mm wären es nur drei — machbar,
-aber ohne Reserve. Die Rechnung ist eher pessimistisch, weil dicke
-Partien wie Boden und Zwischenplatte mit Infill statt massiv gedruckt
-werden.
+Vier Einzeldrucke, der längste knapp fünfzehn Stunden. Die
+0,4-mm-Standarddüse genügt; eine 0,6er würde halbieren, wird aber nicht
+gebraucht.
+
+> Ein erster Anlauf mit einem hohen Qualitätsprofil brauchte 7 h 45 für
+> denselben Ring, was auf 116 h für das Gehäuse hochgerechnet hätte. Für
+> die **Maßhaltigkeit** ist das Profil weitgehend gleichgültig: Ob der
+> Ring mit 1,7 mm Spiel je Seite passt, hängt an Flusskalibrierung und
+> Materialschrumpf, nicht an der Schichthöhe.
 
 ## Rückmeldung nach dem Test
 
