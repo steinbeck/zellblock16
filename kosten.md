@@ -123,20 +123,30 @@ Haus hat und bei der Abnahme glimpflich davonkommt, liegt näher an 1.700 €.
 
 ## Einordnung
 
-Drei neue Kraftpakete 2.0 lagen bei etwa **2.100 €** und sind seit der Insolvenz
-nicht mehr regulär erhältlich.
+Die Originalakkus sind weiterhin erhältlich, kosten aber **1.400 € pro Stück**
+(Stand 2026-08-21, Angabe Christoph). Für drei Stück also **4.200 €**.
 
 | | Original, 3 Packs | Zellblock 16 |
-|---|---|---|
-| Preis | ~2.100 € | **~1.500 €** |
+|---|---:|---:|
+| Preis | **4.200 €** | **~1.515 €** |
 | Energie | 4,33 kWh | **5,38 kWh** (+24 %) |
+| **Preis je kWh** | **970 €** | **282 €** |
 | Zyklen | ~1.000 | **> 6.000** |
-| Garantie | entfallen | 3 Jahre auf die Zellen |
-| Ersatzteilversorgung | keine | Einzelzellen nachkaufbar |
+| Garantie | Herstellerlage unklar | 3 Jahre auf die Zellen |
+| Ersatz einer defekten Zelle | ganzer Pack, 1.400 € | eine Zelle, **40 €** |
 
-Der eigentliche Gewinn ist nicht der Preis, sondern die Unabhängigkeit von einem
-Ersatzteilmarkt, den es nicht mehr gibt. Eine einzelne ausgefallene Zelle kostet
-künftig 40 € statt eines kompletten Packs.
+**Die Ersparnis beträgt rund 2.700 €, also 64 %.** Selbst wenn Werkzeug und
+behördliche Abnahme voll hinzugerechnet werden, bleiben es über 1.800 € oder
+43 %.
+
+Am deutlichsten wird es an einem einzelnen Pack: **Ein Originalakku kostet
+1.400 € und liefert 1,44 kWh. Der komplette Eigenbau kostet 1.515 € und liefert
+5,38 kWh** — das 3,7-fache an Energie für 8 % mehr Geld.
+
+Der Preis ist damit das stärkste Argument. Die längere Lebensdauer und die
+Reparierbarkeit kommen hinzu: Fällt später eine Zelle aus, kostet der Ersatz 40 €
+statt eines kompletten Packs, und die Zelle ist Massenware aus dem
+Solarspeicherbau statt eines Ersatzteils, das an einem einzigen Anbieter hängt.
 
 ---
 

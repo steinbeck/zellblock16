@@ -70,6 +70,10 @@ angegeben sind, können die Akkus nicht enthalten sein. [BER]
 | Reichweite je Akku (ECE 134/2014) | 36,5 km | [HB 69] |
 | Reichweite gesamt, 3 Akkus, real | ~80 km | [HB 69] |
 
+**Beschaffungslage:** Originalpacks sind weiterhin erhältlich, zu **1.400 € pro
+Stück** (Stand 2026-08-21). Ein Ersatz aller drei kostet damit 4.200 €. Die
+frühere Annahme von ~700 € stammte aus einem Forenbeitrag und ist überholt.
+
 Die Technische-Daten-Seite [HB 69] nennt gerundet „51 V / 29 Ah / 1.470 Wh".
 Maßgeblich ist die präzisere Angabe der Akkuseite [HB 27].
 
