@@ -31,6 +31,11 @@ die drei originalen Wechselakkus ersetzt.
   <img src="docs/img/explosion.png" width="480" alt="Explosionsdarstellung des Aufbaus">
 </p>
 
+<p align="center">
+  <a href="https://steinbeck.github.io/zellblock16/">Projektseite</a> ·
+  <a href="https://steinbeck.github.io/zellblock16/blaupause.html">Explosionszeichnung als Blaupause</a>
+</p>
+
 ---
 
 ## Worum es geht
@@ -192,4 +197,23 @@ An **JJac**, dessen dokumentierter Umbau an einem 54 Ri zeigte, dass der Weg
 
 ## Lizenz
 
-Noch nicht festgelegt. Bis dahin gilt: alle Rechte vorbehalten.
+**[CERN Open Hardware Licence Version 2 — Strongly Reciprocal](LICENSE)**
+(`CERN-OHL-S-2.0`), Copyright 2026 Christoph Steinbeck.
+
+Die CERN-OHL wurde für genau diesen Fall geschrieben: Sie deckt
+**Konstruktionsunterlagen, CAD-Dateien und daraus gefertigte Produkte** ab, wo
+Software- und Textlizenzen nur den Quelltext oder den Text erfassen.
+
+Was das praktisch heißt:
+
+- **Nachbauen, ändern, weitergeben ist ausdrücklich erwünscht.**
+- Wer den Entwurf verändert und **weitergibt** — als Dateien oder als gebautes
+  Gerät —, muss die geänderten Unterlagen unter derselben Lizenz zugänglich
+  machen. Verbesserungen fließen so zurück.
+- Wer für sich baut und nichts weitergibt, hat keinerlei Pflichten.
+- Es gibt **keinerlei Gewährleistung**. Siehe die Warnung am Anfang: Dieser
+  Entwurf ist ungebaut und ungeprüft.
+
+Ausgenommen ist das Benutzerhandbuch des Fahrzeugs. Es ist urheberrechtlich
+geschütztes Herstellermaterial, gehört nicht zu diesem Repository und wird hier
+nur mit Seitenzahlen zitiert.
