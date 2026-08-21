@@ -1,0 +1,547 @@
+<title>Kraftpaket Ignite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;500&display=swap">
+
+<style>
+:root{
+  --paper:#0D2F50;
+  --paper-deep:#08213A;
+  --face-top:#17456E;
+  --face-right:#113C60;
+  --face-left:#0B2C4B;
+  --ink:#DCEBF6;
+  --ink-mid:#8FB6D2;
+  --ink-faint:#3E6E96;
+  --grid:#1B4571;
+  --stamp:#D4614A;
+  --stamp-dim:#8E4234;
+
+  --f-disp:"Saira Condensed","Arial Narrow",sans-serif;
+  --f-mono:"Share Tech Mono",ui-monospace,"Courier New",monospace;
+  --f-body:"Barlow Condensed","Arial Narrow",sans-serif;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--paper-deep);
+  color:var(--ink);
+  font-family:var(--f-body);
+  -webkit-font-smoothing:antialiased;
+  padding:clamp(8px,2vw,28px);
+}
+
+/* ── Blatt ─────────────────────────────────────────── */
+.sheet{
+  max-width:1480px;
+  margin:0 auto;
+  background:
+    radial-gradient(120% 90% at 30% 12%, #14395E 0%, var(--paper) 46%, #0A2743 100%);
+  position:relative;
+  border:1px solid var(--ink-faint);
+  box-shadow:0 24px 70px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+
+/* Millimeterraster */
+.sheet::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--grid) .5px,transparent .5px),
+    linear-gradient(90deg,var(--grid) .5px,transparent .5px),
+    linear-gradient(var(--grid) .5px,transparent .5px),
+    linear-gradient(90deg,var(--grid) .5px,transparent .5px);
+  background-size:80px 80px,80px 80px,16px 16px,16px 16px;
+  opacity:.5;
+  pointer-events:none;
+}
+/* Papierfleckigkeit der Lichtpause */
+.sheet::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(60% 40% at 82% 88%, rgba(255,255,255,.05), transparent 70%),
+    radial-gradient(40% 30% at 12% 74%, rgba(0,0,0,.16), transparent 70%);
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+
+.inner{position:relative;z-index:2;padding:clamp(14px,2.4vw,30px);}
+
+/* ── Randbegrenzung mit Feldteilung ────────────────── */
+.border-frame{
+  position:absolute; inset:clamp(9px,1.5vw,17px);
+  border:1.5px solid var(--ink-mid);
+  pointer-events:none; z-index:1;
+}
+.tick{position:absolute;font-family:var(--f-mono);font-size:9.5px;color:var(--ink-mid);letter-spacing:.06em;}
+
+/* ── Kopf ──────────────────────────────────────────── */
+header{
+  display:flex; flex-wrap:wrap; align-items:flex-end;
+  justify-content:space-between; gap:18px;
+  padding:6px 12px 14px;
+  border-bottom:1px solid var(--ink-faint);
+}
+.eyebrow{
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.22em;
+  color:var(--ink-mid); text-transform:uppercase; margin:0 0 5px;
+}
+h1{
+  font-family:var(--f-disp); font-weight:600; font-size:clamp(27px,4.1vw,50px);
+  letter-spacing:.05em; margin:0; line-height:.98; text-transform:uppercase;
+  text-wrap:balance;
+}
+h1 span{display:block;font-size:.45em;font-weight:400;letter-spacing:.17em;color:var(--ink-mid);margin-top:7px;}
+.head-meta{font-family:var(--f-mono);font-size:11px;color:var(--ink-mid);text-align:right;line-height:1.85;}
+.head-meta b{color:var(--ink);font-weight:normal;}
+
+/* ── Hauptraster ───────────────────────────────────── */
+.plate{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,382px);
+  gap:clamp(12px,2vw,26px);
+  padding:16px 12px 8px;
+  align-items:start;
+}
+@media (max-width:920px){ .plate{grid-template-columns:minmax(0,1fr);} }
+
+.draw-wrap{position:relative;min-width:0;overflow-x:auto;}
+svg{display:block;width:100%;height:auto;}
+
+/* ── Zeichnungsstile ───────────────────────────────── */
+.f-top{fill:var(--face-top);}
+.f-right{fill:var(--face-right);}
+.f-left{fill:var(--face-left);}
+.edge{fill:none;stroke:var(--ink);stroke-width:1.15;stroke-linejoin:round;}
+.edge-fine{fill:none;stroke:var(--ink-mid);stroke-width:.75;stroke-linejoin:round;}
+.axis{stroke:var(--ink-faint);stroke-width:.9;stroke-dasharray:13 5 2.5 5;fill:none;}
+.dim{stroke:var(--ink-mid);stroke-width:.75;fill:none;}
+.dim-help{stroke:var(--ink-faint);stroke-width:.6;stroke-dasharray:3 3;fill:none;}
+.leader{stroke:var(--stamp);stroke-width:.85;fill:none;}
+.lbl{font-family:var(--f-mono);font-size:11px;fill:var(--ink-mid);letter-spacing:.04em;}
+.lbl-dim{font-family:var(--f-mono);font-size:11.5px;fill:var(--ink);letter-spacing:.03em;}
+.pos-ring{fill:var(--paper);stroke:var(--stamp);stroke-width:1.15;}
+.pos-num{font-family:var(--f-disp);font-weight:600;font-size:13px;fill:var(--stamp);text-anchor:middle;letter-spacing:.02em;}
+
+.part{transition:opacity .18s ease;}
+.part.dim-out{opacity:.2;}
+.part.lit .edge{stroke:#FFF;stroke-width:1.7;}
+.part.lit .f-top{fill:#255F92;}
+.part.lit .f-right{fill:#1D5280;}
+.part.lit .f-left{fill:#153F65;}
+
+/* ── Stückliste ────────────────────────────────────── */
+.bom{border:1px solid var(--ink-mid);background:rgba(6,26,46,.5);}
+.bom h2{
+  font-family:var(--f-disp); font-size:13px; font-weight:600; letter-spacing:.19em;
+  text-transform:uppercase; margin:0; padding:8px 11px;
+  border-bottom:1px solid var(--ink-mid); color:var(--ink);
+}
+table{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:11.5px;}
+th{
+  font-weight:normal;color:var(--ink-mid);text-align:left;
+  padding:6px 8px;border-bottom:1px solid var(--ink-faint);
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+}
+td{padding:5px 8px;border-bottom:1px solid rgba(62,110,150,.34);vertical-align:top;color:var(--ink);}
+tbody tr{cursor:default;transition:background .15s ease;}
+tbody tr:hover,tbody tr.lit{background:rgba(212,97,74,.15);}
+td.n{color:var(--stamp);width:1%;white-space:nowrap;}
+td.q{text-align:right;color:var(--ink-mid);font-variant-numeric:tabular-nums;white-space:nowrap;}
+td.m{color:var(--ink-mid);font-size:10.5px;}
+.desc{font-family:var(--f-body);font-size:13.5px;letter-spacing:.01em;}
+
+/* ── Kennwerte ─────────────────────────────────────── */
+.specs{border:1px solid var(--ink-mid);margin-top:14px;background:rgba(6,26,46,.5);}
+.specs h2{
+  font-family:var(--f-disp);font-size:13px;font-weight:600;letter-spacing:.19em;
+  text-transform:uppercase;margin:0;padding:8px 11px;
+  border-bottom:1px solid var(--ink-mid);
+}
+.specs dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:0;}
+.specs dt{
+  font-family:var(--f-body);font-size:13px;color:var(--ink-mid);
+  padding:5px 8px 5px 11px;border-bottom:1px solid rgba(62,110,150,.34);
+}
+.specs dd{
+  font-family:var(--f-mono);font-size:11.5px;margin:0;padding:5px 11px 5px 8px;
+  text-align:right;border-bottom:1px solid rgba(62,110,150,.34);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ── Schriftfeld DIN 6771 ──────────────────────────── */
+.titleblock{
+  margin-top:14px;border:1.5px solid var(--ink);
+  display:grid;grid-template-columns:1fr 1fr;
+  font-family:var(--f-mono);font-size:11px;
+}
+.tb{padding:6px 9px;border-right:1px solid var(--ink-faint);border-bottom:1px solid var(--ink-faint);}
+.tb:nth-child(2n){border-right:none;}
+.tb k{
+  display:block;font-size:8.5px;letter-spacing:.15em;color:var(--ink-mid);
+  text-transform:uppercase;margin-bottom:3px;
+}
+.tb v{display:block;color:var(--ink);letter-spacing:.03em;}
+.tb-wide{grid-column:1/-1;border-right:none;}
+.tb-wide v{font-family:var(--f-disp);font-size:15px;letter-spacing:.09em;text-transform:uppercase;}
+
+/* ── Stempel ───────────────────────────────────────── */
+.stamp{
+  position:absolute;right:clamp(28px,7vw,120px);top:clamp(96px,15vw,190px);
+  transform:rotate(-13deg);
+  border:2.5px solid var(--stamp);color:var(--stamp);
+  padding:8px 17px 7px;text-align:center;
+  font-family:var(--f-disp);font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;line-height:1.12;
+  opacity:.82;pointer-events:none;z-index:6;
+  box-shadow:inset 0 0 0 1.5px var(--stamp);
+  background:rgba(13,47,80,.28);
+}
+.stamp .big{font-size:clamp(15px,2.1vw,23px);display:block;}
+.stamp .small{
+  font-family:var(--f-mono);font-size:9px;letter-spacing:.19em;
+  display:block;margin-top:3px;color:var(--stamp-dim);font-weight:400;
+}
+@media (max-width:920px){ .stamp{right:16px;top:auto;bottom:14px;} }
+
+footer{
+  padding:11px 12px 4px;margin-top:6px;border-top:1px solid var(--ink-faint);
+  font-family:var(--f-body);font-size:13px;color:var(--ink-mid);
+  display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between;
+}
+footer b{color:var(--ink);font-weight:500;}
+
+/* ── Aufbausequenz ─────────────────────────────────── */
+@keyframes lift{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.part{animation:lift .62s cubic-bezier(.22,.9,.28,1) backwards;}
+@media (prefers-reduced-motion:reduce){
+  .part{animation:none;}
+}
+</style>
+
+<div class="sheet">
+  <div class="border-frame"></div>
+  <div class="inner">
+
+    <header>
+      <div>
+        <p class="eyebrow">Kumpan 54 ignite · Traktionsbatterie · Eigenbau</p>
+        <h1>Kraftpaket Ignite<span>Explosionsdarstellung 16S1P LFP</span></h1>
+      </div>
+      <div class="head-meta">
+        Zeichnungs-Nr. <b>KA-2026-001</b><br>
+        Blatt <b>1 / 1</b> · Maßstab <b>ohne</b><br>
+        Stand <b>21.08.2026</b> · Rev. <b>A</b>
+      </div>
+    </header>
+
+    <div class="stamp">
+      <span class="big">Artist's<br>Impression</span>
+      <span class="small">Nicht fertigungsreif</span>
+    </div>
+
+    <div class="plate">
+      <div class="draw-wrap">
+        <svg id="dwg" viewBox="0 0 620 1180" role="img"
+             aria-label="Isometrische Explosionsdarstellung des Akkupacks: Deckel, BMS, Gehäuseoberteil, obere Zellebene, Zwischenplatte, untere Zellebene, Gehäuseunterteil und Bodenplatte, dazu seitlich die beiden Aluminium-Endplatten und die Zugstangen."></svg>
+      </div>
+
+      <aside>
+        <div class="bom">
+          <h2>Stückliste</h2>
+          <table>
+            <thead>
+              <tr><th>Pos</th><th>Benennung</th><th>Werkstoff</th><th>Stk</th></tr>
+            </thead>
+            <tbody id="bom"></tbody>
+          </table>
+        </div>
+
+        <div class="specs">
+          <h2>Kennwerte</h2>
+          <dl>
+            <dt>Konfiguration</dt><dd>16S1P</dd>
+            <dt>Zelle</dt><dd>EVE LF105</dd>
+            <dt>Nennspannung</dt><dd>51,2 V</dd>
+            <dt>Ladeschluss</dt><dd>58,4 V</dd>
+            <dt>Energieinhalt</dt><dd>5,38 kWh</dd>
+            <dt>Dauerstrom</dt><dd>100 A</dd>
+            <dt>Spitzenstrom</dt><dd>180 A</dd>
+            <dt>Vorspannung je Etage</dt><dd>6–10 kN</dd>
+            <dt>Gesamtmasse</dt><dd>43,2 kg</dd>
+            <dt>Außenmaß</dt><dd>270 × 215 × 430</dd>
+          </dl>
+        </div>
+
+        <div class="titleblock">
+          <div class="tb tb-wide"><k>Benennung</k><v>Traktionsbatterie Ersatzpack</v></div>
+          <div class="tb"><k>Gezeichnet</k><v>21.08.2026</v></div>
+          <div class="tb"><k>Werkstoff Gehäuse</k><v>ASA</v></div>
+          <div class="tb"><k>Projektion</k><v>Isometrisch</v></div>
+          <div class="tb"><k>Maße in</k><v>mm</v></div>
+          <div class="tb"><k>Fahrzeug</k><v>Kumpan 54 ignite</v></div>
+          <div class="tb"><k>Ersetzt</k><v>3 × Kraftpaket 2.0</v></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <span>Freie Darstellung zur Veranschaulichung des Aufbaus — <b>keine Fertigungszeichnung</b>. Proportionen maßstäblich, Details vereinfacht.</span>
+      <span>Grundlage: <b>konstruktion.md</b> · <b>grundlagen.md</b></span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const SVG="http://www.w3.org/2000/svg";
+const dwg=document.getElementById("dwg");
+
+/* Isometrie: x nach rechts-unten, y nach links-unten, z nach oben */
+const K=0.40, OX=300, OY=1035;
+function iso(x,y,z){
+  return [ OX + (x-y)*0.866*K , OY + ((x+y)*0.5 - z)*K ];
+}
+function pts(a){ return a.map(p=>p[0].toFixed(2)+","+p[1].toFixed(2)).join(" "); }
+function el(n,at,parent){
+  const e=document.createElementNS(SVG,n);
+  for(const k in at) e.setAttribute(k,at[k]);
+  (parent||dwg).appendChild(e);
+  return e;
+}
+
+/* Quader. z = Unterkante. */
+function box(g,x,y,z,w,d,h,cls){
+  const A=iso(x,y,z+h), B=iso(x+w,y,z+h), C=iso(x+w,y+d,z+h), D=iso(x,y+d,z+h);
+  const b=iso(x+w,y,z), c=iso(x+w,y+d,z), dd=iso(x,y+d,z);
+  el("polygon",{points:pts([A,B,C,D]),class:"f-top"},g);
+  el("polygon",{points:pts([B,b,c,C]),class:"f-right"},g);
+  el("polygon",{points:pts([D,C,c,dd]),class:"f-left"},g);
+  el("polygon",{points:pts([A,B,C,D]),class:cls||"edge"},g);
+  el("polygon",{points:pts([B,b,c,C]),class:cls||"edge"},g);
+  el("polygon",{points:pts([D,C,c,dd]),class:cls||"edge"},g);
+}
+
+/* Hohlkasten: Quader mit Öffnung oben */
+function shell(g,x,y,z,w,d,h,t){
+  const A=iso(x,y,z+h), B=iso(x+w,y,z+h), C=iso(x+w,y+d,z+h), D=iso(x,y+d,z+h);
+  const b=iso(x+w,y,z), c=iso(x+w,y+d,z), dd=iso(x,y+d,z);
+  const iA=iso(x+t,y+t,z+h), iB=iso(x+w-t,y+t,z+h), iC=iso(x+w-t,y+d-t,z+h), iD=iso(x+t,y+d-t,z+h);
+  const jA=iso(x+t,y+t,z+t), jB=iso(x+w-t,y+t,z+t), jC=iso(x+w-t,y+d-t,z+t), jD=iso(x+t,y+d-t,z+t);
+  /* Innenboden + Innenwände (hinten sichtbar) */
+  el("polygon",{points:pts([jA,jB,jC,jD]),class:"f-left"},g);
+  el("polygon",{points:pts([iA,iB,jB,jA]),class:"f-right"},g);
+  el("polygon",{points:pts([iA,jA,jD,iD]),class:"f-top"},g);
+  /* Außenflächen */
+  el("polygon",{points:pts([B,b,c,C]),class:"f-right"},g);
+  el("polygon",{points:pts([D,C,c,dd]),class:"f-left"},g);
+  /* Rand oben als Ring */
+  el("path",{d:"M"+pts([A,B,C,D])+"Z M"+pts([iA,iB,iC,iD])+"Z","fill-rule":"evenodd",class:"f-top"},g);
+  el("polygon",{points:pts([A,B,C,D]),class:"edge"},g);
+  el("polygon",{points:pts([iA,iB,iC,iD]),class:"edge-fine"},g);
+  el("polygon",{points:pts([jA,jB,jC,jD]),class:"edge-fine"},g);
+  el("polygon",{points:pts([B,b,c,C]),class:"edge"},g);
+  el("polygon",{points:pts([D,C,c,dd]),class:"edge"},g);
+  el("line",{x1:iA[0],y1:iA[1],x2:jA[0],y2:jA[1],class:"edge-fine"},g);
+  el("line",{x1:iB[0],y1:iB[1],x2:jB[0],y2:jB[1],class:"edge-fine"},g);
+  el("line",{x1:iD[0],y1:iD[1],x2:jD[0],y2:jD[1],class:"edge-fine"},g);
+}
+
+/* ── Bauteile, von unten nach oben ─────────────────── */
+const W=270, D=215;
+const CW=130.3, CD=36.35, CH=200.5;   // Zelle
+const GAP=7;                          // Spreizung der Zellen in der Darstellung
+
+const PARTS=[
+  {pos:8,z:0,   name:"Bodenplatte",        mat:"ASA, verrippt",  qty:1,  note:"6 mm"},
+  {pos:7,z:150, name:"Gehäuse-Unterteil",  mat:"ASA",            qty:1,  note:"Segment 1"},
+  {pos:6,z:390, name:"Zellebene 1",        mat:"EVE LF105",      qty:8,  note:"2 × 4"},
+  {pos:5,z:660, name:"Zwischenplatte",     mat:"ASA",            qty:1,  note:"12 mm"},
+  {pos:4,z:800, name:"Zellebene 2",        mat:"EVE LF105",      qty:8,  note:"2 × 4"},
+  {pos:3,z:1075,name:"Gehäuse-Oberteil",   mat:"ASA",            qty:1,  note:"Segment 2"},
+  {pos:2,z:1310,name:"BMS 16S",            mat:"Elektronik",     qty:1,  note:"200 A, BT"},
+  {pos:1,z:1450,name:"Deckel",             mat:"ASA",            qty:1,  note:"belüftet"},
+  {pos:9,z:null,name:"Endplatte",          mat:"Alu, 8 mm",      qty:2,  note:"260 × 400"},
+  {pos:10,z:null,name:"Zugstange",         mat:"M8 A2-70",       qty:8,  note:"3–4 Nm"}
+];
+
+/* Mittelachse strichpunktiert */
+(function(){
+  const top=iso(W/2,D/2,1560), bot=iso(W/2,D/2,-90);
+  el("line",{x1:top[0],y1:top[1],x2:bot[0],y2:bot[1],class:"axis"});
+})();
+
+const groups={};
+function G(pos){
+  const g=el("g",{class:"part","data-pos":pos});
+  groups[pos]=g; return g;
+}
+
+/* 8 · Bodenplatte */
+(function(){ const g=G(8); box(g,0,0,0,W,D,6); })();
+
+/* 7 · Gehäuse-Unterteil */
+(function(){ const g=G(7); shell(g,0,0,150,W,D,150,7); })();
+
+/* 6 · Zellebene 1 */
+(function(){
+  const g=G(6), z=390;
+  for(let i=0;i<2;i++) for(let j=0;j<4;j++){
+    const x=4.7+i*(CW+GAP), y=34+j*(CD+GAP);
+    box(g,x,y,z,CW,CD,CH-5);
+    /* Pole */
+    box(g,x+CW/2-33.5-9,y+CD/2-6,z+CH-5,18,12,5,"edge-fine");
+    box(g,x+CW/2+33.5-9,y+CD/2-6,z+CH-5,18,12,5,"edge-fine");
+  }
+})();
+
+/* 5 · Zwischenplatte */
+(function(){ const g=G(5); box(g,4,30,660,262,155,12); })();
+
+/* 4 · Zellebene 2 */
+(function(){
+  const g=G(4), z=800;
+  for(let i=0;i<2;i++) for(let j=0;j<4;j++){
+    const x=4.7+i*(CW+GAP), y=34+j*(CD+GAP);
+    box(g,x,y,z,CW,CD,CH-5);
+    box(g,x+CW/2-33.5-9,y+CD/2-6,z+CH-5,18,12,5,"edge-fine");
+    box(g,x+CW/2+33.5-9,y+CD/2-6,z+CH-5,18,12,5,"edge-fine");
+  }
+})();
+
+/* 3 · Gehäuse-Oberteil */
+(function(){ const g=G(3); shell(g,0,0,1075,W,D,150,7); })();
+
+/* 2 · BMS */
+(function(){
+  const g=G(2);
+  box(g,58,72,1310,155,72,26);
+  for(let k=0;k<4;k++) box(g,72+k*34,86,1336,20,20,7,"edge-fine");
+})();
+
+/* 1 · Deckel */
+(function(){
+  const g=G(1);
+  box(g,0,0,1450,W,D,5);
+  for(let k=0;k<5;k++) el("polygon",{
+    points:pts([iso(46+k*36,58,1455),iso(46+k*36+20,58,1455),iso(46+k*36+20,158,1455),iso(46+k*36,158,1455)]),
+    class:"edge-fine"},g);
+})();
+
+/* 9 · Endplatten, seitlich herausgezogen */
+(function(){
+  const g=G(9);
+  box(g,5,-118,352,260,8,400);
+  box(g, 5, D+96,352,260,8,400);
+})();
+
+/* 10 · Zugstangen */
+(function(){
+  const g=G(10);
+  [455,700,905,1150].forEach(z=>{
+    box(g,26,-172,z,8,470,8,"edge-fine");
+    box(g,236,-172,z,8,470,8,"edge-fine");
+  });
+})();
+
+/* ── Positionsnummern ──────────────────────────────── */
+const BALLOONS=[
+  {pos:1, ax:W,    ay:0,  az:1455, dx:118, dy:-26},
+  {pos:2, ax:213,  ay:72, az:1336, dx:126, dy:-14},
+  {pos:3, ax:W,    ay:0,  az:1195, dx:120, dy:-16},
+  {pos:4, ax:W,    ay:34, az:940,  dx:124, dy:-12},
+  {pos:5, ax:266,  ay:30, az:666,  dx:120, dy:-14},
+  {pos:6, ax:W,    ay:34, az:530,  dx:124, dy:-12},
+  {pos:7, ax:W,    ay:0,  az:270,  dx:120, dy:-14},
+  {pos:8, ax:W,    ay:0,  az:3,    dx:120, dy:-10},
+  {pos:9, ax:5,    ay:D+100,az:600,dx:-126,dy:-14},
+  {pos:10,ax:26,   ay:-172,az:1154,dx:-118,dy:-20}
+];
+BALLOONS.forEach(b=>{
+  const a=iso(b.ax,b.ay,b.az);
+  const cx=a[0]+b.dx, cy=a[1]+b.dy;
+  const g=el("g",{class:"balloon","data-pos":b.pos});
+  const sign=b.dx>0?-1:1;
+  el("path",{d:`M${a[0].toFixed(1)},${a[1].toFixed(1)} L${(cx+sign*13).toFixed(1)},${cy.toFixed(1)}`,class:"leader"},g);
+  el("circle",{cx:cx,cy:cy,r:11.5,class:"pos-ring"},g);
+  el("text",{x:cx,y:cy+4.6,class:"pos-num"},g).textContent=b.pos;
+});
+
+/* ── Bemaßung ──────────────────────────────────────── */
+function dimV(x1,y1,x2,y2,label,off){
+  const g=el("g",{});
+  el("line",{x1:x1+off,y1:y1,x2:x2+off,y2:y2,class:"dim"},g);
+  el("line",{x1:x1,y1:y1,x2:x1+off,y2:y1,class:"dim-help"},g);
+  el("line",{x1:x2,y1:y2,x2:x2+off,y2:y2,class:"dim-help"},g);
+  [[x1+off,y1,1],[x2+off,y2,-1]].forEach(a=>{
+    el("path",{d:`M${a[0]},${a[1]} l-3.6,${a[2]*9} M${a[0]},${a[1]} l3.6,${a[2]*9}`,class:"dim"},g);
+  });
+  const t=el("text",{x:x1+off-8,y:(y1+y2)/2,class:"lbl-dim","text-anchor":"middle",
+    transform:`rotate(-90 ${x1+off-8} ${(y1+y2)/2})`},g);
+  t.textContent=label;
+}
+(function(){
+  const a=iso(0,D,1455+5), b=iso(0,D,0);
+  dimV(a[0],a[1],b[0],b[1],"430 GESAMT",-92);
+})();
+
+/* Maßangaben an den Ebenen */
+function note(x,y,z,dx,dy,txt,anchor){
+  const p=iso(x,y,z);
+  const t=el("text",{x:p[0]+dx,y:p[1]+dy,class:"lbl","text-anchor":anchor||"start"});
+  t.textContent=txt;
+  return t;
+}
+note(0,D,485,-72,4,"8 × LF105","end");
+note(0,D,895,-72,4,"8 × LF105","end");
+note(0,D,672,-72,4,"12 mm","end");
+note(0,D,1460,-72,4,"4 mm","end");
+note(0,D,6,-72,4,"6 mm","end");
+note(5,D+104,352,-14,-16,"260 × 400 × 8","end");
+
+/* ── Stückliste füllen ─────────────────────────────── */
+const tb=document.getElementById("bom");
+PARTS.slice().sort((a,b)=>a.pos-b.pos).forEach(p=>{
+  const tr=document.createElement("tr");
+  tr.dataset.pos=p.pos;
+  tr.innerHTML=
+    `<td class="n">${String(p.pos).padStart(2,"0")}</td>`+
+    `<td><span class="desc">${p.name}</span><br><span class="m">${p.note}</span></td>`+
+    `<td class="m">${p.mat}</td>`+
+    `<td class="q">${p.qty}</td>`;
+  tb.appendChild(tr);
+});
+
+/* ── Hervorhebung ──────────────────────────────────── */
+const allParts=[...dwg.querySelectorAll(".part")];
+const allRows=[...tb.querySelectorAll("tr")];
+function light(pos){
+  allParts.forEach(g=>{
+    const on=String(g.dataset.pos)===String(pos);
+    g.classList.toggle("lit",on);
+    g.classList.toggle("dim-out",pos!==null&&!on);
+  });
+  allRows.forEach(r=>r.classList.toggle("lit",String(r.dataset.pos)===String(pos)));
+}
+allRows.forEach(r=>{
+  r.addEventListener("mouseenter",()=>light(r.dataset.pos));
+  r.addEventListener("mouseleave",()=>light(null));
+});
+allParts.forEach(g=>{
+  g.addEventListener("mouseenter",()=>light(g.dataset.pos));
+  g.addEventListener("mouseleave",()=>light(null));
+});
+
+/* ── Aufbausequenz: von unten nach oben ────────────── */
+const order=[8,7,6,5,4,9,10,3,2,1];
+order.forEach((pos,i)=>{
+  if(groups[pos]) groups[pos].style.animationDelay=(0.10+i*0.085).toFixed(3)+"s";
+});
+})();
+</script>
