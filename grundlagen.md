@@ -462,26 +462,69 @@ Rechnerische Reichweite: 5.180 Wh ÷ 54 Wh/km ≈ **96 km** real. [BER]
 
 ## 8. Rollerseitige Integration
 
-### 8.1 Der vordere Steckplatz ist nicht gleichwertig — kritisch
+### 8.1 Anschluss an den Roller — geklärt (Raffler, 2026-08-21)
 
-[HB 33]: *„Für die vollständige Aufladung des Backup-Akkus muss das Kraftpaket 2.0
-mindestens 4 Stunden im **vorderen** Steckplatz unter der Sitzbank des Rollers
-eingesteckt sein."*
+**Die Handbuchstelle zum vorderen Steckplatz ist irreführend.** [HB 33] schreibt,
+das Kraftpaket müsse „mindestens 4 Stunden im **vorderen** Steckplatz" stecken,
+um den 12-V-Backup-Akku zu laden. Daraus war hier zunächst eine Sonderfunktion
+dieses Platzes abgeleitet worden. Raffler widerspricht eindeutig:
 
-Der Roller hat einen **fest im Steuergerät verbauten 12-V-Backup-Akku** [HB 33],
-der Schlüsselerkennung sowie das Öffnen von Sitzbank und Topcase versorgt,
-solange kein Traktionsakku steckt. Er wird über den vorderen Steckplatz
-nachgeladen und muss spätestens alle 3 Wochen geladen werden [HB 33].
+> „die Anschlüsse sind alle Parallel verbunden und gehen über einen
+> Sicherungskasten dann alle direkt und zusammen an den Einzigen anschluss am
+> Motorcontroller. […] Buchse1 = 12v wird geladen ist mist. der Roller hat 0.00
+> möglichkeit herauszufinden auf welcher position dass ein akku sitzt."
 
-**Risiko:** Speist der Ersatzpack diesen Pfad nicht, entlädt sich der Backup-Akku.
-Folge laut [HB 66]: Der Roller startet nicht mehr, und die Sitzbank — hinter der
-der Akkuschacht liegt — lässt sich nur noch über das Notschloss im Handschuhfach
-öffnen.
+Die Handbuchangabe ist eine Vereinfachung für die Bedienungsanleitung. Es gab
+ein Modell mit nur einem Port; offenbar sollte eine einzige Anleitung für alle
+Varianten reichen. **Der 12-V-Pfad ist damit kein offener Punkt mehr.**
 
-> **[OFFEN]** Speist der vordere Steckplatz den DC/DC-Wandler über eine eigene
-> Leitung, oder liegen alle drei Steckplätze auf demselben Leistungsbus und die
-> Ladefunktion hängt an der CAN-Kommunikation? Zu klären an der Verteilerplatine
-> bzw. mit Raffler. Blockiert: die Verkabelungsplanung.
+### Topologie
+
+```
+Port 1 ┐
+Port 2 ┼─ parallel ─→ Sicherungskasten ─→ Motorcontroller (ein Anschluss)
+Port 3 ┘
+```
+
+| Größe | Wert | Quelle |
+|---|---|---|
+| Strombelastbarkeit je Port | **100 A** | Raffler |
+| Alle drei Ports zusammen | **300 A** | Raffler |
+| Benötigt (Spitze) | 180 A | [BER] |
+
+**Ein Port allein trägt unseren Spitzenstrom nicht.** Vorgehen nach Rafflers
+Empfehlung: die Leitungen aller drei Ports zusammenführen. Das ist zugleich die
+praktischere Lösung — 180 A über eine einzelne Leitung erforderten 35–50 mm²,
+die sich im Fahrzeug kaum verlegen lassen; drei vorhandene Leitungen parallel
+lösen das mit dem, was schon verbaut ist.
+
+Rafflers Präferenz: *„Wenn ich dich wäre würde ich die Buchsenbox sowieso
+komplett entfernen und deine neue batterie direkt über die Kabel verbinden."*
+Das deckt sich mit der ohnehin getroffenen Entscheidung, die Steckkontakte
+auszubauen (§6).
+
+### Datenpin-Schleife — zwingend
+
+> „Wichtig sind, die datenpins an den Ports, der Roller erkennt, ob der Kreis
+> geschlossen ist. machst du die die Buchsenbox auf im roller, so kannst du die
+> zwei sich darin befindenden kabel einfach zusammenstecken, und dann ist der
+> kreis immer geschlossen."
+
+Der Roller prüft über die Datenpins, ob ein Stromkreis geschlossen ist, und gibt
+sonst nicht frei — **unabhängig vom CAN-Modul**. Beim Ausbau der Buchsenbox sind
+diese beiden Leitungen dauerhaft zu brücken.
+
+> **Nebenwirkung, bewusst hinzunehmen:** Mit dauerhaft geschlossener Schleife
+> kann der Roller nicht mehr erkennen, ob ein Akku fehlt oder unvollständig
+> sitzt. Bei einem fest verbauten Pack ist das ohne Belang, es entfällt aber eine
+> Schutzfunktion.
+
+### Sicherungskasten
+
+Der fahrzeugseitige Sicherungskasten liegt **hinter** den Ports und bleibt im
+Leistungspfad. JJac berichtet von 3 × 60 A parallel [Forum, unbelegt], was zu
+drei Ports à 100 A passt. Vor Inbetriebnahme prüfen, ob die dortige Absicherung
+zu 180 A Spitzenstrom passt.
 
 ### 8.2 Ladegerät
 
@@ -526,8 +569,7 @@ Nach blockierender Wirkung sortiert.
 |---|---|---|---|
 | 1 | Rippenquerschnitt (M10), Bodenaussparungen (F1), Griffanteil an der Höhe (M7/M8) | Innenaufteilung | 6 |
 | 2 | Konkrete Zelle wählen (Maße, Datenblatt, Bezugsquelle) | gesamte Innenaufteilung | 7.4 |
-| 3 | Speisepfad des 12-V-Backup-Akkus klären | Verkabelungsplanung | 8.1 |
-| 4 | Raffler: Spannungsfenster, SoC-Abgriff, CAN-Einschleifposition, Terminierung | CAN-Integration | — |
+| 3 | Absicherung im fahrzeugseitigen Sicherungskasten gegen 180 A prüfen | Inbetriebnahme | 8.1 |
 | 5 | BMS wählen: 14S, 100 A Dauer, 180 A Spitze, Balancing | Elektrikplanung | 4 |
 | 6 | Ladegerät 58,8–59 V CC/CV, 15–20 A | — | 8.2 |
 | 7 | Zulassungsbescheinigung Teil I, Felder F.1 und G | Gewichtsnachweis | 1 |

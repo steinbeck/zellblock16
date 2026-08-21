@@ -360,11 +360,26 @@ Zellgrenze von 105 A, sodass das BMS schützt statt zu drosseln.
 
 | Bauteil | Auslegung |
 |---|---|
-| Hauptkabel | 25–35 mm², kurze Wege |
+| Anschluss an den Roller | **Leitungen aller drei Ports zusammenführen** |
+| Strombelastbarkeit | 100 A je Port, 300 A zusammen |
 | Hauptsicherung | 200 A ANL/Mega, träge |
 | Trennschalter | manuell, für Wartung |
 | Vorladewiderstand | gegen Einschaltlichtbogen am Controller-Kondensator |
 | Kabeldurchführung | durch die freiwerdenden Kontaktöffnungen |
+
+**Alle drei Portleitungen parallel** (`grundlagen.md` §8.1). Ein Port trägt 100 A
+und damit unseren Spitzenstrom von 180 A nicht. Zugleich ist es die praktischere
+Lösung: 180 A über eine einzelne Leitung erforderten 35–50 mm², die sich im
+Fahrzeug kaum verlegen lassen.
+
+**Datenpin-Schleife schließen — zwingend.** Der Roller prüft über die Datenpins
+der Ports, ob ein Stromkreis geschlossen ist, und gibt sonst nicht frei; das gilt
+unabhängig vom CAN-Modul. Beim Ausbau der Buchsenbox sind die beiden dort
+liegenden Leitungen dauerhaft zu brücken. Wird das übersehen, bleibt der Roller
+ohne erkennbaren Grund tot.
+
+Der fahrzeugseitige Sicherungskasten liegt hinter den Ports und bleibt im
+Leistungspfad. Vor Inbetriebnahme prüfen, ob seine Absicherung zu 180 A passt.
 
 **Vorladung ist nicht optional:** Der Controller enthält Kondensatoren, die beim
 Zuschalten einen Stromstoß von mehreren hundert Ampere ziehen. Ohne
@@ -399,7 +414,9 @@ Der Pack wird **im Schacht aufgebaut**, nicht davor — 43 kg lassen sich nicht 
 Block in einen 430 mm tiefen Schacht heben. Jede Einzelkomponente bleibt unter
 16 kg, die Zellen wiegen einzeln 2 kg.
 
-1. Original-Steckkontakte ausbauen, Öffnungen als Kabeldurchführung herrichten
+1. Original-Steckkontakte ausbauen, Öffnungen als Kabeldurchführung herrichten.
+   **Dabei die Datenpin-Leitungen in der Buchsenbox brücken** und die Leitungen
+   aller drei Ports zum künftigen Anschlusspunkt zusammenführen
 2. Gehäuse-Unterteil einsetzen, Sitz und Rippeneingriff prüfen
 3. Bodenplatte einlegen
 4. Beide Aluplatten in die Führungsnuten einschieben
@@ -448,7 +465,7 @@ Maßhaltigkeit zu prüfen, bevor im Schacht gearbeitet wird.
 
 | # | Punkt | Blockiert | Verantwortlich |
 |---|---|---|---|
-| 1 | **12-V-Backup-Pfad** — nach Ausbau der Kontakte nicht mehr bedient | Elektrikplanung | Christoph mit Raffler |
+| 1 | Absicherung im fahrzeugseitigen Sicherungskasten gegen 180 A prüfen | Inbetriebnahme | — |
 | 2 | Zellbestellung — Preis mit 19 % USt, nicht der Nullsteuersatz für PV | Beschaffung | Christoph |
 | 3 | BMS-Auswahl nach §9.1 | Beschaffung | — |
 | 4 | Ladegerät 58,4 V CC/CV, 15–20 A | Beschaffung | — |
