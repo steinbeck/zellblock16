@@ -1,0 +1,330 @@
+<title>Testaufbau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;500&display=swap">
+
+<style>
+:root{
+  --paper:#0D2F50; --paper-deep:#08213A;
+  --ink:#DCEBF6; --ink-mid:#8FB6D2; --ink-faint:#3E6E96; --grid:#1B4571;
+  --plus:#D4614A; --minus:#6FA8CE; --bus:#E8C77A; --sig:#7FD1AE; --holz:#B08B5C;
+  --f-disp:"Saira Condensed","Arial Narrow",sans-serif;
+  --f-mono:"Share Tech Mono",ui-monospace,"Courier New",monospace;
+  --f-body:"Barlow Condensed","Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper-deep);color:var(--ink);
+  font-family:var(--f-body);-webkit-font-smoothing:antialiased;padding:clamp(8px,2vw,26px);}
+.sheet{max-width:1380px;margin:0 auto;position:relative;overflow:hidden;
+  background:radial-gradient(120% 90% at 28% 10%,#14395E 0%,var(--paper) 48%,#0A2743 100%);
+  border:1px solid var(--ink-faint);box-shadow:0 22px 64px rgba(0,0,0,.55);}
+.sheet::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
+  background-image:linear-gradient(var(--grid) .5px,transparent .5px),
+    linear-gradient(90deg,var(--grid) .5px,transparent .5px);background-size:16px 16px,16px 16px;}
+.inner{position:relative;z-index:2;padding:clamp(14px,2.3vw,28px);}
+.border-frame{position:absolute;inset:clamp(9px,1.4vw,16px);border:1.5px solid var(--ink-mid);
+  pointer-events:none;z-index:1;}
+
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:16px;padding:4px 10px 12px;border-bottom:1px solid var(--ink-faint);}
+.eyebrow{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;
+  color:var(--ink-mid);text-transform:uppercase;margin:0 0 5px;}
+h1{font-family:var(--f-disp);font-weight:600;font-size:clamp(23px,3.4vw,40px);
+  letter-spacing:.05em;margin:0;line-height:1;text-transform:uppercase;text-wrap:balance;}
+h1 span{display:block;font-size:.44em;font-weight:400;letter-spacing:.16em;
+  color:var(--ink-mid);margin-top:6px;}
+.head-meta{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-mid);
+  text-align:right;line-height:1.85;}
+.head-meta b{color:var(--ink);font-weight:normal;}
+
+.plate{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  gap:clamp(12px,1.8vw,22px);padding:14px 10px 4px;align-items:start;}
+@media(max-width:980px){.plate{grid-template-columns:minmax(0,1fr);}}
+.fig{min-width:0;overflow-x:auto;margin-bottom:14px;}
+.fig h3{font-family:var(--f-disp);font-size:12px;font-weight:600;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--ink-mid);margin:0 0 6px;padding-left:2px;}
+svg{display:block;width:100%;height:auto;}
+
+.panel{border:1px solid var(--ink-mid);background:rgba(6,26,46,.5);margin-bottom:13px;}
+.panel h2{font-family:var(--f-disp);font-size:12.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;margin:0;padding:7px 10px;border-bottom:1px solid var(--ink-mid);}
+.panel .body{padding:9px 11px;font-size:13.5px;line-height:1.55;color:var(--ink-mid);}
+.panel .body b{color:var(--ink);font-weight:500;}
+.panel .body p{margin:0 0 8px;} .panel .body p:last-child{margin:0;}
+.panel ol{margin:0;padding:0 0 0 20px;font-size:13.5px;line-height:1.6;color:var(--ink-mid);}
+.panel ol li{margin-bottom:5px;} .panel ol b{color:var(--ink);font-weight:500;}
+
+table{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:11px;}
+th{font-weight:normal;color:var(--ink-mid);text-align:left;padding:5px 8px;
+  border-bottom:1px solid var(--ink-faint);font-size:9px;letter-spacing:.13em;text-transform:uppercase;}
+td{padding:4px 8px;border-bottom:1px solid rgba(62,110,150,.32);color:var(--ink);}
+td.r{text-align:right;color:var(--ink-mid);}
+.warn{border:1.5px solid var(--plus);background:rgba(212,97,74,.1);}
+.warn h2{border-bottom-color:var(--plus);color:var(--plus);}
+.warn .body{color:var(--ink);}
+
+footer{padding:10px 10px 2px;margin-top:4px;border-top:1px solid var(--ink-faint);
+  font-family:var(--f-body);font-size:12.5px;color:var(--ink-mid);
+  display:flex;flex-wrap:wrap;gap:5px 20px;justify-content:space-between;}
+footer b{color:var(--ink);font-weight:500;}
+</style>
+
+<div class="sheet">
+  <div class="border-frame"></div>
+  <div class="inner">
+
+    <header>
+      <div>
+        <p class="eyebrow">Zellblock 16 · Erprobung vor dem ersten Eingriff</p>
+        <h1>Testaufbau<span>16 Zellen außerhalb des Fahrzeugs · ohne Gehäuse</span></h1>
+      </div>
+      <div class="head-meta">
+        Zeichnungs-Nr. <b>ZB-16-004</b><br>
+        Blatt <b>1 / 1</b> · Maße in <b>mm</b><br>
+        Stand <b>22.08.2026</b> · Rev. <b>A</b>
+      </div>
+    </header>
+
+    <div class="plate">
+      <div>
+        <div class="fig">
+          <h3>Draufsicht — zwei Blöcke zu acht Zellen</h3>
+          <svg id="top" viewBox="0 0 780 420" role="img"
+            aria-label="Draufsicht des Testaufbaus: zwei Blöcke zu je acht aufrecht stehenden Zellen, zwischen Holzplatten mit vier Gewindestangen verspannt."></svg>
+        </div>
+        <div class="fig">
+          <h3>Seitenansicht — Verspannung</h3>
+          <svg id="side" viewBox="0 0 780 300" role="img"
+            aria-label="Seitenansicht: Zellen zwischen zwei Holzplatten, Gewindestangen mit Tellerfederpaketen und Muttern."></svg>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel warn">
+          <h2>Verspannen, auch im Test</h2>
+          <div class="body">
+            <p>Die Zellen <b>atmen bei jedem Ladezyklus</b>, nicht erst über
+            Jahre. Laut Datenblatt steigt die Kraft bei starrer Einspannung schon
+            an einer neuen Zelle um <b>bis zu 3 kN</b>.</p>
+            <p>Mit 3–4 kN Vorspannung landet man damit bei 6–7 kN — unter der
+            Schadensgrenze von 9 kN, aber ohne viel Luft. <b>Mit Tellerfedern
+            bleibt es bei rund 5 kN.</b> Sie werden ohnehin gekauft; sie hier
+            wegzulassen spart nichts.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Was der Test klärt</h2>
+          <ol>
+            <li><b>Gibt der Controller frei?</b> Datenpin-Brücke und CAN-Modul</li>
+            <li><b>Läuft der Motor</b> am aufgebockten Rad?</li>
+            <li><b>Verträgt er 58,4 V?</b> Nur 1,6 V Abstand zur 60-V-Grenze</li>
+            <li><b>Wie verhält sich das BMS</b> unter Last?</li>
+            <li><b>Lädt und balanciert</b> das Ladegerät sauber?</li>
+          </ol>
+        </div>
+
+        <div class="panel">
+          <h2>Stückliste Testaufbau</h2>
+          <table>
+            <thead><tr><th>Teil</th><th class="r">Stk</th></tr></thead>
+            <tbody>
+              <tr><td>Zellen EVE LF105</td><td class="r">16</td></tr>
+              <tr><td>Holzplatte 18 mm, 300 × 220</td><td class="r">4</td></tr>
+              <tr><td>Gewindestange M8, 400 mm</td><td class="r">8</td></tr>
+              <tr><td>Tellerfedern</td><td class="r">48</td></tr>
+              <tr><td>Muttern M8, Scheiben</td><td class="r">je 16</td></tr>
+              <tr><td>Busbars kurz</td><td class="r">12</td></tr>
+              <tr><td>Verbinder lang, 63 mm</td><td class="r">2</td></tr>
+              <tr><td>Blockverbinder als Kabel</td><td class="r">1</td></tr>
+              <tr><td>BMS, Sicherung, Trennschalter</td><td class="r">je 1</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>Maße</h2>
+          <table>
+            <tr><td>Block, 8 Zellen</td><td class="r">291 × 130</td></tr>
+            <tr><td>Beide Blöcke</td><td class="r">291 × 261</td></tr>
+            <tr><td>Höhe mit Polen</td><td class="r">200,5</td></tr>
+            <tr><td>Masse Zellen</td><td class="r">31,7 kg</td></tr>
+            <tr><td>Spannung</td><td class="r">51,2 V</td></tr>
+          </table>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <span>Der Aufbau bildet die spätere Verschaltung <b>eins zu eins</b> ab —
+        zwei Blöcke zu acht, nur nebeneinander statt in zwei Etagen.</span>
+      <span>Grundlage: <b>grundlagen.md</b> §8.4 · <b>verschaltung.html</b></span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const SVG="http://www.w3.org/2000/svg";
+function mk(root){return function(n,at,p){const e=document.createElementNS(SVG,n);
+  for(const k in at)e.setAttribute(k,at[k]);(p||root).appendChild(e);return e;};}
+const C={plus:"#D4614A",minus:"#6FA8CE",bus:"#E8C77A",sig:"#7FD1AE",
+  ink:"#DCEBF6",mid:"#8FB6D2",faint:"#3E6E96",holz:"#B08B5C",paper:"#0D2F50"};
+const CT=36.35, CL=130.3, PA=67;
+
+/* ══════ Draufsicht ══════ */
+(function(){
+const S=document.getElementById("top"), el=mk(S);
+const K=1.62, OX=96, OY=52;
+const X=mm=>OX+mm*K, Y=mm=>OY+mm*K;
+function txt(x,y,t,f,s,a){el("text",{x:x,y:y,"text-anchor":a||"start",
+  "font-family":"Share Tech Mono, monospace","font-size":s||10.5,
+  fill:f||C.mid,"letter-spacing":"0.05em"}).textContent=t;}
+
+/* zwei Bloecke, je 8 Zellen aufrecht, Reihe in x */
+const BLOCK_L = 8*CT;           /* 290,8 */
+[0,1].forEach(b=>{
+  const y0 = b*(CL+26);
+  /* Holzplatten links und rechts */
+  [-18,BLOCK_L].forEach(px=>{
+    el("rect",{x:X(px),y:Y(y0)-4,width:18*K,height:CL*K+8,rx:2,
+      fill:"#3A2E20",stroke:C.holz,"stroke-width":1.4});
+  });
+  /* Zellen */
+  for(let i=0;i<8;i++){
+    const nr = b===0 ? i+1 : 16-i;
+    const gedreht = (nr%2===0);
+    el("rect",{x:X(i*CT)+1,y:Y(y0)+1,width:CT*K-2,height:CL*K-2,rx:2,
+      fill:gedreht?"#0E3255":"#123C63",stroke:C.mid,"stroke-width":.9});
+    el("text",{x:X(i*CT+CT/2),y:Y(y0+CL/2)+4,"text-anchor":"middle",
+      "font-family":"Saira Condensed, sans-serif","font-size":11,
+      "font-weight":600,fill:C.ink}).textContent=nr;
+    /* Pole */
+    [[-PA/2,!gedreht],[PA/2,gedreht]].forEach(([off,istPlus])=>{
+      el("rect",{x:X(i*CT+CT/2)-4,y:Y(y0+CL/2+off)-4,width:8,height:8,rx:1.5,
+        fill:istPlus?C.plus:C.minus});
+    });
+  }
+  /* Gewindestangen: 4 je Block, ausserhalb der Zellen */
+  [0.18,0.82].forEach(f=>{
+    const yy=Y(y0+CL*f);
+    el("line",{x1:X(-14),y1:yy,x2:X(BLOCK_L+14),y2:yy,
+      stroke:C.mid,"stroke-width":2.4,"stroke-dasharray":"1 0"});
+  });
+  txt(X(BLOCK_L/2), Y(y0)-11, b===0?"BLOCK 1 · Zellen 1–8":"BLOCK 2 · Zellen 9–16",
+      C.ink, 11.5, "middle");
+});
+
+/* Busbars innerhalb der Bloecke */
+[0,1].forEach(b=>{
+  const y0=b*(CL+26);
+  for(let i=0;i<7;i++){
+    const nr = b===0 ? i+1 : 16-i;
+    const gedreht=(nr%2===0);
+    const off = gedreht ? PA/2 : -PA/2;
+    el("line",{x1:X(i*CT+CT/2),y1:Y(y0+CL/2+off),
+      x2:X((i+1)*CT+CT/2),y2:Y(y0+CL/2+off),
+      stroke:C.bus,"stroke-width":5,"stroke-linecap":"round",opacity:.9});
+  }
+});
+
+/* Blockverbinder */
+(function(){
+  const x=X(7*CT+CT/2), y1=Y(CL/2+PA/2), y2=Y(CL+26+CL/2-PA/2);
+  el("path",{d:`M${x},${y1} C ${x+52},${y1} ${x+52},${y2} ${x},${y2}`,
+    fill:"none",stroke:C.bus,"stroke-width":3.4,"stroke-dasharray":"7 4"});
+  txt(x+58,(y1+y2)/2,"Block-",C.bus,9.5);
+  txt(x+58,(y1+y2)/2+12,"verbinder",C.bus,9.5);
+})();
+
+/* Pack-Anschluesse */
+(function(){
+  const xa=X(CT/2), ya=Y(CL/2-PA/2);
+  el("line",{x1:xa,y1:ya,x2:xa-52,y2:ya,stroke:C.minus,"stroke-width":3});
+  el("circle",{cx:xa-52,cy:ya,r:5,fill:C.minus});
+  txt(xa-58,ya-9,"PACK −",C.minus,10.5,"end");
+  const xb=X(CT/2), yb=Y(CL+26+CL/2+PA/2);
+  el("line",{x1:xb,y1:yb,x2:xb-52,y2:yb,stroke:C.plus,"stroke-width":3});
+  el("circle",{cx:xb-52,cy:yb,r:5,fill:C.plus});
+  txt(xb-58,yb+15,"PACK +",C.plus,10.5,"end");
+})();
+
+/* Bemassung */
+(function(){
+  const y=Y(2*CL+26+18);
+  el("line",{x1:X(0),y1:y,x2:X(BLOCK_L),y2:y,stroke:C.mid,"stroke-width":.8});
+  [[X(0),1],[X(BLOCK_L),-1]].forEach(([xx,s])=>{
+    el("path",{d:`M${xx},${y} l${s*9},-3.4 M${xx},${y} l${s*9},3.4`,
+      stroke:C.mid,"stroke-width":.8,fill:"none"});
+  });
+  txt((X(0)+X(BLOCK_L))/2,y-7,"290,8",C.ink,11.5,"middle");
+})();
+})();
+
+/* ══════ Seitenansicht ══════ */
+(function(){
+const S=document.getElementById("side"), el=mk(S);
+const K=1.62, OX=110, OY=42;
+const X=mm=>OX+mm*K, Y=mm=>OY+mm*K;
+function txt(x,y,t,f,s,a){el("text",{x:x,y:y,"text-anchor":a||"start",
+  "font-family":"Share Tech Mono, monospace","font-size":s||10.5,
+  fill:f||C.mid,"letter-spacing":"0.05em"}).textContent=t;}
+const H=195.5, BLOCK_L=8*CT;
+
+/* Zellen von der Seite */
+for(let i=0;i<8;i++){
+  el("rect",{x:X(i*CT)+1,y:Y(0),width:CT*K-2,height:H*K,rx:2,
+    fill:(i%2)?"#0E3255":"#123C63",stroke:C.mid,"stroke-width":.9});
+}
+/* Pole oben */
+for(let i=0;i<8;i++){
+  el("rect",{x:X(i*CT+CT/2)-5,y:Y(-5),width:10,height:5*K+2,rx:1.5,
+    fill:(i%2)?C.minus:C.plus});
+}
+txt(X(BLOCK_L/2),Y(-16),"Pole oben — das Berstventil arbeitet nur in dieser Lage",
+    C.ink,10.5,"middle");
+
+/* Holzplatten */
+[-18,BLOCK_L].forEach(px=>{
+  el("rect",{x:X(px),y:Y(-8),width:18*K,height:(H+16)*K,rx:2,
+    fill:"#3A2E20",stroke:C.holz,"stroke-width":1.5});
+});
+txt(X(-9),Y(H+26),"Holz 18 mm",C.holz,10,"middle");
+
+/* Gewindestangen mit Federpaketen */
+[0.22,0.72].forEach(f=>{
+  const yy=Y(H*f);
+  el("line",{x1:X(-40),y1:yy,x2:X(BLOCK_L+40),y2:yy,stroke:C.mid,"stroke-width":2.6});
+  /* Federpaket rechts */
+  for(let k=0;k<6;k++){
+    const xx=X(BLOCK_L+20)+k*5;
+    el("path",{d:`M${xx},${yy-9} L${xx+4},${yy} L${xx},${yy+9}`,
+      fill:"none",stroke:C.sig,"stroke-width":1.8});
+  }
+  /* Muttern */
+  el("rect",{x:X(BLOCK_L+20)+32,y:yy-8,width:11,height:16,rx:1.5,
+    fill:"#274F76",stroke:C.mid,"stroke-width":1});
+  el("rect",{x:X(-40),y:yy-8,width:11,height:16,rx:1.5,
+    fill:"#274F76",stroke:C.mid,"stroke-width":1});
+});
+txt(X(BLOCK_L+22),Y(-16),"6 Tellerfedern",C.sig,10.5);
+txt(X(BLOCK_L+22),Y(-5),"je Stange",C.sig,10.5);
+txt(X(-44),Y(H+26),"M8",C.mid,10);
+
+/* Hoehenbemassung */
+(function(){
+  const x=X(BLOCK_L+96);
+  el("line",{x1:x,y1:Y(0),x2:x,y2:Y(H),stroke:C.mid,"stroke-width":.8});
+  [[Y(0),1],[Y(H),-1]].forEach(([yy,s])=>{
+    el("path",{d:`M${x},${yy} l-3.4,${s*9} M${x},${yy} l3.4,${s*9}`,
+      stroke:C.mid,"stroke-width":.8,fill:"none"});
+  });
+  el("text",{x:x-8,y:(Y(0)+Y(H))/2,"text-anchor":"middle",
+    transform:`rotate(-90 ${x-8} ${(Y(0)+Y(H))/2})`,
+    "font-family":"Share Tech Mono, monospace","font-size":11.5,
+    fill:C.ink}).textContent="195,5";
+})();
+})();
+})();
+</script>

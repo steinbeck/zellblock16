@@ -47,11 +47,11 @@ quellen sie auf und nehmen Schaden (`grundlagen.md` §3.3).
 
 | Pos | Artikel | Menge | Preis | Anmerkung |
 |---|---|---:|---:|---|
-| B1 | Multiplex oder Siebdruckplatte, 18–21 mm | 2 Stück ~300 × 220 mm | 15–25 € | Endplatten des Testaufbaus |
-| B2 | Gewindestangen M8, verzinkt | 4 × 500 mm | 10–15 € | für den Test genügt Baumarktqualität |
+| B1 | Multiplex oder Siebdruckplatte, 18–21 mm | **4** Stück ~300 × 220 mm | 25–40 € | Endplatten, **zwei Blöcke zu acht Zellen** |
+| B2 | Gewindestangen M8, verzinkt | **8** × 400 mm | 15–22 € | vier je Block; für den Test genügt Baumarktqualität |
 | B3 | Muttern M8 selbstsichernd, Karosseriescheiben | je 16 | 10–15 € | |
 | B4 | **Tellerfedern** für M8, ~1.000 N je Stück | 48 | 30–60 € | 6 je Zugstange; halten die Vorspannung und nehmen die Alterungsdehnung auf |
-| | **Summe B** | | **65–115 €** | |
+| | **Summe B** | | **80–137 €** | |
 
 > [!IMPORTANT]
 > **Die Federn sind kein Zubehör, sondern Voraussetzung.** Die Zellen dehnen
@@ -63,8 +63,10 @@ quellen sie auf und nehmen Schaden (`grundlagen.md` §3.3).
 > Aufbau je Stange: **drei Paare** — jeweils zwei Federn gleichsinnig
 > ineinander für die Kraft, die Paare wechselsinnig gestapelt für den Weg.
 >
-> Für den Testaufbau mit Holzplatten genügen einfache Muttern ohne Federn, weil
-> er nur Tage dauert. Für alles, was länger steht, gehören sie dazu.
+> **Auch im Testaufbau verwenden.** Die Zellen atmen bei jedem Ladezyklus: schon
+> an einer neuen Zelle steigt die Kraft bei starrer Einspannung um bis zu 3 kN.
+> Ohne Federn läge man bei 6–7 kN und damit knapp unter der Schadensgrenze — mit
+> ihnen bei rund 5 kN. Siehe `testaufbau.html`.
 
 ## C · Laden
 
@@ -89,10 +91,10 @@ quellen sie auf und nehmen Schaden (`grundlagen.md` §3.3).
 | Block | von | bis |
 |---|---:|---:|
 | A Zwingend | 976 € | 1.179 € |
-| B Verspannung und Federn | 65 € | 115 € |
+| B Verspannung und Federn | 80 € | 137 € |
 | C Laden | 150 € | 250 € |
 | D Kleinmaterial | 35 € | 60 € |
-| **Summe** | **1.226 €** | **1.604 €** |
+| **Summe** | **1.241 €** | **1.626 €** |
 
 Davon sind **749 €** durch konkrete Angebote belegt (Zellen und BMS), der Rest
 ist geschätzt. Wer Multimeter und Drehmomentschlüssel bereits besitzt, spart

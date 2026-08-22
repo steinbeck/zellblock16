@@ -35,7 +35,8 @@ die drei originalen Wechselakkus ersetzt.
   <a href="https://steinbeck.github.io/zellblock16/">Projektseite</a> ·
   <a href="https://steinbeck.github.io/zellblock16/blaupause.html">Explosionszeichnung</a> ·
   <a href="https://steinbeck.github.io/zellblock16/verschaltung.html">Verschaltung</a> ·
-  <a href="https://steinbeck.github.io/zellblock16/verdrahtung.html">Verdrahtung</a>
+  <a href="https://steinbeck.github.io/zellblock16/verdrahtung.html">Verdrahtung</a> ·
+  <a href="https://steinbeck.github.io/zellblock16/testaufbau.html">Testaufbau</a>
 </p>
 
 ---
@@ -117,7 +118,7 @@ Kanälen aufnimmt, statt sie obendrauf zu addieren. Naiv gerechnet wären es
 | [`einkaufsliste.md`](einkaufsliste.md) | Was für den Funktionstest zu beschaffen ist |
 | [`messprotokoll.md`](messprotokoll.md) | Was am Fahrzeug noch zu messen ist |
 | [`cad/`](cad/) | Parametrisches OpenSCAD-Modell |
-| `blaupause.html`, `verschaltung.html`, `verdrahtung.html` | Zeichnungen — Explosionsdarstellung, Zellverschaltung, Stromlaufplan |
+| `blaupause.html`, `verschaltung.html`, `verdrahtung.html`, `testaufbau.html` | Zeichnungen — Explosionsdarstellung, Zellverschaltung, Stromlaufplan, Testaufbau |
 | [`spezifikation.md`](spezifikation.md) | Erster Entwurf, **veraltet** — enthält an neun Stellen widerlegte Werte und bleibt nur als Diskussionsverlauf erhalten |
 
 Die Belegmarken in `grundlagen.md` sind der Kern der Dokumentation. Der erste

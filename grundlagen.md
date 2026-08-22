@@ -709,6 +709,27 @@ alles Wesentliche prüfbar, **bevor ein Millimeter Gehäuse gedruckt ist**:
 Scheitert etwas, sind die Zellen unbeschädigt und wiederverwendbar, und am
 Fahrzeug ist nichts verändert.
 
+**Der Aufbau bildet die spätere Verschaltung eins zu eins ab:** zwei Blöcke zu
+acht Zellen, nur nebeneinander statt in zwei Etagen. Damit gilt der
+Verschaltungsplan unverändert. Zeichnung: `testaufbau.html` (ZB-16-004).
+
+| | |
+|---|---|
+| Block, 8 Zellen aufrecht | 291 × 130 mm |
+| beide Blöcke | 291 × 261 mm |
+| Höhe mit Polen | 200,5 mm |
+| Verspannung je Block | 2 Holzplatten 18 mm, 4 Gewindestangen M8 |
+
+> **Auch im Test verspannen — und zwar mit Federn.** Die Zellen atmen bei jedem
+> Ladezyklus, nicht erst über Jahre: Laut Datenblatt steigt die Kraft schon an
+> einer neuen Zelle um **bis zu 3 kN**, wenn sie starr eingespannt ist. Mit
+> 3–4 kN Vorspannung landet man bei 6–7 kN, also unter der Schadensgrenze von
+> 9 kN, aber ohne Reserve. Mit Tellerfedern bleibt es bei rund 5 kN. Sie werden
+> ohnehin beschafft; sie hier wegzulassen spart nichts.
+
+**Pole zeigen nach oben**, auch im Testaufbau — das Berstventil arbeitet nur in
+dieser Lage bestimmungsgemäß (§3.3).
+
 ### Reihenfolge
 
 | # | Schritt | umkehrbar? |
