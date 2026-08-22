@@ -1,0 +1,294 @@
+<title>Verschaltungsplan Etage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;500&display=swap">
+
+<style>
+:root{
+  --paper:#0D2F50;
+  --paper-deep:#08213A;
+  --ink:#DCEBF6;
+  --ink-mid:#8FB6D2;
+  --ink-faint:#3E6E96;
+  --grid:#1B4571;
+  --plus:#D4614A;
+  --minus:#6FA8CE;
+  --cell:#123C63;
+  --cell-alt:#0E3255;
+  --bus:#E8C77A;
+
+  --f-disp:"Saira Condensed","Arial Narrow",sans-serif;
+  --f-mono:"Share Tech Mono",ui-monospace,"Courier New",monospace;
+  --f-body:"Barlow Condensed","Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;background:var(--paper-deep);color:var(--ink);
+  font-family:var(--f-body);-webkit-font-smoothing:antialiased;
+  padding:clamp(8px,2vw,26px);
+}
+.sheet{
+  max-width:1320px;margin:0 auto;position:relative;overflow:hidden;
+  background:radial-gradient(120% 90% at 28% 10%,#14395E 0%,var(--paper) 48%,#0A2743 100%);
+  border:1px solid var(--ink-faint);box-shadow:0 22px 64px rgba(0,0,0,.55);
+}
+.sheet::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
+  background-image:
+    linear-gradient(var(--grid) .5px,transparent .5px),
+    linear-gradient(90deg,var(--grid) .5px,transparent .5px);
+  background-size:16px 16px,16px 16px;
+}
+.inner{position:relative;z-index:2;padding:clamp(14px,2.3vw,28px);}
+.border-frame{position:absolute;inset:clamp(9px,1.4vw,16px);border:1.5px solid var(--ink-mid);pointer-events:none;z-index:1;}
+
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;
+  gap:16px;padding:4px 10px 12px;border-bottom:1px solid var(--ink-faint);}
+.eyebrow{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;
+  color:var(--ink-mid);text-transform:uppercase;margin:0 0 5px;}
+h1{font-family:var(--f-disp);font-weight:600;font-size:clamp(24px,3.6vw,42px);
+  letter-spacing:.05em;margin:0;line-height:1;text-transform:uppercase;text-wrap:balance;}
+h1 span{display:block;font-size:.44em;font-weight:400;letter-spacing:.16em;color:var(--ink-mid);margin-top:6px;}
+.head-meta{font-family:var(--f-mono);font-size:10.5px;color:var(--ink-mid);text-align:right;line-height:1.85;}
+.head-meta b{color:var(--ink);font-weight:normal;}
+
+.plate{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,330px);
+  gap:clamp(12px,1.8vw,24px);padding:14px 10px 6px;align-items:start;}
+@media(max-width:900px){.plate{grid-template-columns:minmax(0,1fr);}}
+.draw-wrap{min-width:0;overflow-x:auto;}
+svg{display:block;width:100%;height:auto;}
+
+.panel{border:1px solid var(--ink-mid);background:rgba(6,26,46,.5);margin-bottom:13px;}
+.panel h2{font-family:var(--f-disp);font-size:12.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;margin:0;padding:7px 10px;border-bottom:1px solid var(--ink-mid);}
+.panel .body{padding:9px 11px;font-size:13.5px;line-height:1.5;color:var(--ink-mid);}
+.panel .body b{color:var(--ink);font-weight:500;}
+
+table{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:11px;}
+th{font-weight:normal;color:var(--ink-mid);text-align:left;padding:5px 8px;
+  border-bottom:1px solid var(--ink-faint);font-size:9px;letter-spacing:.13em;text-transform:uppercase;}
+td{padding:4px 8px;border-bottom:1px solid rgba(62,110,150,.32);color:var(--ink);}
+td.n{color:var(--bus);width:1%;}
+td.r{text-align:right;color:var(--ink-mid);}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:9px 11px;font-size:12.5px;color:var(--ink-mid);}
+.legend i{display:inline-block;width:13px;height:13px;border-radius:2px;margin-right:6px;
+  vertical-align:-2px;font-style:normal;}
+
+.warn{border:1.5px solid var(--plus);background:rgba(212,97,74,.1);}
+.warn h2{border-bottom-color:var(--plus);color:var(--plus);}
+.warn .body{color:var(--ink);}
+
+footer{padding:10px 10px 2px;margin-top:4px;border-top:1px solid var(--ink-faint);
+  font-family:var(--f-body);font-size:12.5px;color:var(--ink-mid);
+  display:flex;flex-wrap:wrap;gap:5px 20px;justify-content:space-between;}
+footer b{color:var(--ink);font-weight:500;}
+</style>
+
+<div class="sheet">
+  <div class="border-frame"></div>
+  <div class="inner">
+
+    <header>
+      <div>
+        <p class="eyebrow">Zellblock 16 · Traktionsbatterie · Eigenbau</p>
+        <h1>Verschaltung einer Etage<span>8 Zellen · Draufsicht · EVE LF105</span></h1>
+      </div>
+      <div class="head-meta">
+        Zeichnungs-Nr. <b>ZB-16-002</b><br>
+        Blatt <b>1 / 1</b> · Maße in <b>mm</b><br>
+        Stand <b>22.08.2026</b> · Rev. <b>A</b>
+      </div>
+    </header>
+
+    <div class="plate">
+      <div class="draw-wrap">
+        <svg id="dwg" viewBox="0 0 880 622" role="img"
+             aria-label="Draufsicht einer Zellebene mit acht Zellen in zwei Reihen zu vier, mit eingezeichneten Busbars, Polaritäten und der Verschaltungsreihenfolge."></svg>
+      </div>
+
+      <aside>
+        <div class="panel warn">
+          <h2>Vor dem letzten Busbar</h2>
+          <div class="body">
+            Reihenfolge und Polarität <b>zweimal prüfen</b>, bevor der letzte
+            Verbinder gesetzt wird. Ein falsch gesetzter Busbar bedeutet
+            Kurzschluss über zwei Zellen — bei 105 Ah ohne Sicherung dazwischen.
+            <br><br>
+            Gesamtspannung messen: bei halb geladenen Zellen <b>rund 26 V je
+            Etage</b>.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Reihenfolge</h2>
+          <table>
+            <thead><tr><th>Nr</th><th>Position</th><th>Pol links</th><th>rechts</th></tr></thead>
+            <tbody id="seq"></tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>Legende</h2>
+          <div class="legend">
+            <span><i style="background:#D4614A"></i>Pluspol</span>
+            <span><i style="background:#6FA8CE"></i>Minuspol</span>
+            <span><i style="background:#E8C77A"></i>Busbar</span>
+            <span><i style="background:#123C63;border:1px solid #8FB6D2"></i>Zelle normal</span>
+            <span><i style="background:#0E3255;border:1px solid #8FB6D2"></i>Zelle gedreht</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Kennwerte</h2>
+          <table>
+            <tr><td>Zellen je Etage</td><td class="r">8</td></tr>
+            <tr><td>Busbars je Etage</td><td class="r">7</td></tr>
+            <tr><td>Polabstand</td><td class="r">67 mm</td></tr>
+            <tr><td>Zellteilung</td><td class="r">36,35 mm</td></tr>
+            <tr><td>Anzugsmoment Pole</td><td class="r">4–6 Nm</td></tr>
+            <tr><td>Spannung je Etage</td><td class="r">25,6 V</td></tr>
+            <tr><td>Balancerabgriffe</td><td class="r">9 je Etage</td></tr>
+          </table>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <span><b>Zellen abwechselnd um 180° gedreht</b> — nur so liegen die zu
+        verbindenden Pole nebeneinander und die Busbars bleiben kurz.</span>
+      <span>Grundlage: <b>konstruktion.md</b> §3.3</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const SVG="http://www.w3.org/2000/svg", dwg=document.getElementById("dwg");
+function el(n,at,p){const e=document.createElementNS(SVG,n);
+  for(const k in at)e.setAttribute(k,at[k]);(p||dwg).appendChild(e);return e;}
+
+/* Maßstab und Ursprung */
+const K=2.9, OX=118, OY=88;
+const CL=130.3, CT=36.35, PA=67;      /* Zelle, Teilung, Polabstand */
+function X(mm){return OX+mm*K;} function Y(mm){return OY+mm*K;}
+
+/* Verschaltung: Serpentine von vorn nach hinten durch Reihe A,
+   Übergang über die inneren Pole, zurück nach vorn durch Reihe B.
+   Pack-Minus und Pack-Plus landen dadurch beide vorn, beim BMS.   */
+const CELLS=[
+  /* nr, reihe, j (0=hinten), plusSeite */
+  {nr:1, r:0, j:3, plus:"L"},
+  {nr:2, r:0, j:2, plus:"R"},
+  {nr:3, r:0, j:1, plus:"L"},
+  {nr:4, r:0, j:0, plus:"R"},
+  {nr:5, r:1, j:0, plus:"R"},
+  {nr:6, r:1, j:1, plus:"L"},
+  {nr:7, r:1, j:2, plus:"R"},
+  {nr:8, r:1, j:3, plus:"L"}
+];
+function polX(r,seite){
+  const mitte=r*CL+CL/2;
+  return mitte + (seite==="L" ? -PA/2 : PA/2);
+}
+function polY(j){return j*CT+CT/2;}
+
+/* ── Zellen ────────────────────────────────────────── */
+CELLS.forEach(c=>{
+  const x0=c.r*CL, y0=c.j*CT;
+  el("rect",{x:X(x0)+1,y:Y(y0)+1,width:CL*K-2,height:CT*K-2,rx:3,
+    fill:(c.plus==="L")?"#123C63":"#0E3255",
+    stroke:"#8FB6D2","stroke-width":1.1});
+  /* Nummer in Verschaltungsreihenfolge */
+  el("circle",{cx:X(x0+CL/2),cy:Y(y0+CT/2),r:11,
+    fill:"#0D2F50",stroke:"#E8C77A","stroke-width":1.2});
+  el("text",{x:X(x0+CL/2),y:Y(y0+CT/2)+4.5,"text-anchor":"middle",
+    "font-family":"Saira Condensed, sans-serif","font-size":13,
+    "font-weight":600,fill:"#E8C77A"}).textContent=c.nr;
+});
+
+/* ── Busbars zwischen aufeinanderfolgenden Zellen ──── */
+for(let i=0;i<CELLS.length-1;i++){
+  const a=CELLS[i], b=CELLS[i+1];
+  const x1=polX(a.r,a.plus), y1=polY(a.j);        /* + von a  */
+  const x2=polX(b.r, b.plus==="L"?"R":"L"), y2=polY(b.j);  /* − von b */
+  el("line",{x1:X(x1),y1:Y(y1),x2:X(x2),y2:Y(y2),
+    stroke:"#E8C77A","stroke-width":9,"stroke-linecap":"round",opacity:.92});
+}
+
+/* ── Pole ──────────────────────────────────────────── */
+CELLS.forEach(c=>{
+  [["L",c.plus==="L"],["R",c.plus==="R"]].forEach(([seite,istPlus])=>{
+    const x=polX(c.r,seite), y=polY(c.j);
+    el("rect",{x:X(x)-9,y:Y(y)-9,width:18,height:18,rx:2.5,
+      fill:istPlus?"#D4614A":"#6FA8CE",stroke:"#0D2F50","stroke-width":1.4});
+    el("text",{x:X(x),y:Y(y)+5,"text-anchor":"middle",
+      "font-family":"Saira Condensed, sans-serif","font-size":15,
+      "font-weight":700,fill:"#0D2F50"}).textContent=istPlus?"+":"–";
+  });
+});
+
+/* ── Pack-Anschlüsse ───────────────────────────────── */
+function anschluss(x,y,txt,farbe,dy){
+  const px=X(x), py=Y(y);
+  el("line",{x1:px,y1:py,x2:px,y2:py+dy,stroke:farbe,"stroke-width":2.2});
+  el("circle",{cx:px,cy:py+dy,r:5,fill:farbe});
+  el("text",{x:px,y:py+dy+(dy>0?21:-11),"text-anchor":"middle",
+    "font-family":"Share Tech Mono, monospace","font-size":12,
+    fill:farbe,"letter-spacing":"0.05em"}).textContent=txt;
+}
+const cA=CELLS[0], cZ=CELLS[7];
+anschluss(polX(cA.r, cA.plus==="L"?"R":"L"), polY(cA.j), "PACK −", "#6FA8CE", 44);
+anschluss(polX(cZ.r, cZ.plus), polY(cZ.j), "PACK +", "#D4614A", 44);
+
+/* ── Beschriftung der Reihen und Richtungen ────────── */
+function lbl(x,y,txt,anchor,size,farbe){
+  el("text",{x:x,y:y,"text-anchor":anchor||"start",
+    "font-family":"Share Tech Mono, monospace","font-size":size||11,
+    fill:farbe||"#8FB6D2","letter-spacing":"0.06em"}).textContent=txt;
+}
+lbl(X(CL/2), Y(-6), "REIHE A", "middle", 12);
+lbl(X(CL+CL/2), Y(-6), "REIHE B", "middle", 12);
+lbl(X(-8), Y(CT/2)+4, "hinten", "end");
+lbl(X(-8), Y(3*CT+CT/2)+4, "vorn", "end");
+
+/* Tiefenbemaßung links */
+(function(){
+  const x=X(-26);
+  el("line",{x1:x,y1:Y(0),x2:x,y2:Y(4*CT),stroke:"#8FB6D2","stroke-width":.8});
+  [[Y(0),1],[Y(4*CT),-1]].forEach(([yy,s])=>{
+    el("path",{d:`M${x},${yy} l-3.4,${s*9} M${x},${yy} l3.4,${s*9}`,
+      stroke:"#8FB6D2","stroke-width":.8,fill:"none"});
+  });
+  el("text",{x:x-8,y:(Y(0)+Y(4*CT))/2,"text-anchor":"middle",
+    transform:`rotate(-90 ${x-8} ${(Y(0)+Y(4*CT))/2})`,
+    "font-family":"Share Tech Mono, monospace","font-size":11.5,
+    fill:"#DCEBF6"}).textContent="145,4";
+})();
+
+/* Polabstand-Bemaßung oben, an Zelle 4 */
+(function(){
+  const c=CELLS[3], y=Y(-24);
+  const xa=X(polX(c.r,"L")), xb=X(polX(c.r,"R"));
+  el("line",{x1:xa,y1:y,x2:xb,y2:y,stroke:"#8FB6D2","stroke-width":.8});
+  el("line",{x1:xa,y1:y,x2:xa,y2:Y(polY(c.j))-12,stroke:"#3E6E96","stroke-width":.6,"stroke-dasharray":"3 3"});
+  el("line",{x1:xb,y1:y,x2:xb,y2:Y(polY(c.j))-12,stroke:"#3E6E96","stroke-width":.6,"stroke-dasharray":"3 3"});
+  el("text",{x:(xa+xb)/2,y:y-6,"text-anchor":"middle",
+    "font-family":"Share Tech Mono, monospace","font-size":11.5,
+    fill:"#DCEBF6"}).textContent="67";
+})();
+
+/* ── Tabelle füllen ────────────────────────────────── */
+const tb=document.getElementById("seq");
+CELLS.forEach(c=>{
+  const tr=document.createElement("tr");
+  const links = c.plus==="L" ? "+" : "–";
+  const rechts= c.plus==="L" ? "–" : "+";
+  tr.innerHTML=`<td class="n">${c.nr}</td>`+
+    `<td>${c.r===0?"A":"B"}${4-c.j}</td>`+
+    `<td>${links}</td><td class="r">${rechts}</td>`;
+  tb.appendChild(tr);
+});
+})();
+</script>

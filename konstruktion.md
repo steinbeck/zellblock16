@@ -99,9 +99,22 @@ statt.
 
 ### 3.3 Verschaltung
 
-16S1P: alle Zellen in Reihe. Verbindung über Busbars auf den M6-Polen.
-Serpentinenführung innerhalb jeder Etage, Etagenübergang über ein isoliertes
-Kabel durch die Zwischenplatte. 17 Balancerabgriffe zum BMS.
+16S1P: alle Zellen in Reihe, 17 Balancerabgriffe zum BMS.
+
+**Die Zellen werden abwechselnd um 180° gedreht.** Nur so liegen die zu
+verbindenden Pole übereinander und die Busbars überbrücken bloß die Zellteilung
+von 36,35 mm. Ohne Drehung müsste jeder Verbinder zusätzlich die 67 mm
+Polabstand diagonal überwinden.
+
+Innerhalb einer Etage ergibt das eine **Serpentine**: von vorn nach hinten durch
+Reihe A, Übergang über die inneren Polspalten, zurück nach vorn durch Reihe B.
+Sechs der sieben Busbars sind dadurch kurz und gleich; **nur der Übergang
+zwischen den Reihen misst 63,3 mm** und wird in anderer Länge gebraucht.
+
+Pack-Plus und Pack-Minus landen dabei **beide vorn**, mit 63 mm Abstand — dort,
+wo das BMS auf der vorderen Aluplatte sitzt.
+
+Zeichnungen: `verschaltung.html` (ZB-16-002) und `verdrahtung.html` (ZB-16-003).
 
 **Anzugsmoment M6-Pole: 4–6 Nm.** Nicht überziehen — die Gewinde sitzen im
 Aluminium des Zelldeckels.
@@ -422,7 +435,47 @@ Solarspeicherbau — große Auswahl, niedrige Preise, gute Dokumentation.
 Das BMS darf im Normalbetrieb nicht begrenzen: 150 A Dauer liegen über der
 Zellgrenze von 105 A, sodass das BMS schützt statt zu drosseln.
 
-### 9.2 Leistungspfad
+### 9.2 Kabelführung — von unten nach oben
+
+**Die Richtung ist die umgekehrte der naheliegenden.** Die Anschlussbuchsen des
+Rollers liegen **unter** dem Einsatz. Die Portleitungen treten also von unten in
+den Pack ein und müssen **durch das Gehäuse nach oben** geführt werden — nicht,
+wie zunächst angenommen, aus dem Pack nach unten heraus.
+
+**Der BMS-Streifen ist zugleich der Kabelschacht.** Er ist der einzige über die
+volle Höhe durchgehende Freiraum:
+
+| | |
+|---|---|
+| Streifen | 39,6 mm tief × 265 mm breit × volle Höhe |
+| BMS hochkant | 24 mm tief × 100 mm breit |
+| **frei für Kabel** | **165 mm Breite** |
+
+| Leitung | Querschnitt | Länge |
+|---|---|---|
+| Pack + → Sicherung | 35 mm² | ~450 mm |
+| Etagenübergang | 35 mm² | ~120 mm |
+| Pack − → BMS B− | 35 mm² | ~200 mm |
+| BMS P− → Portleitung | 35 mm² | ~150 mm |
+| Balancer Etage 1 | 0,5 mm² | 9 Adern |
+| Balancer Etage 2 | 0,5 mm² | 8 Adern |
+| RS485 zum CAN-Modul | Datenkabel | nach außen |
+
+**Die 450-mm-Leitung ist die unangenehmste.** Bei einer Serpentine über beide
+Etagen liegt Pack-Plus oben, die Portleitung unten — diese eine Verbindung
+durchquert den gesamten Pack und braucht über die Höhe mehrere
+Befestigungspunkte.
+
+> **Zugentlastung ist Pflicht.** Kein Kabel darf am Zellpol ziehen; die Gewinde
+> sitzen im Aluminium des Zelldeckels und sind mit 4–6 Nm angezogen. Schellen an
+> Bodenplatte und Zwischenplatte.
+
+> **[OFFEN] Durchbruch der Zwischenplatte.** Er muss den Etagenübergang **und**
+> neun Balanceradern aufnehmen. Die bisher vorgesehenen 22 mm Durchmesser sind
+> dafür knapp; besser zwei getrennte Öffnungen, damit Leistung und Signal nicht
+> im selben Loch liegen.
+
+### 9.3 Leistungspfad
 
 | Bauteil | Auslegung |
 |---|---|
@@ -451,7 +504,7 @@ Leistungspfad. Vor Inbetriebnahme prüfen, ob seine Absicherung zu 180 A passt.
 Zuschalten einen Stromstoß von mehreren hundert Ampere ziehen. Ohne
 Vorladewiderstand verschweißen Schalterkontakte und es entsteht ein Lichtbogen.
 
-### 9.3 Laden
+### 9.4 Laden
 
 | | |
 |---|---|
@@ -463,7 +516,7 @@ Vorladewiderstand verschweißen Schalterkontakte und es entsteht ein Lichtbogen.
 Das Serien-Ladegerät (59 V, 6 A) ist **ungeeignet**: zu hohe Spannung für LFP
 und mit 15 h Ladezeit unbrauchbar.
 
-### 9.4 CAN-Integration
+### 9.5 CAN-Integration
 
 Raffis Modul wird nach JJac-Muster in den CAN-Bus eingeschleift und ersetzt das
 OEM-BMS. Das Modul **interagiert nicht mit dem Akku** — es täuscht dessen
