@@ -171,9 +171,41 @@ Die Stangen sind unkritisch. **Kritisch sind die Endplatten:** Sie müssen
 6–10 kN über 260 × 195 mm verteilen, ohne sich in der Mitte durchzubiegen.
 Daher **8 mm Aluminium**; Stahl wäre steifer, wöge aber das Dreifache.
 
-**Nachgiebige Zwischenlagen:** Zwischen die Zellen kommen Schaumlagen (EPDM
-oder PU, 2–3 mm, ca. 30 % kompressibel), damit die Alterungsausdehnung nicht
-gegen eine starre Einspannung läuft und die 30-kN-Grenze ansteuert.
+### Nachgiebigkeit: Tellerfedern auf den Zugstangen
+
+Die Vorspannung muss bleiben, ihr Anstieg begrenzt werden. Die Zellen dehnen
+sich über die Lebensdauer um 0,7–1,5 mm je Stapel; gegen die Stangensteifigkeit
+von ~139.000 N/mm ergäbe das rechnerisch über 200 kN. Herleitung in
+`grundlagen.md` §3.3.
+
+| | |
+|---|---|
+| Federpaket je Stange | ~1.000 N/mm |
+| Kraft bei 1,5 mm Dehnung | 4 → **5,5 kN**, unter der 9-kN-Grenze |
+| Aufbau je Stange | 3 Paare, gleichsinnig gepaart für Kraft, Paare wechselsinnig für Weg |
+| Stück je Stange | ~6 |
+| Bauhöhe je Stange | ~6 mm gespannt, 10–15 mm mit Reserve |
+| Gesamt bei 8 Stangen | ~48 Federn |
+
+**Alle Federn sitzen an der vorderen Platte.** Hinten liegt die Aluplatte flach
+an der Rückwand — dahinter kommt die 5-mm-Gehäusewand und dann der Schacht, dort
+ist für eine Mutter kein Platz. Die Anordnung ist damit asymmetrisch, was
+funktional ohne Belang ist: Die Kraft im Strang bleibt dieselbe.
+
+**In der Breite gibt es keinen Konflikt mit dem BMS:** Die Zugstangen liegen bei
+x = 40 und 230 mm, das BMS mittig bei 85–185 mm. Sie stehen nebeneinander im
+Streifen, nicht hintereinander.
+
+### Bearbeitung der Aluplatten
+
+| Platte | Bohrbild |
+|---|---|
+| **hinten** | **M8-Gewinde** durch die volle Materialstärke, 8 Stück |
+| **vorn** | Durchgangsbohrungen ⌀ 9 mm, 8 Stück, plus Gewinde für die BMS-Befestigung |
+
+Acht Millimeter Einschraubtiefe in Aluminium sind bei 2 kN Last unkritisch — die
+Bruchlast der Stange liegt bei 25 kN. Gewindeeinsätze sind sinnvoll, wenn der
+Pack öfter zerlegt werden soll.
 
 ### 4.3 Masse des Skeletts
 
