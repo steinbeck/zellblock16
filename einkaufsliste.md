@@ -28,6 +28,7 @@ stammen müssen (`grundlagen.md` §8.4).
 | Pos | Artikel | Menge | Preis | Anmerkung |
 |---|---|---:|---:|---|
 | A1 | **EVE LF105**, 105 Ah, 3,2 V, Grade A | 16 | **640 €** | **eine Bestellung, eine Charge.** 39,98 € brutto je Stück — die 33,60 € im Shop sind der PV-Nullsteuersatz und gelten hier nicht |
+| A1b | **CAN-Modul Raffler**, Hardware + **Batteriesimulation** | 1 | **270 CHF** ≈ 285 € | **Ohne Batteriesimulation gibt der Controller nicht frei.** Muss vor dem Testlauf vorliegen. Kontakt: Telegram `t.me/raffler5` |
 | A2 | **BMS JK PB2A16S20P**, 16S, 200 A, 2 A aktiver Balancer | 1 | **109 €** | Softwareversion **≥ 6.0** verlangen. Ein RS485-Port bleibt für Rafflers Modul frei |
 | A3a | **Busbars kurz**, M6, Lochabstand = **Zellteilung 36,35 mm** | 14 | 42–70 € | 12 gebraucht, 2 Reserve. **Liegen den Zellen nicht bei** |
 | A3b | **Verbinder lang oder flexibel**, M6, **Lochabstand 63 mm** | 3 | 15–25 € | 2 gebraucht für den Übergang zwischen den Zellreihen, 1 Reserve |
@@ -38,7 +39,7 @@ stammen müssen (`grundlagen.md` §8.4).
 | A7 | **Kabelschuhe** M6 und M8 für 35 mm² | 10 | 12–20 € | fertig gecrimpte Kabel sind eine Alternative zur Crimpzange |
 | A8 | **Multimeter** mit 60-V-DC-Bereich | 1 | 25–60 € | Zellprüfung, Verschaltungskontrolle vor dem ersten Einschalten |
 | A9 | **Drehmomentschlüssel** 2–10 Nm | 1 | 30–60 € | **Pole mit 4–6 Nm.** Gewinde sitzen im Aluminium des Zelldeckels |
-| | **Summe A** | | **976–1.179 €** | |
+| | **Summe A** | | **1.261–1.464 €** | |
 
 ## B · Provisorische Verspannung
 
@@ -90,14 +91,14 @@ quellen sie auf und nehmen Schaden (`grundlagen.md` §3.3).
 
 | Block | von | bis |
 |---|---:|---:|
-| A Zwingend | 976 € | 1.179 € |
+| A Zwingend | 1.261 € | 1.464 € |
 | B Verspannung und Federn | 80 € | 137 € |
 | C Laden | 150 € | 250 € |
 | D Kleinmaterial | 35 € | 60 € |
-| **Summe** | **1.241 €** | **1.626 €** |
+| **Summe** | **1.526 €** | **1.911 €** |
 
-Davon sind **749 €** durch konkrete Angebote belegt (Zellen und BMS), der Rest
-ist geschätzt. Wer Multimeter und Drehmomentschlüssel bereits besitzt, spart
+Davon sind rund **1.030 €** durch konkrete Angebote belegt (Zellen, BMS und
+CAN-Modul), der Rest ist geschätzt. Wer Multimeter und Drehmomentschlüssel bereits besitzt, spart
 55–120 €.
 
 **Später folgen** nur noch Aluminium-Endplatten (~115 €) und Filament (~110 €),

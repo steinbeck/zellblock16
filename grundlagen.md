@@ -223,6 +223,49 @@ Weitere Implementierungen: `Uksa007/esphome-jk-bms-can` (RS485 und CAN),
 > **Beim Kauf zu beachten:** Softwareversion **≥ 6.0**, sonst spricht das Gerät
 > ein anderes Protokoll. Ein RS485-Port sollte für Rafflers Modul frei bleiben.
 
+### Preise und Funktionsumfang des Moduls (Raffler, 2026-08-22)
+
+Das Modul ist **nicht vorhanden**, sondern zu beschaffen. Der Preis setzt sich
+aus Hardware und gewählten Funktionen zusammen:
+
+| Baustein | Preis |
+|---|---:|
+| Hardware | 70 CHF |
+| **Batteriesimulation** | **200 CHF** |
+| Uhrzeit auf dem Display | 40 CHF — *in dieser Kombination geschenkt* |
+| Originalbatterien auslesen, max. Ladezustand | 40 CHF — nicht nötig |
+| Dashboard mit Rollerdaten | 40 CHF — nicht nötig |
+| **Benötigt: Hardware + Batteriesimulation** | **270 CHF** |
+
+**Die Batteriesimulation ist der Kern**, nicht ein Zusatz: Sie täuscht dem
+Roller die Anwesenheit eines Akkus vor. Ohne sie gibt der Controller nicht frei.
+Das Modul muss daher **vor dem Testlauf** vorliegen (§8.4).
+
+### Rekuperation — vorerst nicht verfügbar
+
+> „ich bin sehr zuversichtlich, dass ich das noch rauskriege, allerdings kann ich
+> absolut keine Zeitangaben dazu machen. wenn ich dich wäre, würde ich davon
+> ausgehen, dass du mittelfristig ohne reku fahren wirst."
+
+**Wichtig: Es ist BMS-unabhängig.** Die Wahl des BMS schränkt die spätere
+Nachrüstung nicht ein. Raffler will es selbst, weil er einen eigenen Umbau plant.
+
+Praktische Folgen bis dahin: etwas geringere Reichweite im Stadtverkehr — bei
+einem Roller typisch 5–15 % — und mehr Verschleiß an den mechanischen Bremsen.
+Für die Auslegung des Packs ohne Belang; das BMS muss keinen Ladestrom vom
+Motor aufnehmen.
+
+### Schnittstelle zum BMS — noch offen
+
+> „das koppeln mit dem BMS ist in einer ersten phase über Bluetooth gedacht.
+> kann aber auch zusätzliche Hardware benötigen, ich weiss es schlicht und
+> einfach nicht, am ende soll es ja zuverlässig laufen."
+
+Die Anforderung aus §3.2 bleibt gültig — offengelegte Kommunikation, Befehle für
+die Ausgangs-MOSFETs —, **über welche Schnittstelle sie läuft, ist aber offen**.
+Das JK-BMS deckt mit Bluetooth, zwei RS485-Ports und CAN alle drei
+Möglichkeiten ab und bleibt damit die richtige Wahl.
+
 **Gegenleistung:** Raffler wünscht sich einen Erfahrungsbericht im
 Elektroroller-Forum, sobald der Umbau läuft.
 

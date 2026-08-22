@@ -33,8 +33,9 @@ Auswertung zutage trat.
 | Posten | Preis | Quelle |
 |---|---|---|
 | **16 × EVE LF105**, Grade A, 105 Ah | **640 €** | LiFePO Shop GmbH, 39,98 €/Stück |
+| **CAN-Modul Raffler**, Hardware + Batteriesimulation | **270 CHF** ≈ 280–290 € | Angabe Raffler, 2026-08-22 |
 | **BMS** JK PB2A16S20P, 16S, 200 A, 2 A aktiver Balancer, BT + CAN | **109 €** | powercells.de, inkl. Versand |
-| | **749 €** | |
+| | **~1.030 €** | |
 
 > Der Shop weist die Zelle mit 33,60 € aus — das ist der Nullsteuersatz nach
 > § 12 Abs. 3 UStG für Photovoltaikspeicher in Wohngebäuden, der für einen
@@ -91,17 +92,17 @@ verzinnte Kupferschienen — daher der höhere Ansatz.
 
 | Block | von | bis | wahrscheinlich |
 |---|---:|---:|---:|
-| Zellen und BMS *(belegt)* | 749 € | 749 € | **749 €** |
+| Zellen, BMS und CAN-Modul *(belegt)* | 1.025 € | 1.035 € | **1.030 €** |
 | Skelett und Mechanik | 180 € | 395 € | **258 €** |
 | Gehäuse | 83 € | 137 € | **110 €** |
 | Elektrik | 290 € | 535 € | **398 €** |
-| **Summe brutto** | **1.302 €** | **1.816 €** | **1.515 €** |
+| **Summe brutto** | **1.578 €** | **2.102 €** | **1.796 €** |
 
-**Rechne mit rund 1.500 €** für das fertige Paket. Die Untergrenze setzt
+**Rechne mit rund 1.800 €** für das fertige Paket. Die Untergrenze setzt
 konsequent günstigen Einkauf voraus, die Obergrenze Markenware und
 Fremdbohrungen.
 
-**Die Zellen machen nur noch 42 % der Kosten aus.** In der NMC-Fassung
+**Die Zellen machen nur noch 36 % der Kosten aus.** In der NMC-Fassung
 dominierten sie die Rechnung; jetzt dominiert das Drumherum. Weiteres Sparen
 lohnt daher nicht am Zellsatz, sondern beim Ladegerät — dort streuen die Preise
 am stärksten.
@@ -115,10 +116,10 @@ am stärksten.
 | Prüforganisation, Abnahme | 200–600 € | Umfang ungeklärt, `grundlagen.md` §9 |
 | Werkzeug: Crimpzange, Drehmomentschlüssel, Zelltester | 100–300 € | einmalig, teils leihbar |
 | Fehldruck des Vollteils | 20–80 € | genau dagegen dient der Testring |
-| Raffis CAN-Modul | 0 € | vorhanden |
+
 
 **Projektaufwand insgesamt**, wenn Werkzeug und Abnahme dazukommen und nichts
-geliehen wird: **1.800 bis 2.400 €**. Wer Crimpzange und Drehmomentschlüssel im
+geliehen wird: **2.100 bis 2.700 €**. Wer Crimpzange und Drehmomentschlüssel im
 Haus hat und bei der Abnahme glimpflich davonkommt, liegt näher an 1.700 €.
 
 ---
@@ -130,20 +131,20 @@ Die Originalakkus sind weiterhin erhältlich, kosten aber **1.400 € pro Stück
 
 | | Original, 3 Packs | Zellblock 16 |
 |---|---:|---:|
-| Preis | **4.200 €** | **~1.515 €** |
+| Preis | **4.200 €** | **~1.800 €** |
 | Energie | 4,33 kWh | **5,38 kWh** (+24 %) |
 | **Preis je kWh** | **970 €** | **282 €** |
 | Zyklen | ~1.000 | **> 6.000** |
 | Garantie | Herstellerlage unklar | 3 Jahre auf die Zellen |
 | Ersatz einer defekten Zelle | ganzer Pack, 1.400 € | eine Zelle, **40 €** |
 
-**Die Ersparnis beträgt rund 2.700 €, also 64 %.** Selbst wenn Werkzeug und
+**Die Ersparnis beträgt rund 2.400 €, also 57 %.** Selbst wenn Werkzeug und
 behördliche Abnahme voll hinzugerechnet werden, bleiben es über 1.800 € oder
 43 %.
 
 Am deutlichsten wird es an einem einzelnen Pack: **Ein Originalakku kostet
-1.400 € und liefert 1,44 kWh. Der komplette Eigenbau kostet 1.515 € und liefert
-5,38 kWh** — das 3,7-fache an Energie für 8 % mehr Geld.
+1.400 € und liefert 1,44 kWh. Der komplette Eigenbau kostet rund 1.800 € und
+liefert 5,38 kWh** — das 3,7-fache an Energie für 29 % mehr Geld.
 
 Der Preis ist damit das stärkste Argument. Die längere Lebensdauer und die
 Reparierbarkeit kommen hinzu: Fällt später eine Zelle aus, kostet der Ersatz 40 €
