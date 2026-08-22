@@ -112,6 +112,7 @@ Kanälen aufnimmt, statt sie obendrauf zu addieren. Naiv gerechnet wären es
 | [`grundlagen.md`](grundlagen.md) | Faktenbasis. **Jede Zahl trägt eine Herkunftsmarke** — Herstellerdokument, Messung, Berechnung, Recherche oder offener Punkt. |
 | [`konstruktion.md`](konstruktion.md) | Konstruktionsspezifikation: Zellen, Anordnung, Skelett, Kräfte, Gehäuse, Elektrik, Montagereihenfolge |
 | [`kosten.md`](kosten.md) | Kostenabschätzung, brutto, mit wahrscheinlichem Wert |
+| [`einkaufsliste.md`](einkaufsliste.md) | Was für den Funktionstest zu beschaffen ist |
 | [`messprotokoll.md`](messprotokoll.md) | Was am Fahrzeug noch zu messen ist |
 | [`cad/`](cad/) | Parametrisches OpenSCAD-Modell |
 | [`spezifikation.md`](spezifikation.md) | Erster Entwurf, **veraltet** — enthält an neun Stellen widerlegte Werte und bleibt nur als Diskussionsverlauf erhalten |
@@ -160,8 +161,9 @@ Grund für die Zweiteilung des Gehäuses.
 - [x] Testring gedruckt — **passt nicht, Ursache gefunden**
 - [ ] **Schacht nach Entfernen der Separationsrippen ausmessen** ← hier steht das Projekt
 - [ ] Außenkontur auf Quaderform umstellen, zweiter Testring
-- [ ] Zellen und BMS bestellen
-- [ ] **Testeinbau und Probefahrt** im provisorischen Gehäuse
+- [ ] Zellen und BMS bestellen — siehe [`einkaufsliste.md`](einkaufsliste.md)
+- [ ] **Funktionstest außerhalb des Fahrzeugs**, ohne Gehäuse
+- [ ] Probefahrt im provisorischen Gehäuse
 - [ ] Erst danach: Bodenkontakte ausbauen, Rippen entfernen *(unumkehrbar)*
 - [ ] Endgültiges Gehäuse drucken und einbauen
 - [ ] Abnahme durch eine Prüforganisation
