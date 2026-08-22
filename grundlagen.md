@@ -239,7 +239,7 @@ aus Hardware und gewählten Funktionen zusammen:
 
 **Die Batteriesimulation ist der Kern**, nicht ein Zusatz: Sie täuscht dem
 Roller die Anwesenheit eines Akkus vor. Ohne sie gibt der Controller nicht frei.
-Das Modul muss daher **vor dem Testlauf** vorliegen (§8.4).
+Das Modul muss daher **vor dem Testlauf** vorliegen (§8.5).
 
 ### Rekuperation — vorerst nicht verfügbar
 
@@ -705,7 +705,72 @@ Leistungspfad. JJac berichtet von 3 × 60 A parallel [Forum, unbelegt], was zu
 drei Ports à 100 A passt. Vor Inbetriebnahme prüfen, ob die dortige Absicherung
 zu 180 A Spitzenstrom passt.
 
-### 8.2 Ladegerät
+### 8.2 Ladestrategie — Teilladung wegen der Wohnlage
+
+**Der Wohnort ist eine Anforderung an das Fahrzeug.** Christoph wohnt auf
+**800 m Höhe; jede Fahrt beginnt bergab.** Das macht aus der fehlenden
+Rekuperation (§3.2) kein Reichweiten-, sondern ein thermisches Problem:
+
+| | |
+|---|---|
+| Lageenergie bei 500 m Höhendifferenz, 230 kg | 1,13 MJ = **0,31 kWh** |
+| Bei 10 % Gefälle und 40 km/h | ~1.600 W Dauerbremsleistung |
+| Über 5 km Abfahrt | **730 kJ** in die Bremsen |
+| Entspricht | ~33 Vollbremsungen aus 50 km/h hintereinander |
+
+Rollerbremsen sind klein dimensioniert; Fading auf einer langen Abfahrt ist ein
+reales Risiko, kein theoretisches.
+
+**Rekuperation allein löst das nicht.** Ein voller Pack nimmt keine Ladung auf —
+das BMS sperrt bei Erreichen des Ladeschlusses, und der Controller bekäme
+dieselbe Absage wie heute. Rekuperation hilft ausgerechnet dann nicht, wenn sie
+am dringendsten gebraucht wird: bei der ersten Abfahrt nach dem Laden.
+
+**Lösung: nicht voll laden.** Christoph praktiziert das bereits mit den
+Originalakkus (85 % über eine externe Ladekonstruktion) und führt es mit dem
+neuen Pack fort. [Christoph, 2026-08-22]
+
+| | |
+|---|---|
+| Reserve bei 85 % Ladung | 0,81 kWh |
+| Benötigt für 500 Höhenmeter | ~0,2 kWh nutzbar |
+| **Reicht rechnerisch für** | **~1.200 Höhenmeter** |
+
+Der Nebeneffekt ist erwünscht: **Ein LFP-Pack, der nicht bis 3,65 V geladen
+wird, hält deutlich mehr Zyklen.**
+
+### Teilladung bei LFP ist unschärfer als bei NMC
+
+Das Datenblatt definiert die Standardladung als CC bis 3,65 V, danach CV bis der
+Strom auf 0,05C fällt — erst die CV-Phase bringt die letzten Prozente.
+
+Die **LFP-Kennlinie ist flach**: Zwischen 20 % und 90 % ändert sich die
+Zellspannung nur um wenige Zehntelvolt, erst am Ende steigt sie steil an. Eine
+Ladeschlussspannung trifft den Ladestand deshalb ungenauer als bei den
+NMC-Originalzellen. Richtwerte bei 0,3–0,5C: [REC]
+
+| Ladeschluss je Zelle | Pack | ungefährer SoC |
+|---|---:|---:|
+| 3,65 V mit voller CV-Phase | 58,4 V | 100 % |
+| 3,45 V | 55,2 V | ~95 % |
+| 3,40 V | 54,4 V | ~90 % |
+| **~3,38 V** | **~54,0 V** | **~85 %** |
+| 3,35 V | 53,6 V | ~80 % |
+
+Die Werte schwanken mit Temperatur und Alterung; genauer als „ungefähr" wird es
+über die Spannung bei LFP nicht.
+
+> **Folge für die Beschaffung:** Das Ladegerät braucht eine **einstellbare
+> Ausgangsspannung**. Ein fest auf 58,4 V eingestelltes Gerät lädt immer voll
+> und macht die Teilladung unmöglich. Die Alternative — den Ladeschluss im BMS
+> abzusenken — funktioniert, macht das BMS aber vom Schutzorgan zum
+> Betriebsmittel und lässt es bei jeder Ladung abschalten.
+
+> **Im Winter bleibt ein Rest.** Unter 0 °C darf LFP nicht geladen werden; das
+> BMS sperrt dann unabhängig vom Ladestand. Bei Frost geht es in jedem Fall auf
+> den Bremsen ins Tal.
+
+### 8.3 Ladegerät
 
 Das Serien-Ladegerät liefert 59 V / 6 A = 354 W [HB 69]. Für den 5,18-kWh-Pack
 ergäbe das **rund 15 Stunden** Ladezeit. [BER]
@@ -713,7 +778,7 @@ ergäbe das **rund 15 Stunden** Ladezeit. [BER]
 Empfehlung: Aftermarket-Ladegerät 58,8–59 V CC/CV. Bei 15 A rund 6 h, bei 20 A
 rund 4,5 h. [BER]
 
-### 8.3 Fehlercodes des Originalsystems
+### 8.4 Fehlercodes des Originalsystems
 
 Zur Einordnung späterer Fehlerbilder [HB 67]: E114 Kurzschluss im Roller /
 Softwareproblem im Motorcontroller · E131 Überspannung · E142 Akku leer ·
@@ -723,7 +788,7 @@ entfallen mit dem Umbau.
 
 ---
 
-## 8.4 Vorgehensreihenfolge — Erprobung vor irreversiblen Eingriffen
+## 8.5 Vorgehensreihenfolge — Erprobung vor irreversiblen Eingriffen
 
 **Grundsatz (Christoph, 2026-08-21):** Die Separationsrippen werden erst
 entfernt, wenn der Umstieg endgültig ist. Vorher muss der Roller mit den echten

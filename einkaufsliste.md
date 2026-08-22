@@ -2,7 +2,7 @@
 
 **Stand:** 2026-08-22
 **Zweck:** Alles für Schritt 1 bis 4 der Vorgehensreihenfolge
-(`grundlagen.md` §8.4) — Pack außerhalb des Fahrzeugs aufbauen, anschließen und
+(`grundlagen.md` §8.5) — Pack außerhalb des Fahrzeugs aufbauen, anschließen und
 am aufgebockten Roller erproben.
 
 > [!CAUTION]
@@ -19,7 +19,7 @@ am aufgebockten Roller erproben.
 noch Aluminium-Endplatten (~115 €) und Filament (~110 €). Der Grund: Die Zellen
 dominieren die Rechnung, und sie werden vollständig gebraucht — ein reduzierter
 Testkauf ist nicht sinnvoll, weil alle sechzehn Zellen aus derselben Charge
-stammen müssen (`grundlagen.md` §8.4).
+stammen müssen (`grundlagen.md` §8.5).
 
 ---
 
@@ -73,8 +73,22 @@ quellen sie auf und nehmen Schaden (`grundlagen.md` §3.3).
 
 | Pos | Artikel | Menge | Preis | Anmerkung |
 |---|---|---:|---:|---|
-| C1 | **Ladegerät 58,4 V CC/CV**, 15–20 A | 1 | 150–250 € | **Nicht das Seriengerät** — dessen 59 V liegen über dem LFP-Ladeschluss, und 6 A bedeuteten 15 h |
-| | **Summe C** | | **150–250 €** | Preise streuen stark, hier lohnt ein Vergleich |
+| C1 | **Ladegerät CC/CV, 15–20 A, Ausgangsspannung einstellbar 53–58,4 V** | 1 | 170–280 € | siehe Kasten |
+| | **Summe C** | | **170–280 €** | Preise streuen stark, hier lohnt ein Vergleich |
+
+> [!IMPORTANT]
+> **Die Spannung muss einstellbar sein.** Christoph wohnt auf 800 m; jede Fahrt
+> beginnt bergab, und ohne Rekuperation geht die gesamte Lageenergie in die
+> Bremsen. Der Pack wird deshalb nur auf **rund 85 %** geladen — einerseits, um
+> später Platz für Rekuperation zu lassen, andererseits weil ein LFP-Pack, der
+> nicht bis 3,65 V geladen wird, deutlich mehr Zyklen hält.
+>
+> Ein fest auf 58,4 V eingestelltes Gerät kann das nicht. Für 85 % sind rund
+> **54,0 V** einzustellen; die genaue Zuordnung von Spannung zu Ladestand ist bei
+> LFP wegen der flachen Kennlinie ohnehin nur ungefähr (`grundlagen.md` §8.2).
+>
+> **Nicht das Seriengerät verwenden:** dessen 59 V liegen über dem
+> LFP-Ladeschluss, und mit 6 A bräuchte es 15 Stunden.
 
 ## D · Kleinmaterial
 
@@ -93,9 +107,9 @@ quellen sie auf und nehmen Schaden (`grundlagen.md` §3.3).
 |---|---:|---:|
 | A Zwingend | 1.261 € | 1.464 € |
 | B Verspannung und Federn | 80 € | 137 € |
-| C Laden | 150 € | 250 € |
+| C Laden | 170 € | 280 € |
 | D Kleinmaterial | 35 € | 60 € |
-| **Summe** | **1.526 €** | **1.911 €** |
+| **Summe** | **1.546 €** | **1.941 €** |
 
 Davon sind rund **1.030 €** durch konkrete Angebote belegt (Zellen, BMS und
 CAN-Modul), der Rest ist geschätzt. Wer Multimeter und Drehmomentschlüssel bereits besitzt, spart

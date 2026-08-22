@@ -540,10 +540,18 @@ Vorladewiderstand verschweißen Schalterkontakte und es entsteht ein Lichtbogen.
 
 | | |
 |---|---|
-| Ladeschluss | **58,4 V** (16 × 3,65 V) |
+| Ladeschluss, technisch | 58,4 V (16 × 3,65 V) |
+| **Ladeschluss, Betrieb** | **~54,0 V — Teilladung auf ~85 %** |
+| Ausgangsspannung | **einstellbar 53–58,4 V** |
 | Strom | 15–20 A |
 | Ladezeit | ~4,5–6 h |
 | Kennlinie | CC/CV |
+
+**Der Pack wird bewusst nicht voll geladen.** Grund ist die Wohnlage auf 800 m:
+Jede Fahrt beginnt bergab, und ohne Rekuperation geht die Lageenergie
+vollständig in die Bremsen. Die Teilladung hält Platz für spätere Rekuperation
+frei und verlängert zugleich die Zellebensdauer. Herleitung samt
+Höhenprofil-Rechnung in `grundlagen.md` §8.2.
 
 Das Serien-Ladegerät (59 V, 6 A) ist **ungeeignet**: zu hohe Spannung für LFP
 und mit 15 h Ladezeit unbrauchbar.
