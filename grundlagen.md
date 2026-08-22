@@ -653,28 +653,68 @@ entfallen mit dem Umbau.
 
 **Grundsatz (Christoph, 2026-08-21):** Die Separationsrippen werden erst
 entfernt, wenn der Umstieg endgültig ist. Vorher muss der Roller mit den echten
-Zellen und dem echten BMS **gelaufen sein**, notfalls in einem provisorischen
-Gehäuse.
+Zellen und dem echten BMS gelaufen sein.
 
-Der Grund: Zwei Eingriffe sind unumkehrbar und schließen die Rückkehr zu den
-Originalakkus aus — der **Ausbau der Bodenkontakte** (§6) und das **Entfernen
-der Separationsrippen**. Beide dürfen erst erfolgen, wenn feststeht, dass das
+Zwei Eingriffe sind unumkehrbar und schließen die Rückkehr zu den Originalakkus
+aus: der **Ausbau der Bodenkontakte** (§6) und das **Entfernen der
+Separationsrippen** (§6). Beide dürfen erst erfolgen, wenn feststeht, dass das
 neue System funktioniert.
 
-| Schritt | Reversibel? |
-|---|---|
-| 1. Zellen prüfen, Pack außerhalb des Fahrzeugs aufbauen | ja |
-| 2. Datenpin-Schleife brücken, CAN-Modul einschleifen | ja |
-| 3. **Testeinbau und Probefahrt**, provisorisches Gehäuse | ja |
-| 4. Bodenkontakte ausbauen | **nein** |
-| 5. Separationsrippen entfernen | **nein** |
-| 6. Endgültiges Gehäuse einbauen | — |
+### Der erste Funktionstest braucht kein Gehäuse
 
-> **Anforderung an das Provisorium:** Es muss in den **unveränderten** Schacht
-> passen, also die 10 mm vorstehenden Separationsrippen umgehen. Bei rund
-> 205 mm Außentiefe statt 211 mm berührt es sie nicht; der Innenraum reicht
-> dann noch für Zellblock, Endplatten und BMS. Passgenauigkeit ist dabei
-> nebensächlich — das Teil muss nur einen Fahrversuch überstehen.
+Der Pack lässt sich **außerhalb des Fahrzeugs** aufbauen und anschließen:
+sechzehn Zellen zwischen zwei Platten mit Gewindestangen verspannt, auf dem
+Werkstattboden, mit zwei Leitungen in den Schacht zu den Portkabeln. Damit ist
+alles Wesentliche prüfbar, **bevor ein Millimeter Gehäuse gedruckt ist**:
+
+| Prüfung | klärt |
+|---|---|
+| Roller einschalten | Gibt der Controller frei? Datenpin-Brücke und CAN-Modul korrekt? |
+| Rad aufgebockt drehen lassen | Läuft der Motor? Reagiert die Leistungsregelung? |
+| Voller Pack bei 58,4 V | **Verträgt der Controller die Spannung?** Nur 1,6 V Abstand zur 60-V-Grenze |
+| Last aufnehmen | Verhalten des BMS, Spannungseinbruch, Erwärmung |
+| Laden | Ladegerät, Balancing, Abschaltverhalten |
+
+Scheitert etwas, sind die Zellen unbeschädigt und wiederverwendbar, und am
+Fahrzeug ist nichts verändert.
+
+### Reihenfolge
+
+| # | Schritt | umkehrbar? |
+|---|---|---|
+| 1 | Zellen einzeln auf Ruhespannung prüfen | ja |
+| 2 | Pack **außerhalb** verspannen und verschalten, BMS anschließen | ja |
+| 3 | Datenpin-Schleife brücken, CAN-Modul einschleifen | ja |
+| 4 | **Funktionstest am aufgebockten Roller** | ja |
+| 5 | Provisorisches Gehäuse, **Probefahrt** | ja |
+| 6 | Bodenkontakte ausbauen | **nein** |
+| 7 | Separationsrippen entfernen | **nein** |
+| 8 | Schacht ausmessen, Kontur anpassen, Gehäuse drucken | — |
+| 9 | Endgültiger Einbau | — |
+
+**Warum Schritt 5 überhaupt nötig ist:** Für eine Probefahrt auf der Straße muss
+der Pack gesichert im Fahrzeug sitzen — aufgebockt lässt sich das Fahrverhalten
+unter realer Last nicht beurteilen. Das Provisorium muss dafür in den
+**unveränderten** Schacht passen, also die 10 mm vorstehenden Separationsrippen
+umgehen: rund 205 mm Außentiefe statt 211 mm. Passgenauigkeit ist nebensächlich,
+das Teil muss einen Fahrversuch überstehen.
+
+Wer nur aufgebockt testen will, kann Schritt 5 überspringen und nach dem
+Ausmessen direkt das endgültige Gehäuse bauen.
+
+### Ein Test mit weniger Zellen lohnt nicht
+
+Elektrisch wäre er möglich — Raffler ist probeweise mit 36 V gefahren, was etwa
+11S bis 12S entspräche. Dagegen sprechen drei Punkte [BER]:
+
+- **Kein Kostenvorteil.** Die Zellen werden ohnehin alle gekauft. Und bei 16S1P
+  ohne Parallelschaltung müssen **alle sechzehn aus derselben Charge** stammen:
+  Die schwächste bestimmt die Packkapazität, ein Ausgleich existiert nicht.
+- **Der kritische Punkt bliebe ungeprüft.** Ein 12S-Pack käme auf 43,8 V und
+  ließe die Frage offen, ob der Controller die 58,4 V verträgt — genau das
+  Risiko, um das es geht.
+- **Keine kleinere Bauform.** Ab neun Zellen braucht es ohnehin zwei Etagen; die
+  Bauhöhe bliebe bei 425 mm.
 
 ---
 
