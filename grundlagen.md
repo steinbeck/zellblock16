@@ -254,9 +254,40 @@ Verspannung bei 30–40 % SOC** — ungespannt und voll geladen ist die Zelle di
 > **Folge für die Konstruktion:** Die Gewindestangen sind nicht bloß
 > Gehäuseverbinder, sondern das **tragende Verspannelement**. Sie brauchen steife
 > Endplatten, die 300–500 kgf flächig in den Zellstapel einleiten. Eine gedruckte
-> Platte leistet das nicht — dort gehören Stahl oder Aluminium hin. Zwischen den
-> Zellen sind nachgiebige Lagen (Schaumstoff) vorzusehen, damit die EOL-Kraft
-> nicht gegen eine starre Einspannung läuft und 30 kN erreicht.
+> Platte leistet das nicht — dort gehören Stahl oder Aluminium hin.
+
+### Nachgiebigkeit ist kein Widerspruch zur Vorspannung
+
+Die Zellen sollen unter Druck stehen — und der Druck darf trotzdem nicht
+unkontrolliert steigen. Beides gehört zusammen.
+
+Über die Lebensdauer dehnt sich eine Zelle **irreversibel** aus, durch
+SEI-Wachstum und Gasbildung, bei LFP etwa 0,5–1 % der Dicke. Bei vier Zellen im
+Stapel sind das **0,7–1,5 mm**. Läuft diese Dehnung gegen eine starre
+Einspannung, explodiert die Kraft: [BER]
+
+| | |
+|---|---|
+| Steifigkeit von 4 × M8 A2, 200 mm lang | ~139.000 N/mm |
+| Kraftzuwachs bei 1,5 mm Dehnung | **rechnerisch 208 kN** |
+| Innere Schäden laut Datenblatt ab | 9 kN |
+| Leckage ab | 15 kN |
+
+So weit kommt es nie — vorher gibt die Endplatte nach oder die Zelle wird
+gequetscht. Genau das ist das Problem. **Die 30 kN, die das Datenblatt als
+Ausdehnungskraft am Lebensende nennt, sind keine Eigenschaft der Zelle, sondern
+die Folge einer zu steifen Einspannung.**
+
+**Gewählt: Tellerfedern auf den Zugstangen.** Sie halten die Vorspannung und
+nehmen die Alterungsdehnung auf. Mit rund 1.000 N/mm je Stapel steigt die Kraft
+bei 1,5 mm Dehnung nur um 1,5 kN — von 4 auf 5,5 kN, deutlich unter der
+9-kN-Grenze. Rund sechs Federn je Stange, Anordnung und Platzierung in
+`konstruktion.md` §4.2.
+
+**Verworfen: Schaumlagen zwischen den Zellen.** Sie leisten dasselbe, haben aber
+drei Nachteile: Sie vergrößern die Zellteilung von 36,35 auf ~39,35 mm und damit
+den nötigen Busbar-Lochabstand, sie isolieren die Zellen thermisch gegeneinander,
+und ihre Kennlinie ist schwerer auszulegen als die einer genormten Tellerfeder.
 
 ### Wärmeabfuhr
 
@@ -765,6 +796,7 @@ Damit die Diskussion nicht im Kreis läuft.
 | Trennrippen wegfräsen | Nicht nötig, da Volumen reichlich; erhält Reversibilität und Führungsfunktion | 2026-08-20 |
 | 30-kg-Gewichtsobergrenze | Unbegründet; 151 kg Zuladung bleiben auch mit 36-kg-Pack | 2026-08-20 |
 | **14S NMC für den Ersatzpack** | Alle drei Gegenargumente zu LFP entfielen (Ladegerät wird ohnehin ersetzt, das CAN-Modul leitet keinen Ladestand ab, Stromreserve reicht beim realen Fahrprofil). Zugleich ist NMC prismatisch in Europa kaum beschaffbar, teurer und hält ~800 statt > 6.000 Zyklen. §3.1 | 2026-08-21 |
+| Schaumlagen zwischen den Zellen | Tellerfedern auf den Zugstangen leisten dasselbe, ohne die Zellteilung und damit das Busbar-Maß zu verändern, ohne thermische Isolierung zwischen den Zellen und mit genormter Kennlinie. §3.3 | 2026-08-22 |
 | Liegende Zellmontage | Ventil arbeitet nur bei Polen oben bestimmungsgemäß; zusätzlich scheitern alle liegenden Varianten geometrisch (§3.3) | 2026-08-20 |
 | Erhalt des OEM-BMS | Es ist die Fehlerquelle: Flottenmanagement-BMS mit GPS/GSM, Backend nicht mehr verfügbar | vorab |
 
