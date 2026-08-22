@@ -250,6 +250,9 @@ Das Modul muss daher **vor dem Testlauf** vorliegen (§8.5).
 **Wichtig: Es ist BMS-unabhängig.** Die Wahl des BMS schränkt die spätere
 Nachrüstung nicht ein. Raffler will es selbst, weil er einen eigenen Umbau plant.
 
+Ein möglicher Beitrag von hier aus: **CAN-Mitschnitt einer echten
+Rekuperationsfahrt**, solange die Originalakkus noch laufen. Messplan in §8.5.
+
 Praktische Folgen bis dahin: etwas geringere Reichweite im Stadtverkehr — bei
 einem Roller typisch 5–15 % — und mehr Verschleiß an den mechanischen Bremsen.
 Für die Auslegung des Packs ohne Belang; das BMS muss keinen Ladestrom vom
@@ -788,7 +791,85 @@ entfallen mit dem Umbau.
 
 ---
 
-## 8.5 Vorgehensreihenfolge — Erprobung vor irreversiblen Eingriffen
+## 8.5 CAN-Mitschnitt zur Rekuperation — Messplan
+
+**Ziel ist nicht, Rafflers Modul nachzubauen.** Die Akkusimulation ist gelöst und
+für 270 CHF zu haben; sie zu duplizieren wäre vergeudete Zeit. Offen ist allein
+die **Rekuperation** (§3.2), und dafür ist Christoph besser ausgestattet, als es
+zunächst scheint.
+
+### Der Ansatz: Differenzexperiment statt Rätselraten
+
+Solange die Originalakkus funktionieren, lässt sich der **echte** CAN-Verkehr
+mitschneiden — im Zustand mit und ohne Rekuperation. Der Unterschied zwischen
+beiden Mitschnitten ist die gesuchte Information: welche Frames sich ändern,
+wenn der Controller Energie zurückspeist.
+
+Zwei Voraussetzungen sind günstig:
+
+- **Drei intakte Originalakkus.** Nach dem Umbau ist diese Möglichkeit
+  unwiederbringlich weg (§8.6 Vorgehensreihenfolge).
+- **800 m Wohnhöhe.** Eine Bergstrecke mit reproduzierbarem Gefälle liegt vor
+  der Haustür.
+
+> **Die offene Frage, die niemand vorab beantworten kann:** Läuft die
+> Reku-Freigabe überhaupt über den CAN-Bus? Wenn ja, sind die Aussichten gut.
+> Ist sie im Controller verdrahtet oder hängt an einem Signal, das nicht auf dem
+> Bus erscheint, hilft kein Mitlesen. Rafflers Einschätzung — „sehr zuversichtlich,
+> dass ich das noch rauskriege" — spricht für die erste Möglichkeit.
+
+### Ausrüstung
+
+| Posten | Preis |
+|---|---:|
+| CAN-Adapter: CANable, USBtin oder Raspberry Pi mit MCP2515 | 30–60 € |
+| Software: `can-utils`, SavvyCAN, Wireshark | kostenlos |
+| **Summe** | **30–60 €** |
+
+Das Mitlesen ist **passiv** — es wird nur empfangen, nichts gesendet. Kein
+Eingriff, kein Risiko, jederzeit abbrechbar. Auf die 120-Ω-Terminierung des
+Busses achten und sie nicht verändern.
+
+### Messplan
+
+Jede Fahrt vollständig aufzeichnen, mit Zeitstempel und Notizen zu Tempo,
+Gefälle und Gasgriffstellung.
+
+| # | Fahrt | Zweck |
+|---|---|---|
+| 1 | **Stillstand, Zündung an**, 5 min | Grundrauschen: welche Frames laufen zyklisch, mit welcher Rate |
+| 2 | **Ebene, konstant 40 km/h** | Referenz unter Last, ohne Rekuperation |
+| 3 | **Bergab mit Rekuperation**, Gas los | **Der Kern.** Welche Frames ändern sich gegenüber 2? |
+| 4 | **Bergab, Gas leicht gehalten** | Trennt Schubbetrieb von aktiver Rückspeisung |
+| 5 | **Bergauf unter Last** | Gegenprobe: Stromrichtung umgekehrt |
+| 6 | **Vollem Akku bergab** | Prüft, ob der Controller Rekuperation bei vollem Pack sperrt — und woran er das erkennt |
+
+**Fahrt 6 ist der eigentliche Erkenntnisgewinn.** Sie klärt, ob die Sperre am
+gemeldeten Ladestand hängt. Falls ja, wäre auch erklärt, warum Rekuperation mit
+dem simulierten Akku nicht anläuft — und die Lösung könnte darin bestehen, einen
+niedrigeren Ladestand zu simulieren. Das ist eine **Hypothese**, keine
+Feststellung.
+
+### Auswertung
+
+1. Frames nach CAN-ID gruppieren, zyklische von ereignisgesteuerten trennen.
+2. Mitschnitte 2 und 3 byteweise vergleichen. Gesucht sind Bytes, die
+   **ausschließlich** bei Rekuperation ihren Wert ändern.
+3. Kandidaten gegen Fahrt 4 und 5 prüfen: Ein Stromwert sollte das Vorzeichen
+   wechseln, ein Freigabebit nur in Fahrt 3 gesetzt sein.
+4. Ergebnisse an Raffler — er kennt Protokoll und Firmware, ihm fehlen die
+   Messdaten aus einem Fahrzeug mit intakten Originalakkus.
+
+### Wann das zu tun ist
+
+**Vor dem Umbau.** Nach dem Ausbau der Bodenkontakte gibt es keinen
+Originalakku-Betrieb mehr, und damit auch keine Vergleichsmessung. Wenn diese
+Daten je erhoben werden sollen, dann in dem Zeitfenster, das jetzt noch offen
+ist.
+
+---
+
+## 8.6 Vorgehensreihenfolge — Erprobung vor irreversiblen Eingriffen
 
 **Grundsatz (Christoph, 2026-08-21):** Die Separationsrippen werden erst
 entfernt, wenn der Umstieg endgültig ist. Vorher muss der Roller mit den echten

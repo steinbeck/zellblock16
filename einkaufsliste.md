@@ -2,7 +2,7 @@
 
 **Stand:** 2026-08-22
 **Zweck:** Alles für Schritt 1 bis 4 der Vorgehensreihenfolge
-(`grundlagen.md` §8.5) — Pack außerhalb des Fahrzeugs aufbauen, anschließen und
+(`grundlagen.md` §8.6) — Pack außerhalb des Fahrzeugs aufbauen, anschließen und
 am aufgebockten Roller erproben.
 
 > [!CAUTION]
@@ -19,7 +19,7 @@ am aufgebockten Roller erproben.
 noch Aluminium-Endplatten (~115 €) und Filament (~110 €). Der Grund: Die Zellen
 dominieren die Rechnung, und sie werden vollständig gebraucht — ein reduzierter
 Testkauf ist nicht sinnvoll, weil alle sechzehn Zellen aus derselben Charge
-stammen müssen (`grundlagen.md` §8.5).
+stammen müssen (`grundlagen.md` §8.6).
 
 ---
 
@@ -128,6 +128,7 @@ zusammen rund 225 €.
 | Filament | die Kontur steht erst nach dem Ausmessen des Schachts fest |
 | Vorladewiderstand | nötig vor der ersten Fahrt, nicht für den Aufbau |
 | Crimpzange 35 mm² | vermeidbar durch fertig konfektionierte Kabel |
+| CAN-Adapter, 30–60 € | kein Teil des Packs — aber **vor dem Umbau** sinnvoll, solange die Originalakkus noch laufen (`grundlagen.md` §8.5) |
 
 ---
 
