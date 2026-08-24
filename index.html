@@ -79,6 +79,7 @@ th{font-family:var(--f-mono);font-weight:normal;font-size:10px;letter-spacing:.1
 td{padding:7px 11px 7px 0;border-bottom:1px solid rgba(62,110,150,.3);
   vertical-align:top;}
 td:last-child,th:last-child{padding-right:0;}
+td small{color:var(--ink-mid);font-size:13px;}
 td.v{font-family:var(--f-mono);font-size:14px;white-space:nowrap;
   font-variant-numeric:tabular-nums;color:#fff;}
 
@@ -124,7 +125,7 @@ footer p{max-width:64ch;}
   <div class="grid">
     <div class="card"><k>Energie</k><v>5,38 kWh</v><small>gegenüber 4,33 kWh im Original</small></div>
     <div class="card"><k>Konfiguration</k><v>16S1P</v><small>EVE LF105, 105 Ah, 3,2 V</small></div>
-    <div class="card"><k>Material</k><v>~1.500 €</v><small>ohne Werkzeug und Abnahme</small></div>
+    <div class="card"><k>Material</k><v>~1.800 €</v><small>ohne Werkzeug und Abnahme</small></div>
   </div>
 
   <figure>
@@ -223,6 +224,89 @@ footer p{max-width:64ch;}
       </tbody>
     </table>
   </div>
+
+  <h2>Teile und Kosten</h2>
+
+  <p>Preise als Bruttoschätzung für Privatbezug, Stand August 2026. Zellen und
+  BMS beruhen auf konkreten Angeboten, der Rest ist geschätzt und streut je nach
+  Bezugsquelle.</p>
+
+  <div class="tblwrap">
+    <table>
+      <caption>Zellen und Elektronik</caption>
+      <thead><tr><th>Position</th><th>Menge</th><th>ca.</th></tr></thead>
+      <tbody>
+        <tr><td>Zellen EVE LF105, 105 Ah, 3,2 V, Grade A</td><td class="v">16</td><td class="v">640 €</td></tr>
+        <tr><td>BMS 16S, 200 A, aktiver Balancer, Bluetooth und RS485</td><td class="v">1</td><td class="v">110 €</td></tr>
+        <tr><td>CAN-Modul mit Batteriesimulation <small>(Preis auf Anfrage)</small></td><td class="v">1</td><td class="v">~285 €</td></tr>
+        <tr><td>Ladegerät CC/CV, 15–20 A, Spannung einstellbar</td><td class="v">1</td><td class="v">170–280 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tblwrap">
+    <table>
+      <caption>Skelett und Verspannung</caption>
+      <thead><tr><th>Position</th><th>Menge</th><th>ca.</th></tr></thead>
+      <tbody>
+        <tr><td>Aluplatten 260 × 400 × 8 mm, zugeschnitten</td><td class="v">2</td><td class="v">80–150 €</td></tr>
+        <tr><td>Gewindestangen M8 A2, Muttern, Scheiben</td><td class="v">8</td><td class="v">30–50 €</td></tr>
+        <tr><td>Tellerfedern für M8, sechs je Stange</td><td class="v">48</td><td class="v">30–60 €</td></tr>
+        <tr><td>Busbars kurz, Lochabstand 36,35 mm</td><td class="v">12</td><td class="v">42–70 €</td></tr>
+        <tr><td>Verbinder lang, Lochabstand 63 mm</td><td class="v">2</td><td class="v">15–25 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tblwrap">
+    <table>
+      <caption>Gehäuse, gedruckt</caption>
+      <thead><tr><th>Position</th><th>Menge</th><th>ca.</th></tr></thead>
+      <tbody>
+        <tr><td>ASA-Filament für Segmente, Zwischenplatte, Deckel</td><td class="v">3,5 kg</td><td class="v">75–125 €</td></tr>
+        <tr><td>PETG für den Testring</td><td class="v">0,3 kg</td><td class="v">8–12 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tblwrap">
+    <table>
+      <caption>Elektrik und Kleinmaterial</caption>
+      <thead><tr><th>Position</th><th>Menge</th><th>ca.</th></tr></thead>
+      <tbody>
+        <tr><td>Leistungskabel 35 mm², rot und schwarz</td><td class="v">je 2,5 m</td><td class="v">45–70 €</td></tr>
+        <tr><td>Kabelschuhe M6 und M8</td><td class="v">10</td><td class="v">12–20 €</td></tr>
+        <tr><td>Hauptsicherung 200 A ANL, träge, mit Halter</td><td class="v">1</td><td class="v">25–35 €</td></tr>
+        <tr><td>Batterie-Trennschalter ≥ 250 A</td><td class="v">1</td><td class="v">25–45 €</td></tr>
+        <tr><td>Vorladewiderstand gegen Einschaltlichtbogen</td><td class="v">1</td><td class="v">15–55 €</td></tr>
+        <tr><td>Isolation, Schrumpfschlauch, Kleinteile</td><td class="v">—</td><td class="v">30–60 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tblwrap">
+    <table>
+      <caption>Summe</caption>
+      <thead><tr><th>Block</th><th>von</th><th>bis</th><th>wahrscheinlich</th></tr></thead>
+      <tbody>
+        <tr><td>Zellen und Elektronik</td><td class="v">1.205 €</td><td class="v">1.315 €</td><td class="v">1.245 €</td></tr>
+        <tr><td>Skelett und Verspannung</td><td class="v">197 €</td><td class="v">355 €</td><td class="v">258 €</td></tr>
+        <tr><td>Gehäuse</td><td class="v">83 €</td><td class="v">137 €</td><td class="v">110 €</td></tr>
+        <tr><td>Elektrik und Kleinmaterial</td><td class="v">152 €</td><td class="v">285 €</td><td class="v">210 €</td></tr>
+        <tr><td><strong>Gesamt</strong></td><td class="v">1.637 €</td><td class="v">2.092 €</td><td class="v"><strong>1.823 €</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Nicht enthalten:</strong> Werkzeug (Multimeter, Drehmomentschlüssel
+  für 4–6 Nm an den Zellpolen, ggf. Crimpzange) mit 100–300 € einmalig, sowie
+  eine mögliche Abnahme durch eine Prüforganisation.</p>
+
+  <h3>Zum Vergleich</h3>
+  <p>Drei Originalakkus kosten <strong>4.200 €</strong> und liefern zusammen
+  4,33 kWh — das sind 970 € je Kilowattstunde. Der Entwurf kommt auf rund 340 €
+  je Kilowattstunde. Hinzu kommt, dass die kleinste austauschbare Einheit
+  künftig eine Zelle für etwa 40 € ist statt eines kompletten Packs.</p>
 
   <h2>Stand</h2>
   <p>Konstruktion abgeschlossen, Fertigung nicht begonnen. Ein erster Testring
