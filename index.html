@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zellblock 16 — Ersatzakku für den Kumpan 54 ignite</title>
+<meta name="description" content="Konstruktionsentwurf für einen selbstgebauten 16S1P-LiFePO4-Traktionsakku als Ersatz für die Wechselakkus des Kumpan 54 ignite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;600&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;500&display=swap">
+<style>
+:root{
+  --paper:#0D2F50; --paper-deep:#08213A; --panel:rgba(6,26,46,.55);
+  --ink:#DCEBF6; --ink-mid:#8FB6D2; --ink-faint:#3E6E96; --grid:#1B4571;
+  --accent:#D4614A;
+  --f-disp:"Saira Condensed","Arial Narrow",sans-serif;
+  --f-mono:"Share Tech Mono",ui-monospace,"Courier New",monospace;
+  --f-body:"Barlow Condensed","Arial Narrow",sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--paper-deep);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;padding:clamp(10px,2.5vw,30px);
+}
+.sheet{
+  max-width:860px;margin:0 auto;position:relative;overflow:hidden;
+  background:radial-gradient(120% 80% at 30% 6%,#14395E 0%,var(--paper) 50%,#0A2743 100%);
+  border:1px solid var(--ink-faint);box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.sheet::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.4;
+  background-image:linear-gradient(var(--grid) .5px,transparent .5px),
+    linear-gradient(90deg,var(--grid) .5px,transparent .5px);
+  background-size:16px 16px,16px 16px;
+}
+.inner{position:relative;z-index:2;padding:clamp(20px,4.5vw,52px);}
+
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;
+  color:var(--ink-mid);text-transform:uppercase;margin:0 0 10px;}
+h1{font-family:var(--f-disp);font-weight:600;font-size:clamp(34px,7vw,60px);
+  letter-spacing:.04em;margin:0 0 6px;line-height:.98;text-transform:uppercase;
+  text-wrap:balance;}
+.sub{font-family:var(--f-disp);font-size:clamp(16px,2.6vw,22px);font-weight:400;
+  letter-spacing:.1em;color:var(--ink-mid);text-transform:uppercase;margin:0 0 26px;}
+
+h2{font-family:var(--f-disp);font-size:clamp(19px,3vw,25px);font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;margin:44px 0 12px;
+  padding-bottom:7px;border-bottom:1px solid var(--ink-faint);text-wrap:balance;}
+h3{font-family:var(--f-disp);font-size:16px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-mid);margin:26px 0 8px;}
+p{margin:0 0 15px;max-width:64ch;}
+strong{color:#fff;font-weight:500;}
+a{color:var(--ink);text-decoration-color:var(--ink-faint);text-underline-offset:3px;}
+a:hover{text-decoration-color:var(--ink);}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+.warn{border:1.5px solid var(--accent);background:rgba(212,97,74,.1);
+  padding:16px 19px;margin:0 0 32px;}
+.warn b{display:block;font-family:var(--f-disp);font-size:17px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:7px;}
+.warn p{margin:0;font-size:16px;}
+
+figure{margin:26px 0;text-align:center;}
+figure img{max-width:100%;height:auto;border:1px solid var(--ink-faint);
+  background:#F7F5E4;}
+figcaption{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-mid);
+  margin-top:9px;letter-spacing:.04em;}
+
+.tblwrap{overflow-x:auto;margin:0 0 20px;}
+table{width:100%;border-collapse:collapse;font-size:15.5px;}
+caption{text-align:left;font-family:var(--f-mono);font-size:10.5px;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid);
+  padding-bottom:7px;}
+th{font-family:var(--f-mono);font-weight:normal;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-mid);text-align:left;
+  padding:7px 11px 7px 0;border-bottom:1px solid var(--ink-faint);}
+td{padding:7px 11px 7px 0;border-bottom:1px solid rgba(62,110,150,.3);
+  vertical-align:top;}
+td:last-child,th:last-child{padding-right:0;}
+td.v{font-family:var(--f-mono);font-size:14px;white-space:nowrap;
+  font-variant-numeric:tabular-nums;color:#fff;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;margin:0 0 22px;}
+.card{border:1px solid var(--ink-mid);background:var(--panel);padding:15px 17px;}
+.card k{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-mid);margin-bottom:6px;}
+.card v{display:block;font-family:var(--f-disp);font-size:26px;font-weight:600;
+  letter-spacing:.03em;line-height:1.1;}
+.card small{display:block;font-size:14px;color:var(--ink-mid);margin-top:5px;}
+
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--ink-faint);
+  font-size:15px;color:var(--ink-mid);}
+footer p{max-width:64ch;}
+</style>
+</head>
+<body>
+<div class="sheet"><div class="inner">
+
+  <p class="eyebrow">Elektroroller · Traktionsbatterie · Eigenbau</p>
+  <h1>Zellblock 16</h1>
+  <p class="sub">Ersatzakku für den Kumpan 54 ignite</p>
+
+  <div class="warn">
+    <b>Entwurf — nicht gebaut, nicht getestet, nicht abgenommen</b>
+    <p>Diese Seite beschreibt einen Konstruktionsstand, keine erprobte Lösung.
+    Kein Teil wurde gefertigt, kein Strom ist geflossen, eine Prüforganisation
+    war nicht beteiligt. Wer darauf aufbaut, prüft jede Zahl selbst gegen seine
+    eigenen Bauteile und Datenblätter.</p>
+  </div>
+
+  <p>Der Kumpan 54 ignite fährt mit bis zu drei Wechselakkus. Sie altern, zeigen
+  Fehler, und ihr Batteriemanagement war auf ein Backend ausgelegt, das nicht
+  mehr verlässlich erreichbar ist. Ersatz gibt es weiterhin — zu
+  <strong>1.400 € pro Stück</strong>, für drei Packs also 4.200 €.</p>
+
+  <p>Der Entwurf ersetzt alle drei durch <strong>einen fest verbauten Pack aus
+  sechzehn prismatischen LiFePO4-Zellen</strong>, der den vorhandenen Schacht
+  ausfüllt. Das Gehäuse wird gedruckt, das tragende Gerüst besteht aus
+  Aluminium.</p>
+
+  <div class="grid">
+    <div class="card"><k>Energie</k><v>5,38 kWh</v><small>gegenüber 4,33 kWh im Original</small></div>
+    <div class="card"><k>Konfiguration</k><v>16S1P</v><small>EVE LF105, 105 Ah, 3,2 V</small></div>
+    <div class="card"><k>Material</k><v>~1.500 €</v><small>ohne Werkzeug und Abnahme</small></div>
+  </div>
+
+  <figure>
+    <img src="img/explosion.png" alt="Explosionsdarstellung: Deckel, obere Zellebene mit sechzehn Polen, Zwischenplatte, Gehäuseoberteil, Aluminium-Endplatten mit Zugstangen, untere Zellebene und Gehäuseunterteil.">
+    <figcaption>Aufbau von unten nach oben — Gehäuse, zwei Zellebenen, Zwischenplatte, Deckel</figcaption>
+  </figure>
+
+  <h2>Kenndaten</h2>
+  <div class="tblwrap">
+    <table>
+      <caption>Auslegung</caption>
+      <tbody>
+        <tr><td>Nennspannung</td><td class="v">51,2 V</td></tr>
+        <tr><td>Ladeschluss technisch</td><td class="v">58,4 V</td></tr>
+        <tr><td>Dauerstrom / Spitze</td><td class="v">100 A / 180 A</td></tr>
+        <tr><td>Masse</td><td class="v">43,2 kg</td></tr>
+        <tr><td>Außenmaß</td><td class="v">270 × 215 × 430 mm</td></tr>
+        <tr><td>Rechnerische Reichweite</td><td class="v">~100 km</td></tr>
+        <tr><td>Zyklen laut Zelldatenblatt</td><td class="v">&gt; 6.000</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Der Aufbau</h2>
+
+  <p><strong>Metall trägt, Kunststoff hüllt.</strong> Zwei durchgehende
+  Aluminiumplatten über die volle Bauhöhe, verbunden durch acht waagerechte
+  Gewindestangen, nehmen die Zellverspannung auf. Das gedruckte Gehäuse
+  überträgt keine Kräfte — es ist Hülle, Führung im Schacht und Isolierung
+  gegen den Rahmen.</p>
+
+  <p>Die Zellen stehen in <strong>zwei Etagen zu je acht</strong>, angeordnet als
+  zwei Stapel von vier, mit den Polen nach oben. Sie sind abwechselnd um 180°
+  gedreht, damit die zu verbindenden Pole übereinanderliegen und die Busbars
+  kurz bleiben.</p>
+
+  <h3>Warum verspannt werden muss</h3>
+  <p>Prismatische Zellen quellen beim Laden auf. Ohne Gegendruck delaminieren die
+  Elektroden und die Kapazität bricht ein; das Datenblatt verlangt
+  <strong>3–5 kN Vorspannung je Stapel</strong>. Zugleich darf der Druck nicht
+  unkontrolliert steigen: Über die Lebensdauer dehnen sich die Zellen
+  irreversibel, und gegen starre Zugstangen ergäbe das rechnerisch weit über
+  100 kN, während die Zelle schon ab 9 kN Schaden nimmt.</p>
+
+  <p>Die Lösung sind <strong>Tellerfedern auf den Zugstangen</strong>. Sie halten
+  die Vorspannung und begrenzen ihren Anstieg auf etwa 1,5 kN. Schaumlagen
+  zwischen den Zellen leisten dasselbe, vergrößern aber die Zellteilung und
+  damit das nötige Busbar-Maß.</p>
+
+  <h3>Warum LiFePO4 statt der Originalchemie</h3>
+  <p>Das Original ist 14S NMC — belegt über das Ladegerät mit 59 V Ausgang, also
+  4,21 V je Zelle. Der Ersatz wird <strong>16S LFP</strong>, weil die
+  Spannungsfenster nahezu deckungsgleich sind:</p>
+
+  <div class="tblwrap">
+    <table>
+      <caption>Spannungslage im Vergleich</caption>
+      <thead><tr><th>Zustand</th><th>14S NMC</th><th>16S LFP</th></tr></thead>
+      <tbody>
+        <tr><td>leer</td><td class="v">42,0 V</td><td class="v">40,0 V</td></tr>
+        <tr><td>nominal</td><td class="v">50,6 V</td><td class="v">51,2 V</td></tr>
+        <tr><td>voll</td><td class="v">58,8 V</td><td class="v">58,4 V</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Beide liegen unter der Obergrenze des Motorcontrollers von 60 V. Für LFP
+  sprechen die deutlich bessere Beschaffbarkeit in Europa, ein Vielfaches an
+  Zyklen und die gutmütigere Thermik — relevant bei einem fest verbauten Pack.</p>
+
+  <h3>Wie er in den Schacht kommt</h3>
+  <p>Die drei Original-Steckkontakte am Schachtboden werden ausgebaut; dadurch
+  wird der Boden plan, die volle Bauhöhe nutzbar, und die freiwerdenden
+  Öffnungen dienen als Kabeldurchführung. Ebenso entfallen die beiden tiefen
+  Trennrippen zwischen den Fächern.</p>
+
+  <p><strong>Beides ist unumkehrbar</strong> — danach nimmt der Roller keinen
+  Originalakku mehr auf. Deshalb steht am Anfang ein Funktionstest mit dem
+  fertig verschalteten Pack <em>außerhalb</em> des Fahrzeugs, angeschlossen über
+  die vorhandenen Portleitungen. Erst wenn der Roller damit gelaufen ist, wird
+  am Fahrzeug etwas verändert.</p>
+
+  <h2>Rollerseitig zu beachten</h2>
+  <div class="tblwrap">
+    <table>
+      <tbody>
+        <tr><td>Alle drei Anschlüsse liegen parallel und tragen je 100 A —
+          für 180 A Spitzenstrom sind die Leitungen zusammenzuführen.</td></tr>
+        <tr><td>Der Roller prüft über die Datenpins, ob ein Stromkreis
+          geschlossen ist. Ohne diese Brücke gibt er nicht frei.</td></tr>
+        <tr><td>Der Motorcontroller verträgt maximal 60 V. Das
+          Serien-Ladegerät mit 59 V ist für LFP ungeeignet.</td></tr>
+        <tr><td>Ein CAN-Modul ersetzt das originale Batteriemanagement und gibt
+          den Controller frei. Rekuperation ist damit derzeit nicht
+          verfügbar.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Stand</h2>
+  <p>Konstruktion abgeschlossen, Fertigung nicht begonnen. Ein erster Testring
+  zur Prüfung der Außenkontur wurde gedruckt und passte nicht — die
+  Schachtgeometrie war anders als angenommen. Die Kontur wird nach dem Ausmessen
+  überarbeitet.</p>
+
+  <footer>
+    <p>Ohne die Vorarbeit von <strong>Raffler</strong> aus dem
+    Elektroroller-Forum wäre dieser Entwurf nicht möglich — sein CAN-Modul gibt
+    den Motorcontroller ohne das originale Batteriemanagement frei. Ebenso half
+    der dokumentierte Umbau von <strong>JJac</strong>, der zeigte, dass der Weg
+    überhaupt gangbar ist.</p>
+    <p>Rückmeldungen, Korrekturen und Erfahrungen mit ähnlichen Umbauten sind
+    willkommen — am besten im Elektroroller-Forum.</p>
+  </footer>
+
+</div></div>
+</body>
+</html>
